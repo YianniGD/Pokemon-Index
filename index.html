@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Type Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      #root {
+        transition: opacity 150ms ease-in-out;
+      }
+
+      .shape-main-fill { fill: #f4f4f5; } /* zinc-100 */
+      .shape-accent-fill { fill: #3f3f46; } /* zinc-700 */
+      
+      .stat-radar-grid-line {
+        stroke: #3f3f46; /* zinc-700 */
+      }
+      .stat-radar-axis-label {
+        fill: #a1a1aa; /* zinc-400 */
+      }
+      .stat-radar-value-label {
+        fill: #f4f4f5; /* zinc-100 */
+      }
+      #search-overlay {
+        transition: opacity 150ms ease-in-out;
+      }
+      .image-rendering-pixelated {
+        image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+      }
+    </style>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-zinc-900 text-zinc-200">
+    <div id="root"></div>
+    <div id="search-overlay" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 p-4 overflow-y-auto"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
