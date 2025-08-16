@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>harden | Pokédex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .shape-main-fill { fill: #f4f4f5; } .shape-accent-fill { fill: #3f3f46; }
+      .stat-radar-grid-line { stroke: #3f3f46; } .stat-radar-axis-label { fill: #a1a1aa; }
+      .stat-radar-value-label { fill: #f4f4f5; } .image-rendering-pixelated { image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-200">
+    <div id="root">
+        <div class="min-h-screen flex flex-col">
+            
+    <div class="flex-shrink-0 w-full sticky top-0 bg-zinc-950/80 backdrop-blur-md z-40 border-b border-zinc-800/50">
+        <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+            <header class="py-4 flex justify-between items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    
+                        <button id="standard-back-btn" class="p-2 rounded-full hover:bg-zinc-700 transition-colors" aria-label="Go back">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </button>
+                    
+                    <div class="w-32 sm:w-40 flex-shrink-0">
+                        <a href="../../index.html" class="w-full transition-transform hover:scale-105">
+                            
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.96 67.68">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fcdd02;
+      }
+
+      .cls-2 {
+        fill: #f4a198;
+      }
+
+      .cls-3 {
+        fill: #c82e19;
+      }
+
+      .cls-4 {
+        fill: #81cee2;
+      }
+
+      .cls-5 {
+        fill: #72994d;
+      }
+
+      .cls-6 {
+        fill: #f7f3da;
+      }
+
+      .cls-7 {
+        fill: #00aeeb;
+      }
+
+      .cls-8 {
+        fill: #435e2c;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <path class="cls-7" d="M9.9,57.78c13.2,13.2,34.68,13.2,47.88,0,13.2-13.2,13.2-34.68,0-47.88-13.2-13.2-34.68-13.2-47.88,0s-13.2,34.68,0,47.88Z"/>
+      <path class="cls-8" d="M164.04,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5c-4.55-4.55-11.95-4.55-16.51,0s-4.55,11.95,0,16.5Z"/>
+      <path class="cls-1" d="M126.2,23.73c4.55,4.55,11.95,4.55,16.5,0,4.55-4.55,4.55-11.95,0-16.51s-11.95-4.55-16.5,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-3" d="M87.48,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5-11.95-4.55-16.51,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-4" d="M12.73,13.67c-6.74,6.74-9.03,15.41-5.1,19.33s12.6,1.63,19.33-5.1c6.74-6.74,9.03-15.41,5.1-19.33s-12.6-1.63-19.33,5.1Z"/>
+      <path class="cls-5" d="M172.44,6.34c-1.35-1.35-4.34-.56-6.67,1.76s-3.11,5.31-1.76,6.66,4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.66Z"/>
+      <path class="cls-6" d="M127.61,7.78c-2.32,2.32-3.11,5.31-1.76,6.66s4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.67-1.35-1.35-4.34-.56-6.66,1.76Z"/>
+      <path class="cls-2" d="M89.27,8.15c-2.32,2.32-3.11,5.31-1.76,6.66,1.35,1.35,4.34.56,6.66-1.76s3.11-5.31,1.76-6.66c-1.35-1.35-4.34-.56-6.67,1.76Z"/>
+    </g>
+  </g>
+</svg>
+
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-grow flex items-center justify-end gap-1 sm:gap-2 md:gap-4">
+                    <div class="relative flex-grow max-w-xs sm:max-w-sm md:max-w-md">
+                        <input type="search" id="global-search" placeholder="Search Pokémon, Items, Abilities, Attacks..." value="" aria-label="Search Pokémon, Items, Abilities, and Attacks" class="w-full bg-zinc-800 border-2 border-zinc-700 rounded-md pl-10 pr-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-zinc-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        
+            <div>
+                <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-center gap-4 py-4">
+                        <h1 class="flex-initial text-xl sm:text-2xl font-bold text-center text-zinc-100 whitespace-nowrap">Harden</h1>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    
+            <main class="flex-grow w-full max-w-screen-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                
+                
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+                <p class="text-zinc-300 italic text-base mb-4 text-center">"The user stiffens all the muscles in its body to boost its Defense stat."</p>
+                <div class="mt-auto space-y-3 pt-4 border-t border-zinc-700/50">
+                    <div>
+                        <h3 class="font-semibold text-zinc-100 text-lg mb-2">Effect</h3>
+                        <p class="text-zinc-300 text-base leading-relaxed">Raises the user&#039;s Defense by one stage.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+                <h3 class="font-semibold text-zinc-100 text-lg mb-2">Details</h3>
+                <div class="text-base">
+                    
+            <div class="flex justify-between items-center py-2 border-b border-zinc-700/50 last:border-b-0">
+                <span class="text-zinc-400">Type</span>
+                <div class="font-bold text-zinc-100 ">
+        <div 
+            class="type-display relative rounded-lg shadow-md font-bold flex items-center justify-center bg-[#949495] text-white h-12 w-20 text-sm h-10 w-24 !text-xs "
+            data-type="Normal"
+            aria-label="Normal type"
+            role="img"
+            title="Normal"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.71 76.71" class="h-8 w-8" fill="currentColor"><rect fill="#949495" width="76.71" height="76.71" rx="6.57" ry="6.57"/><path d="M63.81,26.43c3.12-4.29,2.43-10.33-1.69-13.79-4-3.36-9.82-3.11-13.54.39-3.18-1.21-6.63-1.88-10.23-1.88s-7.05.67-10.23,1.88c-3.71-3.5-9.53-3.74-13.54-.39-4.13,3.46-4.81,9.49-1.69,13.79-2.17,4.05-3.4,8.67-3.4,13.58,0,15.91,12.95,28.86,28.86,28.86s28.86-12.95,28.86-28.86c0-4.91-1.23-9.53-3.4-13.58ZM38.35,60.87c-11.5,0-20.86-9.36-20.86-20.86s9.36-20.86,20.86-20.86,20.86,9.36,20.86,20.86-9.36,20.86-20.86,20.86Z"/></svg>
+            
+        </div>
+    </div>
+            </div>
+        
+                    
+            <div class="flex justify-between items-center py-2 border-b border-zinc-700/50 last:border-b-0">
+                <span class="text-zinc-400">Category</span>
+                <div class="font-bold text-zinc-100 "><div class="flex items-center gap-2"><div class="h-6 w-8"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.88 54.32">
+    <ellipse cx="36.94" cy="27.16" rx="38.83" ry="24.36" transform="translate(-7.75 16.9) rotate(-23.39)" fill="#e6e6e6"/>
+    <path d="M38.4,27.67c-24.81,0-19.7-19.34-11.09-22.88.01,0-.03.01-.04.02C7.58,13.32-4.04,30.23,1.3,42.57c5.34,12.35,25.63,15.46,45.31,6.94,1.89-.85,16.6-21.85-8.21-21.85Z" fill="#333"/>
+</svg></div> <span class="capitalize">status</span></div></div>
+            </div>
+        
+                    
+            <div class="flex justify-between items-center py-2 border-b border-zinc-700/50 last:border-b-0">
+                <span class="text-zinc-400">Power</span>
+                <div class="font-bold text-zinc-100 ">—</div>
+            </div>
+        
+                    
+            <div class="flex justify-between items-center py-2 border-b border-zinc-700/50 last:border-b-0">
+                <span class="text-zinc-400">Accuracy</span>
+                <div class="font-bold text-zinc-100 ">—</div>
+            </div>
+        
+                    
+            <div class="flex justify-between items-center py-2 border-b border-zinc-700/50 last:border-b-0">
+                <span class="text-zinc-400">PP</span>
+                <div class="font-bold text-zinc-100 ">30</div>
+            </div>
+        
+                    
+            <div class="flex justify-between items-center py-2 border-b border-zinc-700/50 last:border-b-0">
+                <span class="text-zinc-400">Introduced</span>
+                <div class="font-bold text-zinc-100 ">Gen i</div>
+            </div>
+        
+                </div>
+            </div>
+            
+            
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+                <h3 class="font-semibold text-zinc-100 text-lg mb-2">Pokémon that learn this move</h3>
+                
+                <div class="mt-4 first:mt-0">
+                    <h4 class="font-semibold text-zinc-200 text-md mb-3">Learn by Level up (95)</h4>
+                    
+        <div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+            
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/11.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png" alt="metapod" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#011</span> 
+                    <span class="ml-1">Metapod</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/12.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png" alt="butterfree" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#012</span> 
+                    <span class="ml-1">Butterfree</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/14.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png" alt="kakuna" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#014</span> 
+                    <span class="ml-1">Kakuna</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/15.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png" alt="beedrill" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#015</span> 
+                    <span class="ml-1">Beedrill</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/74.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png" alt="geodude" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#074</span> 
+                    <span class="ml-1">Geodude</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/75.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png" alt="graveler" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#075</span> 
+                    <span class="ml-1">Graveler</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/76.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/76.png" alt="golem" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#076</span> 
+                    <span class="ml-1">Golem</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/88.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/88.png" alt="grimer" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#088</span> 
+                    <span class="ml-1">Grimer</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10112.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10112.png" alt="grimer-alola" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#088</span> 
+                    <span class="ml-1">Grimer</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Alola</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/89.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/89.png" alt="muk" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#089</span> 
+                    <span class="ml-1">Muk</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10113.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10113.png" alt="muk-alola" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#089</span> 
+                    <span class="ml-1">Muk</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Alola</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/95.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png" alt="onix" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#095</span> 
+                    <span class="ml-1">Onix</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/98.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/98.png" alt="krabby" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#098</span> 
+                    <span class="ml-1">Krabby</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/99.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/99.png" alt="kingler" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#099</span> 
+                    <span class="ml-1">Kingler</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/120.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/120.png" alt="staryu" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#120</span> 
+                    <span class="ml-1">Staryu</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/121.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png" alt="starmie" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#121</span> 
+                    <span class="ml-1">Starmie</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/127.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/127.png" alt="pinsir" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#127</span> 
+                    <span class="ml-1">Pinsir</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10040.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png" alt="pinsir-mega" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#127</span> 
+                    <span class="ml-1">Pinsir</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Mega</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/140.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/140.png" alt="kabuto" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#140</span> 
+                    <span class="ml-1">Kabuto</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/141.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/141.png" alt="kabutops" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#141</span> 
+                    <span class="ml-1">Kabutops</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/143.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" alt="snorlax" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#143</span> 
+                    <span class="ml-1">Snorlax</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/207.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/207.png" alt="gligar" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#207</span> 
+                    <span class="ml-1">Gligar</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/208.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/208.png" alt="steelix" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#208</span> 
+                    <span class="ml-1">Steelix</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10072.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10072.png" alt="steelix-mega" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#208</span> 
+                    <span class="ml-1">Steelix</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Mega</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/211.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/211.png" alt="qwilfish" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#211</span> 
+                    <span class="ml-1">Qwilfish</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10234.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10234.png" alt="qwilfish-hisui" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#211</span> 
+                    <span class="ml-1">Qwilfish</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Hisui</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/218.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/218.png" alt="slugma" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#218</span> 
+                    <span class="ml-1">Slugma</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/219.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/219.png" alt="magcargo" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#219</span> 
+                    <span class="ml-1">Magcargo</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/222.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/222.png" alt="corsola" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#222</span> 
+                    <span class="ml-1">Corsola</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10173.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png" alt="corsola-galar" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#222</span> 
+                    <span class="ml-1">Corsola</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Galar</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/266.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/266.png" alt="silcoon" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#266</span> 
+                    <span class="ml-1">Silcoon</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/267.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/267.png" alt="beautifly" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#267</span> 
+                    <span class="ml-1">Beautifly</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/268.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/268.png" alt="cascoon" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#268</span> 
+                    <span class="ml-1">Cascoon</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/269.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/269.png" alt="dustox" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#269</span> 
+                    <span class="ml-1">Dustox</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/273.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/273.png" alt="seedot" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#273</span> 
+                    <span class="ml-1">Seedot</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/274.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/274.png" alt="nuzleaf" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#274</span> 
+                    <span class="ml-1">Nuzleaf</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/275.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/275.png" alt="shiftry" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#275</span> 
+                    <span class="ml-1">Shiftry</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/290.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/290.png" alt="nincada" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#290</span> 
+                    <span class="ml-1">Nincada</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/291.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/291.png" alt="ninjask" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#291</span> 
+                    <span class="ml-1">Ninjask</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/292.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/292.png" alt="shedinja" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#292</span> 
+                    <span class="ml-1">Shedinja</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/299.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/299.png" alt="nosepass" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#299</span> 
+                    <span class="ml-1">Nosepass</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/304.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/304.png" alt="aron" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#304</span> 
+                    <span class="ml-1">Aron</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/305.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/305.png" alt="lairon" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#305</span> 
+                    <span class="ml-1">Lairon</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/306.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/306.png" alt="aggron" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#306</span> 
+                    <span class="ml-1">Aggron</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10053.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10053.png" alt="aggron-mega" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#306</span> 
+                    <span class="ml-1">Aggron</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Mega</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/337.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/337.png" alt="lunatone" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#337</span> 
+                    <span class="ml-1">Lunatone</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/338.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/338.png" alt="solrock" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#338</span> 
+                    <span class="ml-1">Solrock</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/341.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/341.png" alt="corphish" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#341</span> 
+                    <span class="ml-1">Corphish</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/342.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/342.png" alt="crawdaunt" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#342</span> 
+                    <span class="ml-1">Crawdaunt</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/343.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/343.png" alt="baltoy" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#343</span> 
+                    <span class="ml-1">Baltoy</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/344.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/344.png" alt="claydol" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#344</span> 
+                    <span class="ml-1">Claydol</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/347.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/347.png" alt="anorith" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#347</span> 
+                    <span class="ml-1">Anorith</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/348.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/348.png" alt="armaldo" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#348</span> 
+                    <span class="ml-1">Armaldo</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/369.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/369.png" alt="relicanth" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#369</span> 
+                    <span class="ml-1">Relicanth</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10004.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10004.png" alt="wormadam-sandy" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#413</span> 
+                    <span class="ml-1">Wormadam</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Sandy</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/422.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/422.png" alt="shellos" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#422</span> 
+                    <span class="ml-1">Shellos</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/423.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/423.png" alt="gastrodon" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#423</span> 
+                    <span class="ml-1">Gastrodon</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/472.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/472.png" alt="gliscor" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#472</span> 
+                    <span class="ml-1">Gliscor</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/476.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/476.png" alt="probopass" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#476</span> 
+                    <span class="ml-1">Probopass</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/524.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/524.png" alt="roggenrola" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#524</span> 
+                    <span class="ml-1">Roggenrola</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/525.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png" alt="boldore" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#525</span> 
+                    <span class="ml-1">Boldore</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/526.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/526.png" alt="gigalith" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#526</span> 
+                    <span class="ml-1">Gigalith</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/582.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/582.png" alt="vanillite" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#582</span> 
+                    <span class="ml-1">Vanillite</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/583.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/583.png" alt="vanillish" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#583</span> 
+                    <span class="ml-1">Vanillish</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/584.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/584.png" alt="vanilluxe" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#584</span> 
+                    <span class="ml-1">Vanilluxe</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/597.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/597.png" alt="ferroseed" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#597</span> 
+                    <span class="ml-1">Ferroseed</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/598.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/598.png" alt="ferrothorn" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#598</span> 
+                    <span class="ml-1">Ferrothorn</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/665.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/665.png" alt="spewpa" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#665</span> 
+                    <span class="ml-1">Spewpa</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/703.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/703.png" alt="carbink" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#703</span> 
+                    <span class="ml-1">Carbink</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/712.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/712.png" alt="bergmite" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#712</span> 
+                    <span class="ml-1">Bergmite</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/713.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/713.png" alt="avalugg" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#713</span> 
+                    <span class="ml-1">Avalugg</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10243.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png" alt="avalugg-hisui" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#713</span> 
+                    <span class="ml-1">Avalugg</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Hisui</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/719.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/719.png" alt="diancie" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#719</span> 
+                    <span class="ml-1">Diancie</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10075.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10075.png" alt="diancie-mega" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#719</span> 
+                    <span class="ml-1">Diancie</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Mega</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/769.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/769.png" alt="sandygast" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#769</span> 
+                    <span class="ml-1">Sandygast</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/770.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/770.png" alt="palossand" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#770</span> 
+                    <span class="ml-1">Palossand</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/771.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/771.png" alt="pyukumuku" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#771</span> 
+                    <span class="ml-1">Pyukumuku</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/794.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/794.png" alt="buzzwole" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#794</span> 
+                    <span class="ml-1">Buzzwole</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/797.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/797.png" alt="celesteela" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#797</span> 
+                    <span class="ml-1">Celesteela</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/805.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/805.png" alt="stakataka" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#805</span> 
+                    <span class="ml-1">Stakataka</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/808.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/808.png" alt="meltan" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#808</span> 
+                    <span class="ml-1">Meltan</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/809.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/809.png" alt="melmetal" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#809</span> 
+                    <span class="ml-1">Melmetal</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/864.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/864.png" alt="cursola" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#864</span> 
+                    <span class="ml-1">Cursola</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10272.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10272.png" alt="ursaluna-bloodmoon" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#901</span> 
+                    <span class="ml-1">Ursaluna</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Bloodmoon</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/904.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/904.png" alt="overqwil" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#904</span> 
+                    <span class="ml-1">Overqwil</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/932.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/932.png" alt="nacli" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#932</span> 
+                    <span class="ml-1">Nacli</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/933.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/933.png" alt="naclstack" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#933</span> 
+                    <span class="ml-1">Naclstack</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/934.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/934.png" alt="garganacl" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#934</span> 
+                    <span class="ml-1">Garganacl</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/950.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/950.png" alt="klawf" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#950</span> 
+                    <span class="ml-1">Klawf</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/968.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/968.png" alt="orthworm" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#968</span> 
+                    <span class="ml-1">Orthworm</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/969.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/969.png" alt="glimmet" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#969</span> 
+                    <span class="ml-1">Glimmet</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/970.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/970.png" alt="glimmora" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#970</span> 
+                    <span class="ml-1">Glimmora</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/978.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/978.png" alt="tatsugiri-curly" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#978</span> 
+                    <span class="ml-1">Tatsugiri</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10258.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10258.png" alt="tatsugiri-droopy" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#978</span> 
+                    <span class="ml-1">Tatsugiri</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Droopy</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10259.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10259.png" alt="tatsugiri-stretchy" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#978</span> 
+                    <span class="ml-1">Tatsugiri</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Stretchy</span>
+                </div>
+            </a>
+        
+        </div>
+    
+                </div>
+            
+                <div class="mt-4 first:mt-0">
+                    <h4 class="font-semibold text-zinc-200 text-md mb-3">Learn by Breeding (11)</h4>
+                    
+        <div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+            
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/185.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/185.png" alt="sudowoodo" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#185</span> 
+                    <span class="ml-1">Sudowoodo</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/214.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/214.png" alt="heracross" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#214</span> 
+                    <span class="ml-1">Heracross</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/10047.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png" alt="heracross-mega" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#214</span> 
+                    <span class="ml-1">Heracross</span>
+                    <span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">Mega</span>
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/275.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/275.png" alt="shiftry" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#275</span> 
+                    <span class="ml-1">Shiftry</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/438.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/438.png" alt="bonsly" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#438</span> 
+                    <span class="ml-1">Bonsly</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/610.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/610.png" alt="axew" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#610</span> 
+                    <span class="ml-1">Axew</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/636.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/636.png" alt="larvesta" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#636</span> 
+                    <span class="ml-1">Larvesta</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/736.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/736.png" alt="grubbin" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#736</span> 
+                    <span class="ml-1">Grubbin</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/737.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/737.png" alt="charjabug" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#737</span> 
+                    <span class="ml-1">Charjabug</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/738.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/738.png" alt="vikavolt" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#738</span> 
+                    <span class="ml-1">Vikavolt</span>
+                    
+                </div>
+            </a>
+        
+            <a class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="../../pokemon/767.html">
+                <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative"  >
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/767.png" alt="wimpod" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                    
+                </div>
+                <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                    <span class="text-zinc-500 group-hover:text-zinc-400">#767</span> 
+                    <span class="ml-1">Wimpod</span>
+                    
+                </div>
+            </a>
+        
+        </div>
+    
+                </div>
+            
+            </div>
+        </div>
+    
+            </main>
+            
+    <div class="flex-shrink-0 w-full mt-auto">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <footer class="text-center py-8 text-zinc-500 text-sm border-t border-zinc-800/50">
+                <p> Powered by the <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:underline">PokéAPI</a>. Pokémon and all related content are trademarks of Nintendo and the Pokemon Company.</p>
+            </footer>
+        </div>
+    </div>
+    
+        </div>
+    </div>
+    <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('.move-tab-btn').forEach(tab => {
+                        tab.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const tabId = tab.dataset.tabId;
+                            if (!tabId) return;
+                            const parent = tab.closest('.moves-container');
+                            parent.querySelectorAll('.move-tab-btn').forEach(btn => {
+                                const isSelected = btn.dataset.tabId === tabId;
+                                btn.classList.toggle('bg-zinc-200', isSelected);
+                                btn.classList.toggle('text-zinc-900', isSelected);
+                                btn.classList.toggle('bg-zinc-700', !isSelected);
+                                btn.classList.toggle('text-zinc-300', !isSelected);
+                                btn.setAttribute('aria-selected', String(isSelected));
+                            });
+                            parent.querySelectorAll('.move-tab-content').forEach(content => {
+                                content.classList.toggle('hidden', content.id !== 'move-tab-content-' + tabId);
+                            });
+                        });
+                    });
+
+                    document.querySelectorAll('.scroll-to-section-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const targetId = btn.dataset.targetId;
+                            if (targetId) {
+                                const element = document.getElementById(targetId);
+                                if (element) {
+                                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+</body>
+</html>

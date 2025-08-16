@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Held Items Items | Pokédex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .shape-main-fill { fill: #f4f4f5; } .shape-accent-fill { fill: #3f3f46; }
+      .stat-radar-grid-line { stroke: #3f3f46; } .stat-radar-axis-label { fill: #a1a1aa; }
+      .stat-radar-value-label { fill: #f4f4f5; } .image-rendering-pixelated { image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-200">
+    <div id="root">
+        <div class="min-h-screen flex flex-col">
+            
+    <div class="flex-shrink-0 w-full sticky top-0 bg-zinc-950/80 backdrop-blur-md z-40 border-b border-zinc-800/50">
+        <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+            <header class="py-4 flex justify-between items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    
+                        <button id="standard-back-btn" class="p-2 rounded-full hover:bg-zinc-700 transition-colors" aria-label="Go back">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </button>
+                    
+                    <div class="w-32 sm:w-40 flex-shrink-0">
+                        <a href="../index.html" class="w-full transition-transform hover:scale-105">
+                            
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.96 67.68">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fcdd02;
+      }
+
+      .cls-2 {
+        fill: #f4a198;
+      }
+
+      .cls-3 {
+        fill: #c82e19;
+      }
+
+      .cls-4 {
+        fill: #81cee2;
+      }
+
+      .cls-5 {
+        fill: #72994d;
+      }
+
+      .cls-6 {
+        fill: #f7f3da;
+      }
+
+      .cls-7 {
+        fill: #00aeeb;
+      }
+
+      .cls-8 {
+        fill: #435e2c;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <path class="cls-7" d="M9.9,57.78c13.2,13.2,34.68,13.2,47.88,0,13.2-13.2,13.2-34.68,0-47.88-13.2-13.2-34.68-13.2-47.88,0s-13.2,34.68,0,47.88Z"/>
+      <path class="cls-8" d="M164.04,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5c-4.55-4.55-11.95-4.55-16.51,0s-4.55,11.95,0,16.5Z"/>
+      <path class="cls-1" d="M126.2,23.73c4.55,4.55,11.95,4.55,16.5,0,4.55-4.55,4.55-11.95,0-16.51s-11.95-4.55-16.5,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-3" d="M87.48,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5-11.95-4.55-16.51,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-4" d="M12.73,13.67c-6.74,6.74-9.03,15.41-5.1,19.33s12.6,1.63,19.33-5.1c6.74-6.74,9.03-15.41,5.1-19.33s-12.6-1.63-19.33,5.1Z"/>
+      <path class="cls-5" d="M172.44,6.34c-1.35-1.35-4.34-.56-6.67,1.76s-3.11,5.31-1.76,6.66,4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.66Z"/>
+      <path class="cls-6" d="M127.61,7.78c-2.32,2.32-3.11,5.31-1.76,6.66s4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.67-1.35-1.35-4.34-.56-6.66,1.76Z"/>
+      <path class="cls-2" d="M89.27,8.15c-2.32,2.32-3.11,5.31-1.76,6.66,1.35,1.35,4.34.56,6.66-1.76s3.11-5.31,1.76-6.66c-1.35-1.35-4.34-.56-6.67,1.76Z"/>
+    </g>
+  </g>
+</svg>
+
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-grow flex items-center justify-end gap-1 sm:gap-2 md:gap-4">
+                    <div class="relative flex-grow max-w-xs sm:max-w-sm md:max-w-md">
+                        <input type="search" id="global-search" placeholder="Search Pokémon, Items, Abilities, Attacks..." value="" aria-label="Search Pokémon, Items, Abilities, and Attacks" class="w-full bg-zinc-800 border-2 border-zinc-700 rounded-md pl-10 pr-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-zinc-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        
+            <div>
+                <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-center gap-4 py-4">
+                        <h1 class="flex-initial text-xl sm:text-2xl font-bold text-center text-zinc-100 whitespace-nowrap">Held Items</h1>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    
+            <main class="flex-grow w-full max-w-screen-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                
+                
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/588.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Absorb-Bulb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Absorb Bulb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/112.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Adamant-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Adamant Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/883.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Adrenaline-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Adrenaline Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/584.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Air-Balloon.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Air Balloon</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/200.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Amulet-Coin.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Amulet Coin</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/683.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Assault-Vest.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Assault Vest</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/273.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Big-Root.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Big Root</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/587.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Binding-Band.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Binding Band</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/258.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Black-Sludge.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Black Sludge</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1179.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Blunder-Policy.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Blunder Policy</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/190.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Bright-Powder.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Bright Powder</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/565.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Burn-Drive.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Burn Drive</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/589.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Cell-Battery.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Cell Battery</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/566.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Chill-Drive.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Chill Drive</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/197.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Choice-Band.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Choice Band</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/264.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Choice-Scarf.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Choice Scarf</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/274.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Choice-Specs.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Choice Specs</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/201.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Cleanse-Tag.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Cleanse Tag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/262.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Damp-Rock.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Damp Rock</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/204.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Deep-Sea-Scale.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Deep Sea Scale</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/203.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Deep-Sea-Tooth.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Deep Sea Tooth</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/257.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Destiny-Knot.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Destiny Knot</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/563.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Douse-Drive.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Douse Drive</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/590.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Eject-Button.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Eject Button</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1177.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Eject-Pack.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Eject Pack</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/898.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Electric-Seed.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Electric Seed</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/206.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Everstone.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Everstone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/581.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Eviolite.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Eviolite</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/193.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Exp-Share.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Exp Share</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/245.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Expert-Belt.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Expert Belt</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/250.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Flame-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Flame Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/582.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Float-Stone.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Float Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/207.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Focus-Band.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Focus Band</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/252.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Focus-Sash.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Focus Sash</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/293.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Full-Incense.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Full Incense</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/901.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Grassy-Seed.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Grassy Seed</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/263.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Grip-Claw.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Grip Claw</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/442.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Griseous-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Griseous Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/261.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Heat-Rock.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Heat Rock</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1178.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Heavy-Duty-Boots.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Heavy Duty Boots</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/259.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Icy-Rock.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Icy Rock</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/255.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Iron-Ball.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Iron Ball</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/198.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Kings-Rock.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Kings Rock</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/256.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Lagging-Tail.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lagging Tail</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/232.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Lax-Incense.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lax Incense</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/211.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Leftovers.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Leftovers</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/247.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Life-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Life Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/213.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Light-Ball.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Light Ball</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/246.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Light-Clay.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Light Clay</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/296.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Luck-Incense.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Luck Incense</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/208.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Lucky-Egg.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lucky Egg</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/233.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Lucky-Punch.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lucky Punch</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/688.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Luminous-Moss.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Luminous Moss</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/113.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Lustrous-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lustrous Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/192.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Macho-Brace.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Macho Brace</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/196.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Mental-Herb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mental Herb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/234.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Metal-Powder.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Metal Powder</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/254.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Metronome.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Metronome</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/900.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Misty-Seed.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Misty Seed</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/243.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Muscle-Band.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Muscle Band</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/616.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Pass-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pass Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/891.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Pink-Nectar.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pink Nectar</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/270.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Anklet.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Anklet</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/269.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Band.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Band</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/267.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Belt.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Belt</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/266.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Bracer.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Bracer</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/248.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Herb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Herb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/268.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Lens.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Lens</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/271.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Power-Weight.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Weight</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/897.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Protective-Pads.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Protective Pads</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/899.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Psychic-Seed.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Psychic Seed</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/297.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Pure-Incense.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pure Incense</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/892.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Purple-Nectar.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Purple Nectar</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/194.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Quick-Claw.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Quick Claw</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/251.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Quick-Powder.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Quick Powder</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/303.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Razor-Claw.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Razor Claw</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/304.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Razor-Fang.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Razor Fang</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/585.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Red-Card.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Red Card</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/889.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Red-Nectar.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Red Nectar</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/586.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Ring-Target.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ring Target</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/583.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Rocky-Helmet.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rocky Helmet</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1180.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Room-Service.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Room Service</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1162.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Rusted-Shield.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rusted Shield</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1161.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Rusted-Sword.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rusted Sword</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/690.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Safety-Goggles.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Safety Goggles</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/209.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Scope-Lens.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Scope Lens</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/272.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Shed-Shell.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Shed Shell</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/230.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Shell-Bell.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Shell Bell</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/564.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Shock-Drive.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Shock Drive</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/205.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Smoke-Ball.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Smoke Ball</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/260.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Smooth-Rock.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Smooth Rock</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/689.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Snowball.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Snowball</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/195.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Soothe-Bell.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Soothe Bell</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/202.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Soul-Dew.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Soul Dew</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/236.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Stick.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Stick</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/265.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Sticky-Barb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Sticky Barb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/896.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Terrain-Extender.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Terrain Extender</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/235.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Thick-Club.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Thick Club</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1176.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Throat-Spray.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Throat Spray</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/249.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Toxic-Orb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Toxic Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1181.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Utility-Umbrella.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Utility Umbrella</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/682.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Weakness-Policy.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Weakness Policy</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/191.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/White-Herb.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>White Herb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/242.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Wide-Lens.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Wide Lens</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/244.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Wise-Glasses.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Wise Glasses</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/890.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Yellow-Nectar.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Yellow Nectar</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/253.html">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/Zoom-Lens.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Zoom Lens</span>
+            </a>
+        </div>
+    
+            </main>
+            
+    <div class="flex-shrink-0 w-full mt-auto">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <footer class="text-center py-8 text-zinc-500 text-sm border-t border-zinc-800/50">
+                <p> Powered by the <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:underline">PokéAPI</a>. Pokémon and all related content are trademarks of Nintendo and the Pokemon Company.</p>
+            </footer>
+        </div>
+    </div>
+    
+        </div>
+    </div>
+    <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('.move-tab-btn').forEach(tab => {
+                        tab.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const tabId = tab.dataset.tabId;
+                            if (!tabId) return;
+                            const parent = tab.closest('.moves-container');
+                            parent.querySelectorAll('.move-tab-btn').forEach(btn => {
+                                const isSelected = btn.dataset.tabId === tabId;
+                                btn.classList.toggle('bg-zinc-200', isSelected);
+                                btn.classList.toggle('text-zinc-900', isSelected);
+                                btn.classList.toggle('bg-zinc-700', !isSelected);
+                                btn.classList.toggle('text-zinc-300', !isSelected);
+                                btn.setAttribute('aria-selected', String(isSelected));
+                            });
+                            parent.querySelectorAll('.move-tab-content').forEach(content => {
+                                content.classList.toggle('hidden', content.id !== 'move-tab-content-' + tabId);
+                            });
+                        });
+                    });
+
+                    document.querySelectorAll('.scroll-to-section-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const targetId = btn.dataset.targetId;
+                            if (targetId) {
+                                const element = document.getElementById(targetId);
+                                if (element) {
+                                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+</body>
+</html>

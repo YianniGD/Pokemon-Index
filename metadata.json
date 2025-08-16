@@ -1,6 +1,0 @@
-{
-  "name": "Copy to try building the static builder",
-  "description": "A comprehensive Pokédex and interactive type chart. Browse Pokémon by generation, view detailed stats, move sets, and evolution chains. Use the Type Chart calculator to determine weaknesses and resistances for any type combination across different game generations.",
-  "requestFramePermissions": [],
-  "prompt": ""
-}

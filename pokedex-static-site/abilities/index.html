@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ability Index | Pokédex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .shape-main-fill { fill: #f4f4f5; } .shape-accent-fill { fill: #3f3f46; }
+      .stat-radar-grid-line { stroke: #3f3f46; } .stat-radar-axis-label { fill: #a1a1aa; }
+      .stat-radar-value-label { fill: #f4f4f5; } .image-rendering-pixelated { image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-200">
+    <div id="root">
+        <div class="min-h-screen flex flex-col">
+            
+    <div class="flex-shrink-0 w-full sticky top-0 bg-zinc-950/80 backdrop-blur-md z-40 border-b border-zinc-800/50">
+        <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+            <header class="py-4 flex justify-between items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    
+                    <div class="w-32 sm:w-40 flex-shrink-0">
+                        <a href="./index.html" class="w-full transition-transform hover:scale-105">
+                            
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.96 67.68">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fcdd02;
+      }
+
+      .cls-2 {
+        fill: #f4a198;
+      }
+
+      .cls-3 {
+        fill: #c82e19;
+      }
+
+      .cls-4 {
+        fill: #81cee2;
+      }
+
+      .cls-5 {
+        fill: #72994d;
+      }
+
+      .cls-6 {
+        fill: #f7f3da;
+      }
+
+      .cls-7 {
+        fill: #00aeeb;
+      }
+
+      .cls-8 {
+        fill: #435e2c;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <path class="cls-7" d="M9.9,57.78c13.2,13.2,34.68,13.2,47.88,0,13.2-13.2,13.2-34.68,0-47.88-13.2-13.2-34.68-13.2-47.88,0s-13.2,34.68,0,47.88Z"/>
+      <path class="cls-8" d="M164.04,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5c-4.55-4.55-11.95-4.55-16.51,0s-4.55,11.95,0,16.5Z"/>
+      <path class="cls-1" d="M126.2,23.73c4.55,4.55,11.95,4.55,16.5,0,4.55-4.55,4.55-11.95,0-16.51s-11.95-4.55-16.5,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-3" d="M87.48,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5-11.95-4.55-16.51,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-4" d="M12.73,13.67c-6.74,6.74-9.03,15.41-5.1,19.33s12.6,1.63,19.33-5.1c6.74-6.74,9.03-15.41,5.1-19.33s-12.6-1.63-19.33,5.1Z"/>
+      <path class="cls-5" d="M172.44,6.34c-1.35-1.35-4.34-.56-6.67,1.76s-3.11,5.31-1.76,6.66,4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.66Z"/>
+      <path class="cls-6" d="M127.61,7.78c-2.32,2.32-3.11,5.31-1.76,6.66s4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.67-1.35-1.35-4.34-.56-6.66,1.76Z"/>
+      <path class="cls-2" d="M89.27,8.15c-2.32,2.32-3.11,5.31-1.76,6.66,1.35,1.35,4.34.56,6.66-1.76s3.11-5.31,1.76-6.66c-1.35-1.35-4.34-.56-6.67,1.76Z"/>
+    </g>
+  </g>
+</svg>
+
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-grow flex items-center justify-end gap-1 sm:gap-2 md:gap-4">
+                    <div class="relative flex-grow max-w-xs sm:max-w-sm md:max-w-md">
+                        <input type="search" id="global-search" placeholder="Search Pokémon, Items, Abilities, Attacks..." value="" aria-label="Search Pokémon, Items, Abilities, and Attacks" class="w-full bg-zinc-800 border-2 border-zinc-700 rounded-md pl-10 pr-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-zinc-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        
+    </div>
+    
+            <main class="flex-grow w-full max-w-screen-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl sm:text-4xl font-bold text-center text-zinc-100">Ability Index</h1>
+                
+            <div class="flex flex-col items-center mb-8">
+                <p class="text-zinc-400 mt-2">Browse all abilities across Pokémon games.</p>
+                <div class="mt-6 w-full max-w-md">
+                    <input type="search" id="ability-search-input" value="" placeholder="Search abilities..." class="w-full bg-zinc-800 border-2 border-zinc-700 rounded-md px-4 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition">
+                </div>
+            </div>
+            <div id="ability-list-container">
+                
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/91.html">
+            adaptability
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/184.html">
+            aerilate
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/106.html">
+            aftermath
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/76.html">
+            air lock
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/148.html">
+            analytic
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/83.html">
+            anger point
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/271.html">
+            anger shell
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/107.html">
+            anticipation
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/71.html">
+            arena trap
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/296.html">
+            armor tail
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/165.html">
+            aroma veil
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/266.html">
+            as one glastrier
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/267.html">
+            as one spectrier
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/188.html">
+            aura break
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/123.html">
+            bad dreams
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/237.html">
+            ball fetch
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/217.html">
+            battery
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/4.html">
+            battle armor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/210.html">
+            battle bond
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/287.html">
+            beads of ruin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/224.html">
+            beast boost
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/201.html">
+            berserk
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/145.html">
+            big pecks
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/66.html">
+            blaze
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/171.html">
+            bulletproof
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/167.html">
+            cheek pouch
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/264.html">
+            chilling neigh
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/34.html">
+            chlorophyll
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/29.html">
+            clear body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/13.html">
+            cloud nine
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/16.html">
+            color change
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/213.html">
+            comatose
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/279.html">
+            commander
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/172.html">
+            competitive
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/14.html">
+            compound eyes
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/126.html">
+            contrary
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/212.html">
+            corrosion
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/294.html">
+            costar
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/238.html">
+            cotton down
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/291.html">
+            cud chew
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/261.html">
+            curious medicine
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/130.html">
+            cursed body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/56.html">
+            cute charm
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/6.html">
+            damp
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/216.html">
+            dancer
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/186.html">
+            dark aura
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/235.html">
+            dauntless shield
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/219.html">
+            dazzling
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/129.html">
+            defeatist
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/128.html">
+            defiant
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/191.html">
+            delta stream
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/190.html">
+            desolate land
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/209.html">
+            disguise
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/88.html">
+            download
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/263.html">
+            dragons maw
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/2.html">
+            drizzle
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/70.html">
+            drought
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/87.html">
+            dry skin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/48.html">
+            early bird
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/297.html">
+            earth eater
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/27.html">
+            effect spore
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/226.html">
+            electric surge
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/280.html">
+            electromorphosis
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/303.html">
+            embody aspect
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/194.html">
+            emergency exit
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/187.html">
+            fairy aura
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/111.html">
+            filter
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/49.html">
+            flame body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/138.html">
+            flare boost
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/18.html">
+            flash fire
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/122.html">
+            flower gift
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/166.html">
+            flower veil
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/218.html">
+            fluffy
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/59.html">
+            forecast
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/108.html">
+            forewarn
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/132.html">
+            friend guard
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/119.html">
+            frisk
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/230.html">
+            full metal body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/169.html">
+            fur coat
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/177.html">
+            gale wings
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/206.html">
+            galvanize
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/82.html">
+            gluttony
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/283.html">
+            good as gold
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/183.html">
+            gooey
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/255.html">
+            gorilla tactics
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/179.html">
+            grass pelt
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/229.html">
+            grassy surge
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/265.html">
+            grim neigh
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/275.html">
+            guard dog
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/241.html">
+            gulp missile
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/62.html">
+            guts
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/289.html">
+            hadron engine
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/139.html">
+            harvest
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/131.html">
+            healer
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/85.html">
+            heatproof
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/134.html">
+            heavy metal
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/118.html">
+            honey gather
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/301.html">
+            hospitality
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/37.html">
+            huge power
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/258.html">
+            hunger switch
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/55.html">
+            hustle
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/93.html">
+            hydration
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/52.html">
+            hyper cutter
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/115.html">
+            ice body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/248.html">
+            ice face
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/246.html">
+            ice scales
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/35.html">
+            illuminate
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/149.html">
+            illusion
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/17.html">
+            immunity
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/150.html">
+            imposter
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/151.html">
+            infiltrator
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/215.html">
+            innards out
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/39.html">
+            inner focus
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/15.html">
+            insomnia
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/22.html">
+            intimidate
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/234.html">
+            intrepid sword
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/160.html">
+            iron barbs
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/89.html">
+            iron fist
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/154.html">
+            justified
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/51.html">
+            keen eye
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/103.html">
+            klutz
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/102.html">
+            leaf guard
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/26.html">
+            levitate
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/236.html">
+            libero
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/135.html">
+            light metal
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/31.html">
+            lightning rod
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/7.html">
+            limber
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/268.html">
+            lingering aroma
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/64.html">
+            liquid ooze
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/204.html">
+            liquid voice
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/203.html">
+            long reach
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/156.html">
+            magic bounce
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/98.html">
+            magic guard
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/170.html">
+            magician
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/40.html">
+            magma armor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/42.html">
+            magnet pull
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/63.html">
+            marvel scale
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/178.html">
+            mega launcher
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/196.html">
+            merciless
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/250.html">
+            mimicry
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/299.html">
+            minds eye
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/58.html">
+            minus
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/240.html">
+            mirror armor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/228.html">
+            misty surge
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/104.html">
+            mold breaker
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/141.html">
+            moody
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/78.html">
+            motor drive
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/153.html">
+            moxie
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/136.html">
+            multiscale
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/121.html">
+            multitype
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/152.html">
+            mummy
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/298.html">
+            mycelium might
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/30.html">
+            natural cure
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/233.html">
+            neuroforce
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/256.html">
+            neutralizing gas
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/99.html">
+            no guard
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/96.html">
+            normalize
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/12.html">
+            oblivious
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/290.html">
+            opportunist
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/288.html">
+            orichalcum pulse
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/142.html">
+            overcoat
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/65.html">
+            overgrow
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/20.html">
+            own tempo
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/185.html">
+            parental bond
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/257.html">
+            pastel veil
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/253.html">
+            perish body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/124.html">
+            pickpocket
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/53.html">
+            pickup
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/182.html">
+            pixilate
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/57.html">
+            plus
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/90.html">
+            poison heal
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/38.html">
+            poison point
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/307.html">
+            poison puppeteer
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/143.html">
+            poison touch
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/211.html">
+            power construct
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/223.html">
+            power of alchemy
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/249.html">
+            power spot
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/158.html">
+            prankster
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/46.html">
+            pressure
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/189.html">
+            primordial sea
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/232.html">
+            prism armor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/239.html">
+            propeller tail
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/168.html">
+            protean
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/281.html">
+            protosynthesis
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/227.html">
+            psychic surge
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/244.html">
+            punk rock
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/74.html">
+            pure power
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/272.html">
+            purifying salt
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/282.html">
+            quark drive
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/214.html">
+            queenly majesty
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/259.html">
+            quick draw
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/95.html">
+            quick feet
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/44.html">
+            rain dish
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/155.html">
+            rattled
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/222.html">
+            receiver
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/120.html">
+            reckless
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/174.html">
+            refrigerate
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/144.html">
+            regenerator
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/247.html">
+            ripen
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/79.html">
+            rivalry
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/225.html">
+            rks system
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/69.html">
+            rock head
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/276.html">
+            rocky payload
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/24.html">
+            rough skin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/50.html">
+            run away
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/159.html">
+            sand force
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/146.html">
+            sand rush
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/245.html">
+            sand spit
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/45.html">
+            sand stream
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/8.html">
+            sand veil
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/157.html">
+            sap sipper
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/208.html">
+            schooling
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/113.html">
+            scrappy
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/251.html">
+            screen cleaner
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/269.html">
+            seed sower
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/32.html">
+            serene grace
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/231.html">
+            shadow shield
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/23.html">
+            shadow tag
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/292.html">
+            sharpness
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/61.html">
+            shed skin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/125.html">
+            sheer force
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/75.html">
+            shell armor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/19.html">
+            shield dust
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/197.html">
+            shields down
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/86.html">
+            simple
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/92.html">
+            skill link
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/112.html">
+            slow start
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/202.html">
+            slush rush
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/97.html">
+            sniper
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/81.html">
+            snow cloak
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/117.html">
+            snow warning
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/94.html">
+            solar power
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/116.html">
+            solid rock
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/220.html">
+            soul heart
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/43.html">
+            soundproof
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/3.html">
+            speed boost
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/198.html">
+            stakeout
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/100.html">
+            stall
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/242.html">
+            stalwart
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/192.html">
+            stamina
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/176.html">
+            stance change
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/9.html">
+            static
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/80.html">
+            steadfast
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/243.html">
+            steam engine
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/200.html">
+            steelworker
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/252.html">
+            steely spirit
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/1.html">
+            stench
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/60.html">
+            sticky hold
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/114.html">
+            storm drain
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/173.html">
+            strong jaw
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/5.html">
+            sturdy
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/21.html">
+            suction cups
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/105.html">
+            super luck
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/300.html">
+            supersweet syrup
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/293.html">
+            supreme overlord
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/207.html">
+            surge surfer
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/68.html">
+            swarm
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/175.html">
+            sweet veil
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/33.html">
+            swift swim
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/285.html">
+            sword of ruin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/180.html">
+            symbiosis
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/28.html">
+            synchronize
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/286.html">
+            tablets of ruin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/77.html">
+            tangled feet
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/221.html">
+            tangling hair
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/101.html">
+            technician
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/140.html">
+            telepathy
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/305.html">
+            tera shell
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/304.html">
+            tera shift
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/306.html">
+            teraform zero
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/164.html">
+            teravolt
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/270.html">
+            thermal exchange
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/47.html">
+            thick fat
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/110.html">
+            tinted lens
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/67.html">
+            torrent
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/181.html">
+            tough claws
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/137.html">
+            toxic boost
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/302.html">
+            toxic chain
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/295.html">
+            toxic debris
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/36.html">
+            trace
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/262.html">
+            transistor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/205.html">
+            triage
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/54.html">
+            truant
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/163.html">
+            turboblaze
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/109.html">
+            unaware
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/84.html">
+            unburden
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/127.html">
+            unnerve
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/260.html">
+            unseen fist
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/284.html">
+            vessel of ruin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/162.html">
+            victory star
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/72.html">
+            vital spirit
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/10.html">
+            volt absorb
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/254.html">
+            wandering spirit
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/11.html">
+            water absorb
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/199.html">
+            water bubble
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/195.html">
+            water compaction
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/41.html">
+            water veil
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/133.html">
+            weak armor
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/273.html">
+            well baked body
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/73.html">
+            white smoke
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/193.html">
+            wimp out
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/277.html">
+            wind power
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/274.html">
+            wind rider
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/25.html">
+            wonder guard
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/147.html">
+            wonder skin
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/161.html">
+            zen mode
+        </a><a class="ability-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize" href="./detail/278.html">
+            zero to hero
+        </a>
+        </div>
+    
+            </div>
+        
+            </main>
+            
+    <div class="flex-shrink-0 w-full mt-auto">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <footer class="text-center py-8 text-zinc-500 text-sm border-t border-zinc-800/50">
+                <p> Powered by the <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:underline">PokéAPI</a>. Pokémon and all related content are trademarks of Nintendo and the Pokemon Company.</p>
+            </footer>
+        </div>
+    </div>
+    
+        </div>
+    </div>
+    <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('.move-tab-btn').forEach(tab => {
+                        tab.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const tabId = tab.dataset.tabId;
+                            if (!tabId) return;
+                            const parent = tab.closest('.moves-container');
+                            parent.querySelectorAll('.move-tab-btn').forEach(btn => {
+                                const isSelected = btn.dataset.tabId === tabId;
+                                btn.classList.toggle('bg-zinc-200', isSelected);
+                                btn.classList.toggle('text-zinc-900', isSelected);
+                                btn.classList.toggle('bg-zinc-700', !isSelected);
+                                btn.classList.toggle('text-zinc-300', !isSelected);
+                                btn.setAttribute('aria-selected', String(isSelected));
+                            });
+                            parent.querySelectorAll('.move-tab-content').forEach(content => {
+                                content.classList.toggle('hidden', content.id !== 'move-tab-content-' + tabId);
+                            });
+                        });
+                    });
+
+                    document.querySelectorAll('.scroll-to-section-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const targetId = btn.dataset.targetId;
+                            if (targetId) {
+                                const element = document.getElementById(targetId);
+                                if (element) {
+                                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+</body>
+</html>
