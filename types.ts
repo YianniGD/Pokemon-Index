@@ -21,6 +21,12 @@ export type ItemData = {
     category: string;
 };
 
+export type HistoryEntry = { 
+    view: View; 
+    url: string | null; 
+    homeViewMode: 'selection' | 'list';
+};
+
 export type AbilityData = {
     id: number;
     name: string;

@@ -1,5 +1,5 @@
 import { state } from './state.ts';
-import { getPokemonIdFromUrl } from './utils.ts';
+import { getPokemonIdFromUrl, toTitleCase } from './utils.ts';
 import { Pokemon, PokemonFamily, PokemonGridItem, ItemData, EvolutionNode, AbilityData, AttackData } from './types.ts';
 import { GENERATIONS, PokemonType, GAME_VERSION_ORDER } from './constants.ts';
 
@@ -135,7 +135,7 @@ export async function fetchAllItems() {
 
                     return {
                         id: item.id,
-                        name: String(item.name).replace(/-/g, ' '),
+                        name: toTitleCase(String(item.name)),
                         cost: item.cost,
                         flavorText: String(englishFlavorText.text).replace(/[\f\n]/g, ' '), // Replace form feeds and newlines
                         games: gameNames,
@@ -708,8 +708,10 @@ export async function fetchPokedexList() {
     }
 }
 
-export async function fetchEvolutionChain(evolutionChainUrl: string, activeFormName: string): Promise<EvolutionNode | null> {
-    
+export async function fetchEvolutionChain(evolutionChainUrl: string, activeFormName: string, eraName: string | null): Promise<EvolutionNode | null> {
+    const romanMap: { [key: string]: number } = { 'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9 };
+    const eraGenNum = eraName ? romanMap[eraName.replace('Gen ', '')] || 9 : 9;
+
     // This map is the definitive source of truth for all evolution paths, especially for regional forms.
     // It overrides the ambiguous, species-based data from the API to ensure correctness.
     const FORM_EVOLUTION_MAP: { [key: string]: { prevo: string | null; evos: { to: string; details: any[] }[] } } = {
@@ -920,6 +922,27 @@ export async function fetchEvolutionChain(evolutionChainUrl: string, activeFormN
         const evoData = FORM_EVOLUTION_MAP[formName];
         if (evoData && evoData.evos.length > 0) {
             node.evolvesTo = evoData.evos
+                .filter(evo => {
+                    const evoToName = evo.to;
+                    
+                    // Filter out regional evolutions if the generation is too early
+                    if (evoToName.includes('-alola') && eraGenNum < 7) return false;
+                    if (evoToName.includes('-galar') && eraGenNum < 8) return false;
+                    if (evoToName.includes('-hisui') && eraGenNum < 8) return false;
+                    if (evoToName.includes('-paldea') && eraGenNum < 9) return false;
+                    
+                    // Filter out new cross-gen evolutions if gen is too early
+                    const newEvolutions: {[key: string]: number} = {
+                        'slowking': 2, 'scizor': 2, 'weavile': 4, 'perrserker': 8, 'cursola': 8, 'sirfetchd': 8,
+                        'mr-rime': 8, 'obstagoon': 8, 'kleavor': 8, 'wyrdeer': 8, 'sneasler': 8,
+                        'overqwil': 8, 'ursaluna': 8, 'clodsire': 9, 'annihilape': 9
+                    };
+                    if (newEvolutions[evoToName] && eraGenNum < newEvolutions[evoToName]) {
+                        return false;
+                    }
+
+                    return true;
+                })
                 .map(evo => {
                     const childNode = buildNodeFromMap(evo.to);
                     if (!childNode) return null;
@@ -1007,8 +1030,6 @@ export async function fetchPokedexEntry(url: string) {
         if (!speciesRes.ok) throw new Error(`Could not fetch species data for ${pokemonData.species.url}`);
         const speciesData = await speciesRes.json();
         
-        const evolutionChainUrl = speciesData.evolution_chain?.url;
-
         // Fetch details for all other forms of the same species
         const varieties = speciesData.varieties || [];
         const formPromises = varieties
@@ -1026,20 +1047,86 @@ export async function fetchPokedexEntry(url: string) {
         const locationPromise = fetchWithRetry(pokemonData.location_area_encounters).then(res => res.ok ? res.json() : Promise.resolve([])).catch(() => []);
         const growthRatePromise = speciesData.growth_rate?.url ? fetchWithRetry(speciesData.growth_rate.url).then(res => res.ok ? res.json() : Promise.resolve(null)).catch(() => null) : Promise.resolve(null);
         
-        const [locationDetails, growthRateDetails, allOtherFormsDetails, evolutionChain] = await Promise.all([
+        const [locationDetails, growthRateDetails, allOtherFormsDetails] = await Promise.all([
             locationPromise,
             growthRatePromise,
             Promise.all(formPromises).then(forms => forms.filter(Boolean)),
-            evolutionChainUrl ? fetchEvolutionChain(evolutionChainUrl, pokemonData.name) : Promise.resolve(null),
         ]);
 
         return {
             pokemon: { ...pokemonData, speciesData, allOtherFormsDetails, locationDetails, growthRateDetails },
-            evolutionChain: evolutionChain,
         }
 
     } catch (error) {
         console.error("Failed to fetch Pokémon details:", error);
-        return { pokemon: null, evolutionChain: null };
+        return { pokemon: null };
     }
+}
+
+export async function fetchPokemonLearnMethodsForMove(
+    pokemonList: { name: string; url: string; id: number; }[], 
+    moveName: string
+): Promise<{
+    'level-up': PokemonGridItem[];
+    'machine': PokemonGridItem[];
+    'egg': PokemonGridItem[];
+    'tutor': PokemonGridItem[];
+}> {
+    const categories: {
+        'level-up': Map<number, PokemonGridItem>;
+        'machine': Map<number, PokemonGridItem>;
+        'egg': Map<number, PokemonGridItem>;
+        'tutor': Map<number, PokemonGridItem>;
+    } = {
+        'level-up': new Map(),
+        'machine': new Map(),
+        'egg': new Map(),
+        'tutor': new Map()
+    };
+
+    const pokemonDetailPromises = pokemonList.map(p => 
+        fetchWithRetry(p.url, 3, 500, true)
+            .then(res => res.ok ? res.json() : null)
+            .catch(() => null)
+    );
+
+    const results = await Promise.all(pokemonDetailPromises);
+    const moveNameToMatch = moveName.toLowerCase().replace(/ /g, '-');
+
+    for (const pokemonData of results) {
+        if (!pokemonData) continue;
+        
+        const moveEntry = pokemonData.moves.find((m: any) => m.move.name === moveNameToMatch);
+        if (!moveEntry) continue;
+        
+        const methods = new Set<string>();
+        moveEntry.version_group_details.forEach((vgd: any) => {
+            methods.add(vgd.move_learn_method.name);
+        });
+        
+        const speciesInfo = state.displayablePokemon.find(dp => dp.id === pokemonData.id);
+        const gridItem: PokemonGridItem = {
+            name: pokemonData.name,
+            url: state.pokemonUrlMap.get(pokemonData.name) || `https://pokeapi.co/api/v2/pokemon/${pokemonData.id}/`,
+            id: pokemonData.id,
+            pokedexNumber: speciesInfo ? speciesInfo.baseId : pokemonData.id,
+            hasGmax: speciesInfo ? speciesInfo.hasGmax : false,
+        };
+
+        methods.forEach(method => {
+            if (method in categories) {
+                const categoryMap = categories[method as keyof typeof categories];
+                if (!categoryMap.has(gridItem.id)) {
+                    categoryMap.set(gridItem.id, gridItem);
+                }
+            }
+        });
+    }
+
+    return {
+        'level-up': Array.from(categories['level-up'].values()),
+        'machine': Array.from(categories['machine'].values()),
+        'egg': Array.from(categories['egg'].values()),
+        'tutor': Array.from(categories['tutor'].values()),
+    };
 }

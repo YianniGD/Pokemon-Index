@@ -24,7 +24,8 @@ import {
     generateAttackListHTML,
     getAttackDetailHTML,
     getPokemonMovesTableHTML,
-    generateTMListHTML
+    generateTMListHTML,
+    getItemDetailHTML
 } from './components.ts';
 
 
@@ -40,8 +41,10 @@ export function getHomeViewHTML(): string {
             </button>
         `;
 
-        const gameButtons = POKEDEX_LIST.filter(p => p.category === 'game').map(buttonHTML).join('');
-        const otherButtons = POKEDEX_LIST.filter(p => p.category === 'other' && p.id !== 'extra' && p.id !== 'national').map(buttonHTML).join('');
+        const hubButtons = POKEDEX_LIST
+            .filter(p => p.category === 'game' || (p.category === 'other' && p.id !== 'extra' && p.id !== 'national'))
+            .map(buttonHTML)
+            .join('');
 
         const toolsNavHTML = `
             <div>
@@ -82,15 +85,9 @@ export function getHomeViewHTML(): string {
                          <div class="w-full max-w-5xl mx-auto space-y-12">
                             ${toolsNavHTML}
                              <div>
-                                <h2 class="text-2xl font-bold text-center mb-4 text-zinc-300">By Game</h2>
+                                <h2 class="text-2xl font-bold text-center mb-4 text-zinc-300">Hub</h2>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                                   ${gameButtons}
-                                </div>
-                            </div>
-                             <div>
-                                <h2 class="text-2xl font-bold text-center mb-4 text-zinc-300">Other Pokédexes</h2>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                                   ${otherButtons}
+                                   ${hubButtons}
                                 </div>
                             </div>
                          </div>
@@ -112,16 +109,18 @@ export function getHomeViewHTML(): string {
         }
 
         let generationSelectorHTML = '';
-        if (state.selectedPokedex.id === 'national') {
-            const genButtons = POKEDEX_LIST.filter(p => p.category === 'generation').map(p => `
-                <button data-pokedex-id="${p.id}" class="pokedex-select-btn px-4 py-2 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white">
+        if (state.selectedPokedex.id === 'national' || state.selectedPokedex.category === 'generation') {
+            const genButtons = POKEDEX_LIST.filter(p => p.category === 'generation').map(p => {
+                const isSelected = state.selectedPokedex?.id === p.id;
+                return `
+                <button data-pokedex-id="${p.id}" class="pokedex-select-btn px-4 py-2 font-bold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-white ${isSelected ? 'bg-zinc-600 text-zinc-100' : 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700'}">
                     ${p.name}
                 </button>
-            `).join('');
+            `}).join('');
 
             generationSelectorHTML = `
-                <div class="mb-8">
-                    <h2 class="text-xl font-bold text-center mb-4 text-zinc-300">View by Generation</h2>
+                <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-3 border-t border-zinc-800/50">
+                    <h2 class="text-sm font-semibold text-center text-zinc-400 mb-3">View by Generation</h2>
                     <div class="flex flex-wrap gap-3 justify-center">
                         ${genButtons}
                     </div>
@@ -130,19 +129,19 @@ export function getHomeViewHTML(): string {
         }
 
         const pokedexHeaderContent = `
-            <div class="bg-zinc-900 border-b border-zinc-700 sticky top-[80px] sm:top-[84px] z-30">
+            <div>
                 <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-center items-center gap-4 py-4">
                         <h1 class="text-2xl font-bold text-center text-zinc-100 flex-grow">${state.selectedPokedex.name}</h1>
                     </div>
                 </div>
+                ${generationSelectorHTML}
             </div>
         `;
         return `
             <div class="min-h-screen flex flex-col">
                 ${getHeaderHTML(pokedexHeaderContent)}
                 <main class="flex-grow w-full max-w-screen-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-                    ${generationSelectorHTML}
                     <div id="pokemon-grid-container">${content}</div>
                 </main>
                 ${getFooterHTML()}
@@ -248,6 +247,80 @@ function getEvolutionChainHTML(): string {
     `;
 }
 
+function getMegaAndGmaxSectionsHTML(basePokemon: any): string {
+    const era = state.selectedGameEraName;
+    const showMega = era === 'Gen VI' || era === 'Gen VII';
+    const showGmax = era === 'Gen VIII';
+
+    const megaForms = showMega 
+        ? (basePokemon.allOtherFormsDetails?.filter((f: any) => f.name.includes('-mega')) || [])
+        : [];
+    const gmaxForm = showGmax 
+        ? (basePokemon.allOtherFormsDetails?.find((f: any) => f.name.endsWith('-gmax')))
+        : null;
+
+    if (megaForms.length === 0 && !gmaxForm) {
+        return '';
+    }
+
+    const megaFormsHTML = megaForms.map((form: any) => {
+        const { baseName, badges } = getPokemonNameAndBadges(form.name);
+        const title = badges.length > 0 ? `${badges[0]} ${baseName}` : baseName;
+
+        const typesHTML = form.types.map((t: any) => {
+            const typeName = t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1);
+            return getTypeDisplayHTML(typeName as PokemonType, { className: 'h-11 w-24 text-base shadow-lg' });
+        }).join('');
+
+        const stats = form.stats.map((s: any) => ({ name: s.stat.name.replace('-', ' '), value: s.base_stat }));
+
+        return `
+            <div id="mega-form-${form.name}" class="pt-8 mt-8 border-t-2 border-zinc-700/50">
+                <h2 class="text-3xl font-bold text-zinc-100 mb-6 text-center">${title}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <img 
+                            src="${form.sprites.other['official-artwork'].front_default}" 
+                            alt="${title}" 
+                            class="w-full h-auto max-w-sm mx-auto drop-shadow-[0_5px_15px_rgba(0,0,0,0.6)]"
+                        >
+                    </div>
+                    <div>
+                        <div class="flex justify-center gap-2 mb-6">
+                            ${typesHTML}
+                        </div>
+                        <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
+                            ${getStatChartHTML(stats)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    let gmaxFormHTML = '';
+    if (gmaxForm) {
+        const { baseName } = getPokemonNameAndBadges(gmaxForm.name);
+        const gmaxArtworkUrl = gmaxForm.sprites.other['official-artwork'].front_default;
+
+        gmaxFormHTML = `
+            <div id="gmax-form-${basePokemon.name}" class="pt-8 mt-8 border-t-2 border-zinc-700/50">
+                <h2 class="text-3xl font-bold text-zinc-100 mb-6 text-center">Gigantamax ${baseName}</h2>
+                <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                    <img src="${gmaxArtworkUrl}" alt="Gigantamax ${baseName}" class="w-full h-auto max-w-2xl mx-auto object-contain drop-shadow-lg">
+                </div>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="w-full">
+            ${megaFormsHTML}
+            ${gmaxFormHTML}
+        </div>
+    `;
+}
+
 export function getPokedexBodyHTML(): string {
     if (state.isLoadingPokedexEntry || !state.selectedPokemonDetails || !state.activeFormName) {
         return `
@@ -276,7 +349,6 @@ export function getPokedexBodyHTML(): string {
     const gmaxForm = basePokemon.allOtherFormsDetails?.find((f: any) => f.name.endsWith('-gmax'));
     const hasGmax = !!gmaxForm;
     const shouldShowGmaxIcon = hasGmax && state.selectedGameEraName === 'Gen VIII';
-    const gmaxArtworkUrl = gmaxForm ? gmaxForm.sprites.other['official-artwork'].front_default : '';
 
     const shapeId = species.shape ? `#shape-${species.shape.name}` : '';
     
@@ -338,17 +410,8 @@ export function getPokedexBodyHTML(): string {
     
     const hasAnyMoves = levelUpMoves.length > 0 || machineMoves.length > 0 || tutorMoves.length > 0 || eggMoves.length > 0;
 
-    let movesSectionHTML;
-    if (!hasAnyMoves) {
-        movesSectionHTML = `
-            <section>
-                 <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Learned Moves</h2>
-                 <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-lg p-4">
-                    <p class="text-zinc-500 text-center">No moves available for this Pokémon in this generation.</p>
-                </div>
-            </section>
-        `;
-    } else {
+    let movesHTML = '';
+    if (hasAnyMoves) {
         const moveLists = [
             { title: 'Level Up Moves', moves: levelUpMoves, method: 'level-up' as const },
             { title: 'TM/HM Moves', moves: machineMoves, method: 'tm-hm' as const },
@@ -356,21 +419,12 @@ export function getPokedexBodyHTML(): string {
             { title: 'Egg Moves', moves: eggMoves, method: 'egg' as const },
         ].filter(list => list.moves.length > 0);
 
-        const movesHTML = moveLists.map(list => `
+        movesHTML = moveLists.map(list => `
             <div>
                 <h3 class="text-xl font-bold text-zinc-100 mb-2">${list.title} <span class="text-base text-zinc-400 font-medium">(${list.moves.length})</span></h3>
                 ${getPokemonMovesTableHTML(list.moves, list.method)}
             </div>
         `).join('');
-
-        movesSectionHTML = `
-            <section>
-                 <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Learned Moves</h2>
-                 <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                    ${movesHTML}
-                 </div>
-            </section>
-        `;
     }
     
     const romanMap: { [key: string]: number } = { 'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9 };
@@ -404,7 +458,7 @@ export function getPokedexBodyHTML(): string {
     let chartForGen;
     if (state.selectedGeneration === 'gen1') chartForGen = TYPE_CHART_GEN_1;
     else if (state.selectedGeneration === 'gen2-5') chartForGen = TYPE_CHART_GEN_2_5;
-    else chartForGen = TYPE_CHART_GEN_6;
+    else if (state.selectedGeneration === 'gen6') chartForGen = TYPE_CHART_GEN_6;
 
     allTypes.forEach(attackingType => {
         let multiplier = 1;
@@ -430,136 +484,169 @@ export function getPokedexBodyHTML(): string {
         ? `<div class="pt-3 mt-3 border-t border-zinc-700/50">${getHeldItemsHTML(basePokemon.held_items, selectedEra).replace('<h3 class="font-bold text-zinc-100 mb-2">Held Items</h3>', '<h4 class="font-bold text-zinc-400 text-sm mb-2">Held Items</h4>')}</div>`
         : '';
     
-    const eggGroups = species.egg_groups && species.egg_groups.length > 0
-        ? species.egg_groups.map((eg: any) => {
-            return `<button class="egg-group-btn text-zinc-300 hover:text-zinc-100 hover:underline transition-colors" data-egg-group-name="${eg.name}">${toTitleCase(eg.name)}</button>`;
-        }).join(', ')
-        : 'Undiscovered';
-
     return `
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Left Column: Artwork & Basic Info -->
-                <div class="lg:col-span-1 space-y-6">
-                    <div class="relative group w-3/4 lg:w-full mx-auto">
-                        <svg class="absolute -top-4 -left-4 w-24 h-24 opacity-10 -rotate-12 shape-fill" aria-hidden="true"><use xlink:href="${shapeId}"></use></svg>
-                        <img 
-                            src="${activeForm.sprites.other['official-artwork'].front_default}" 
-                            alt="${baseName}" 
-                            class="w-full h-auto drop-shadow-[0_5px_15px_rgba(0,0,0,0.6)] relative z-10"
-                        >
-                    </div>
-                    <div class="flex justify-center gap-2">
-                        ${typesHTML}
-                    </div>
-                    <div class="flex justify-center items-center gap-4">
-                        <button id="play-cry-btn" class="p-2 rounded-full bg-zinc-700 hover:bg-zinc-600 transition text-zinc-200" aria-label="Play Pokémon cry">
-                            ${SPEAKER_ICON_SVG}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Artwork & Basic Info -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="relative group w-3/4 lg:w-full mx-auto">
+                    <svg class="absolute -top-4 -left-4 w-24 h-24 opacity-10 -rotate-12 shape-fill" aria-hidden="true"><use xlink:href="${shapeId}"></use></svg>
+                    <img 
+                        src="${activeForm.sprites.other['official-artwork'].front_default}" 
+                        alt="${baseName}" 
+                        class="w-full h-auto drop-shadow-[0_5px_15px_rgba(0,0,0,0.6)] relative z-10"
+                    >
+                </div>
+                <div class="flex justify-center gap-2">
+                    ${typesHTML}
+                </div>
+                <div class="flex justify-center items-center gap-4">
+                    <button id="play-cry-btn" class="p-2 rounded-full bg-zinc-700 hover:bg-zinc-600 transition text-zinc-200" aria-label="Play Pokémon cry">
+                        ${SPEAKER_ICON_SVG}
+                    </button>
+                    ${shouldShowGmaxIcon ? `
+                        <button class="scroll-to-section-btn p-2 rounded-full bg-zinc-700 hover:bg-zinc-600 transition text-zinc-200" aria-label="View Gigantamax form" data-target-id="gmax-form-${basePokemon.name}">
+                            ${GIGANTAMAX_ICON_SVG.replace('<svg ', '<svg class="w-5 h-5" ')}
                         </button>
-                        ${shouldShowGmaxIcon ? `
-                            <button class="gmax-artwork-trigger p-2 rounded-full bg-zinc-700 hover:bg-zinc-600 transition text-zinc-200" aria-label="View Gigantamax form" data-gmax-artwork-url="${gmaxArtworkUrl}">
-                                ${GIGANTAMAX_ICON_SVG.replace('<svg ', '<svg class="w-5 h-5" ')}
-                            </button>
-                        ` : ''}
-                    </div>
-                    ${getAlternateFormThumbnailsHTML(basePokemon, state.activeFormName)}
+                    ` : ''}
                 </div>
-
-                <!-- Right Column: Detailed Info -->
-                <div class="lg:col-span-2 space-y-8">
-                    <!-- Game Version Tabs -->
-                    <div class="overflow-x-auto pb-2">
-                       <div class="flex gap-2 w-max">
-                        ${gameTabs}
-                       </div>
-                    </div>
-
-                    <!-- Flavor Text -->
-                    <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
-                        <p class="text-zinc-300 italic text-center leading-relaxed h-16 flex items-center justify-center">
-                            ${getFlavorText(state.selectedGameEraName)}
-                        </p>
-                    </div>
-
-                    <!-- Evolution Chain -->
-                    ${getEvolutionChainHTML()}
-                    
-                    <!-- Core Stats & Info -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       <div class="space-y-4 bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg flex flex-col">
-                            <h3 class="font-bold text-zinc-100">Pokédex Data</h3>
-                            <div class="text-sm space-y-3 flex-grow">
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Genus</span>
-                                    <span class="font-semibold text-zinc-200">${species.genera.find((g:any) => g.language.name === 'en')?.genus || 'N/A'}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Height</span>
-                                    <span class="font-semibold text-zinc-200">${formatHeight(activeForm.height)}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Weight</span>
-                                    <span class="font-semibold text-zinc-200">${formatWeight(activeForm.weight)}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Abilities</span>
-                                    ${abilitiesContentHTML}
-                                </div>
-                            </div>
-                            ${heldItemsHTML}
-                            ${getPokedexEntriesHTML(species)}
-                            ${getLocationsHTML(basePokemon.locationDetails, selectedEra)}
-                       </div>
-                       <div class="space-y-4 bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
-                            <h3 class="font-bold text-zinc-100">Training</h3>
-                            <div class="text-sm space-y-3">
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">EV Yield</span>
-                                    <span class="font-semibold text-zinc-200 text-right capitalize">${getEVYieldHTML(activeForm.stats)}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Catch Rate</span>
-                                    <span class="font-semibold text-zinc-200">${species.capture_rate}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Base Friendship</span>
-                                    <span class="font-semibold text-zinc-200">${species.base_happiness}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Growth Rate</span>
-                                    <span class="font-semibold text-zinc-200 capitalize">${species.growth_rate?.name.replace(/-/g, ' ')}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Gender Ratio</span>
-                                    <div class="w-1/2">${getGenderRatioHTML(species.gender_rate)}</div>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-400">Egg Groups</span>
-                                    <span class="font-semibold text-zinc-200 text-right">${eggGroups}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Learned Moves Section -->
-                    ${movesSectionHTML}
-
-                    <!-- Type Defenses -->
-                    <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
-                        <h3 class="font-bold text-zinc-100 mb-4 text-center">Type Defenses (vs. ${state.selectedGeneration === 'gen1' ? 'Gen 1' : state.selectedGeneration === 'gen2-5' ? 'Gen 2-5' : 'Gen 6+'} rules)</h3>
-                        <div class="flex flex-wrap gap-3 justify-center">
-                            ${defenseChipsHTML}
-                        </div>
-                    </div>
-                </div>
+                ${getAlternateFormThumbnailsHTML(basePokemon, state.activeFormName)}
             </div>
 
-            <!-- Base Stats -->
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Base Stats</h2>
-                <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg max-w-2xl mx-auto">
-                    ${getStatChartHTML(stats)}
+            <!-- Right Column: Detailed Info -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Game Version Tabs -->
+                <div class="overflow-x-auto pb-2">
+                   <div class="flex gap-2 w-max">
+                    ${gameTabs}
+                   </div>
                 </div>
-            </section>
+
+                <!-- Flavor Text -->
+                <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                    <p class="text-zinc-300 italic text-center leading-relaxed h-16 flex items-center justify-center">
+                        ${getFlavorText(state.selectedGameEraName)}
+                    </p>
+                </div>
+
+                <!-- Evolution Chain -->
+                ${getEvolutionChainHTML()}
+                
+                <!-- Pokedex & Training Data Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div class="space-y-4 bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg flex flex-col">
+                        <h3 class="font-bold text-zinc-100">Pokédex Data</h3>
+                        <div class="text-sm space-y-3 flex-grow">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Genus</span>
+                                <span class="font-semibold text-zinc-200">${species.genera.find((g:any) => g.language.name === 'en')?.genus || 'N/A'}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Height</span>
+                                <span class="font-semibold text-zinc-200">${formatHeight(activeForm.height)}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Weight</span>
+                                <span class="font-semibold text-zinc-200">${formatWeight(activeForm.weight)}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Abilities</span>
+                                ${abilitiesContentHTML}
+                            </div>
+                        </div>
+                        ${heldItemsHTML}
+                        ${getPokedexEntriesHTML(species)}
+                        ${getLocationsHTML(basePokemon.locationDetails, selectedEra)}
+                   </div>
+                   <div class="space-y-4 bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                        <h3 class="font-bold text-zinc-100">Training</h3>
+                        <div class="text-sm space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">EV Yield</span>
+                                <span class="font-semibold text-zinc-200 text-right capitalize">${getEVYieldHTML(activeForm.stats)}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Catch Rate</span>
+                                <span class="font-semibold text-zinc-200">${species.capture_rate}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Base Friendship</span>
+                                <span class="font-semibold text-zinc-200">${species.base_happiness}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Growth Rate</span>
+                                <span class="font-semibold text-zinc-200 capitalize">${species.growth_rate?.name.replace(/-/g, ' ')}</span>
+                            </div>
+                            ${state.selectedGameEraName !== 'Gen I' ? `
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Gender Ratio</span>
+                                <div class="w-1/2">${getGenderRatioHTML(species.gender_rate)}</div>
+                            </div>
+                            ` : ''}
+                            ${state.selectedGameEraName !== 'Gen I' ? `
+                                <div class="flex justify-between items-center">
+                                    <span class="text-zinc-400">Egg Groups</span>
+                                    <span class="font-semibold text-zinc-200 text-right">
+                                        ${
+                                            (() => {
+                                                if (species.egg_groups?.some((eg: any) => eg.name === 'no-eggs')) {
+                                                    return 'This Pokemon Cannot Breed';
+                                                }
+                                                if (species.egg_groups && species.egg_groups.length > 0) {
+                                                    return species.egg_groups.map((eg: any) => 
+                                                        `<button class="egg-group-btn text-zinc-300 hover:text-zinc-100 hover:underline transition-colors" data-egg-group-name="${eg.name}">${toTitleCase(eg.name)}</button>`
+                                                    ).join(', ');
+                                                }
+                                                return 'Undiscovered';
+                                            })()
+                                        }
+                                    </span>
+                                </div>
+                            ` : ''}
+                        </div>
+                   </div>
+                </div>
+
+                <!-- Learned Moves Section -->
+                ${hasAnyMoves ? 
+                    `<div>
+                         <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Learned Moves</h2>
+                         <div class="space-y-8">
+                            ${movesHTML}
+                         </div>
+                     </div>` 
+                     : 
+                     `<div>
+                         <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Learned Moves</h2>
+                         <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-lg p-4">
+                            <p class="text-zinc-500 text-center">No moves available for this Pokémon in this generation.</p>
+                        </div>
+                     </div>`
+                }
+                
+                <!-- Stats & Defenses Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Base Stats -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Base Stats</h2>
+                        <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg h-full">
+                            ${getStatChartHTML(stats)}
+                        </div>
+                    </div>
+
+                    <!-- Type Defenses -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-zinc-100 mb-4 text-center">Type Defenses</h2>
+                        <div class="bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-lg h-full">
+                            <p class="text-center text-zinc-400 text-sm mb-4">(vs. ${state.selectedGeneration === 'gen1' ? 'Gen 1' : state.selectedGeneration === 'gen2-5' ? 'Gen 2-5' : 'Gen 6+'} rules)</p>
+                            <div class="flex flex-wrap gap-3 justify-center">
+                                ${defenseChipsHTML}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${getMegaAndGmaxSectionsHTML(basePokemon)}
+            </div>
+        </div>
     `;
 }
 
@@ -569,7 +656,7 @@ export function getPokedexViewHTML(): string {
     // Only build the full header if the Pokémon data is loaded. Otherwise, show a loading state.
     if (state.isLoadingPokedexEntry || !state.selectedPokemonDetails) {
         pokedexHeaderContent = `
-            <div class="bg-zinc-900/90 backdrop-blur-sm border-b border-zinc-700/80 sticky top-[80px] sm:top-[84px] z-30">
+            <div>
                 <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-center items-center gap-4 py-3">
                         <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-zinc-100 flex-grow">
@@ -596,7 +683,7 @@ export function getPokedexViewHTML(): string {
         const badgesHTML = badges.map(badge => `<span class="px-2 py-1 text-sm font-bold text-white bg-zinc-600 rounded-md">${escapeHtml(badge)}</span>`).join(' ');
 
         pokedexHeaderContent = `
-            <div class="bg-zinc-900/90 backdrop-blur-sm border-b border-zinc-700/80 sticky top-[80px] sm:top-[84px] z-30">
+            <div>
                 <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-center items-center gap-4 py-3">
                         <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-zinc-100 flex-grow capitalize flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
@@ -610,10 +697,6 @@ export function getPokedexViewHTML(): string {
 
     return `
       ${POKEMON_SHAPES_SVG_SPRITES}
-      <div id="artwork-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <button id="overlay-close-btn" class="absolute top-4 right-4 text-white text-4xl font-bold" aria-label="Close image overlay">&times;</button>
-        <img id="overlay-image" src="" alt="Gigantamax Artwork" class="max-w-full max-h-full object-contain">
-      </div>
       <div class="min-h-screen flex flex-col">
         ${getHeaderHTML(pokedexHeaderContent)}
         <main class="flex-grow w-full max-w-screen-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -633,21 +716,19 @@ export function getItemIndexViewHTML(): string {
         title = 'Item Categories';
         contentHTML = getItemCategoriesHTML();
         headerHTML = getHeaderHTML();
-    } else { // 'list' mode
+    } else if (state.itemViewMode === 'list') {
         const category = state.selectedItemCategory;
         title = category || 'Items';
         
         if (category === 'TMs & HMs') {
             contentHTML = generateTMListHTML();
-        } else if (!category) {
-            contentHTML = generateItemListHTML(state.itemsDB);
         } else {
             const itemsToDisplay = state.itemsDB.filter(i => i.category === category);
             contentHTML = generateItemListHTML(itemsToDisplay);
         }
 
         const itemHeaderContent = `
-            <div class="bg-zinc-900 border-b border-zinc-700 sticky top-[80px] sm:top-[84px] z-30">
+            <div>
                 <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-center gap-4 py-4">
                         <h1 class="flex-initial text-xl sm:text-2xl font-bold text-center text-zinc-100 whitespace-nowrap">${title}</h1>
@@ -656,6 +737,26 @@ export function getItemIndexViewHTML(): string {
             </div>
         `;
         headerHTML = getHeaderHTML(itemHeaderContent);
+    } else { // 'detail' mode
+        const item = state.selectedItemData;
+        if (!item) {
+            title = 'Error';
+            contentHTML = '<p class="text-center text-red-500">Could not load item details.</p>';
+            headerHTML = getHeaderHTML();
+        } else {
+            title = toTitleCase(item.name);
+            contentHTML = getItemDetailHTML(item);
+            const itemHeaderContent = `
+                <div>
+                    <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-center justify-center gap-4 py-4">
+                            <h1 class="flex-initial text-xl sm:text-2xl font-bold text-center text-zinc-100 whitespace-nowrap capitalize">${escapeHtml(title)}</h1>
+                        </div>
+                    </div>
+                </div>
+            `;
+            headerHTML = getHeaderHTML(itemHeaderContent);
+        }
     }
 
     return `
@@ -704,7 +805,7 @@ export function getAbilityIndexViewHTML(): string {
         }
 
         const abilityHeaderContent = `
-            <div class="bg-zinc-900 border-b border-zinc-700 sticky top-[80px] sm:top-[84px] z-30">
+            <div>
                 <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-center gap-4 py-4">
                         <h1 class="flex-initial text-xl sm:text-2xl font-bold text-center text-zinc-100 capitalize whitespace-nowrap">${title}</h1>
@@ -750,7 +851,7 @@ export function getAttackIndexViewHTML(): string {
         }
 
         const attackHeaderContent = `
-            <div class="bg-zinc-900 border-b border-zinc-700 sticky top-[80px] sm:top-[84px] z-30">
+            <div>
                 <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-center gap-4 py-4">
                         <h1 class="flex-initial text-xl sm:text-2xl font-bold text-center text-zinc-100 whitespace-nowrap">${escapeHtml(title)}</h1>

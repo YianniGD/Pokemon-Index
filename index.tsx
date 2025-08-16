@@ -1,10 +1,8 @@
-
-
 import { PokemonType, TYPE_CHART_GEN_1, TYPE_CHART_GEN_2_5, TYPE_CHART_GEN_6 } from './constants.ts';
 import { state } from './state.ts';
-import { View, PokemonGridItem } from './types.ts';
+import { View, PokemonGridItem, HistoryEntry } from './types.ts';
 import { getHomeViewHTML, getChartViewHTML, getPokedexBodyHTML, getPokedexViewHTML, getItemIndexViewHTML, getAbilityIndexViewHTML, getAttackIndexViewHTML } from './ui/views.ts';
-import { getTypeDisplayHTML, getDamageMultiplierHTML, generatePokemonGridHTML, getSearchOverlayHTML, generateAbilityListHTML } from './ui/components.ts';
+import { getTypeDisplayHTML, getDamageMultiplierHTML, generatePokemonGridHTML, getSearchResultsHTML, generateAbilityListHTML } from './ui/components.ts';
 import { fetchAllPokemon, fetchAllItems, fetchAllAbilities, fetchAllAttacks } from './api.ts';
 import { LOADER_SVG } from './assets.ts';
 import { 
@@ -27,7 +25,8 @@ import {
     handleAttackSelect,
     handleEggGroupSelect,
     handleHomeLogoClick,
-    handleStandardBackClick
+    handleStandardBackClick,
+    handleScrollToSection
 } from './handlers.ts';
 
 // --- CONSTANTS ---
@@ -50,17 +49,26 @@ const POKEMON_PAGE_DEFAULT_COLORS = { main: '#18181b', highlight: '#27272a' }; /
 const root = document.getElementById('root');
 
 /** Manages view state transitions */
-export function updateView(newView: View, options: { url?: string | null, resetHomeView?: boolean } = {}) {
-    const { url = null, resetHomeView = false } = options;
+export function updateView(newView: View, options: { url?: string | null, resetHomeView?: boolean, isBack?: boolean } = {}) {
+    const { url = null, resetHomeView = false, isBack = false } = options;
     
     // Save scroll position ONLY when navigating from the Pokédex list to a detail page.
     if (state.currentView === 'home' && state.homeViewMode === 'list' && newView === 'pokedex') {
         state.homeScrollPosition = window.scrollY;
     }
 
-    if (newView !== state.currentView) {
-       state.previousView = state.currentView;
+    if (!isBack) {
+        // A meaningful navigation is a change in view, or a change in URL for the same view.
+        const isMeaningfulNavigation = newView !== state.currentView || (url !== state.selectedPokemonUrl && url !== null);
+        if (isMeaningfulNavigation) {
+            state.viewHistory.push({
+                view: state.currentView,
+                url: state.selectedPokemonUrl,
+                homeViewMode: state.homeViewMode,
+            });
+        }
     }
+
     state.currentView = newView;
     state.selectedPokemonUrl = url;
 
@@ -89,6 +97,8 @@ export function updateView(newView: View, options: { url?: string | null, resetH
     if (newView !== 'attacks') {
         state.attackViewMode = 'list';
         state.selectedAttackData = null;
+        state.categorizedPokemonByLearnMethod = null;
+        state.isLoadingAttackLearnMethods = false;
     }
 }
 
@@ -124,21 +134,34 @@ export function updateAbilityListView() {
     container.querySelectorAll('.ability-select-btn').forEach(btn => btn.addEventListener('click', handleAbilitySelect));
 }
 
-export function renderSearchOverlay() {
-    const searchOverlay = document.getElementById('search-overlay');
-    if (!searchOverlay) return;
+export function renderSearchResults() {
+    const resultsContainer = document.getElementById('search-results-container');
+    const searchInput = document.getElementById('global-search');
+    if (!resultsContainer || !searchInput) return;
 
     if (state.isSearchOverlayVisible) {
-        searchOverlay.innerHTML = getSearchOverlayHTML();
-        searchOverlay.classList.remove('hidden');
-        searchOverlay.querySelector('#search-backdrop')?.addEventListener('click', handleCloseSearch);
-        searchOverlay.querySelectorAll('.pokemon-select-btn').forEach(btn => btn.addEventListener('click', handlePokemonSelect));
-        searchOverlay.querySelectorAll('.item-select-btn').forEach(btn => btn.addEventListener('click', handleItemSelectFromSearch));
-        searchOverlay.querySelectorAll('.ability-select-btn').forEach(btn => btn.addEventListener('click', handleAbilitySelect));
-        searchOverlay.querySelectorAll('.attack-select-btn').forEach(btn => btn.addEventListener('click', handleAttackSelect));
+        resultsContainer.innerHTML = getSearchResultsHTML();
+        resultsContainer.classList.remove('hidden');
+
+        const panel = resultsContainer.querySelector<HTMLElement>('#search-results-panel');
+        if (panel) {
+            const rect = searchInput.getBoundingClientRect();
+            // Position the panel relative to the viewport.
+            // This works correctly even if the header is sticky.
+            panel.style.position = 'fixed'; 
+            panel.style.top = `${rect.bottom}px`;
+            panel.style.left = `${rect.left}px`;
+            panel.style.width = `${rect.width}px`;
+        }
+
+        resultsContainer.querySelector('#search-backdrop')?.addEventListener('click', handleCloseSearch);
+        resultsContainer.querySelectorAll('.pokemon-select-btn').forEach(btn => btn.addEventListener('click', handlePokemonSelect));
+        resultsContainer.querySelectorAll('.item-select-btn').forEach(btn => btn.addEventListener('click', handleItemSelectFromSearch));
+        resultsContainer.querySelectorAll('.ability-select-btn').forEach(btn => btn.addEventListener('click', handleAbilitySelect));
+        resultsContainer.querySelectorAll('.attack-select-btn').forEach(btn => btn.addEventListener('click', handleAttackSelect));
     } else {
-        searchOverlay.innerHTML = '';
-        searchOverlay.classList.add('hidden');
+        resultsContainer.innerHTML = '';
+        resultsContainer.classList.add('hidden');
     }
 }
 
@@ -309,7 +332,7 @@ export async function updateTypeChart() {
 export async function render() {
     if (!root) return;
     
-    const shouldRestoreScroll = state.currentView === 'home' && state.homeViewMode === 'list' && state.previousView === 'pokedex';
+    const shouldRestoreScroll = state.currentView === 'home' && state.homeViewMode === 'list' && state.navigatedFromPokedex;
 
     root.style.opacity = '0';
     await new Promise(res => setTimeout(res, 150));
@@ -353,6 +376,7 @@ export async function render() {
     
     if (shouldRestoreScroll) {
         window.scrollTo(0, state.homeScrollPosition);
+        state.navigatedFromPokedex = false; // Reset the flag after use
     } else if (state.currentView !== 'pokedex') { // Avoid resetting scroll on Pokedex intra-navigation
         window.scrollTo(0, 0);
     }
@@ -417,6 +441,8 @@ function attachPokedexListeners() {
     document.querySelectorAll('.pokedex-entry-btn').forEach(btn => btn.addEventListener('click', handlePokedexEntryLink));
     document.querySelectorAll('.attack-select-btn').forEach(tab => tab.addEventListener('click', handleAttackSelect));
     document.querySelectorAll('.egg-group-btn').forEach(btn => btn.addEventListener('click', handleEggGroupSelect));
+    document.querySelectorAll('.item-select-btn').forEach(btn => btn.addEventListener('click', handleItemSelectFromSearch));
+    document.querySelectorAll('.scroll-to-section-btn').forEach(btn => btn.addEventListener('click', handleScrollToSection));
 
 
     // Pokémon Cry Listener
@@ -428,40 +454,26 @@ function attachPokedexListeners() {
             audio.play().catch(e => console.error("Failed to play audio:", e));
         }
     });
-
-    // G-Max Artwork Overlay Listeners
-    const overlay = document.getElementById('artwork-overlay');
-    const overlayImage = document.getElementById('overlay-image') as HTMLImageElement;
-    
-    document.querySelectorAll('.gmax-artwork-trigger').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const button = e.currentTarget as HTMLButtonElement;
-            const artworkUrl = button.dataset.gmaxArtworkUrl;
-            if (overlay && overlayImage && artworkUrl) {
-                overlayImage.src = artworkUrl;
-                overlay.classList.remove('hidden');
-                overlay.classList.add('flex');
-            }
-        });
-    });
-
-    const closeOverlay = () => {
-        if (overlay) {
-            overlay.classList.add('hidden');
-            overlay.classList.remove('flex');
-            if (overlayImage) overlayImage.src = ''; // Clear src to stop loading
-        }
-    };
-
-    document.getElementById('overlay-close-btn')?.addEventListener('click', closeOverlay);
-    overlay?.addEventListener('click', (e) => {
-        // Close only if the backdrop is clicked, not the image itself
-        if (e.target === overlay) {
-            closeOverlay();
-        }
-    });
 }
 
+function setupScrollToTopButton() {
+    const button = document.getElementById('scroll-to-top');
+    if (!button) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            button.classList.remove('opacity-0', 'pointer-events-none');
+            button.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+            button.classList.remove('opacity-100', 'pointer-events-auto');
+            button.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }, { passive: true });
+
+    button.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 // --- INITIALIZATION ---
 async function init() {
@@ -471,6 +483,9 @@ async function init() {
     // Set initial view and render
     await render();
     
+    // Setup global listeners that only need to be attached once
+    setupScrollToTopButton();
+
     // Fetch all data in the background
     await Promise.all([
         fetchAllPokemon().then(() => {

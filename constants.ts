@@ -3,6 +3,9 @@
 
 
 
+
+
+
 export enum PokemonType {
   NORMAL = 'Normal',
   FIRE = 'Fire',
@@ -59,23 +62,26 @@ export const POKEDEX_LIST: { id: string, name: string, isGeneration: boolean, ge
     { id: 'gen-7', name: 'Generation VII', isGeneration: true, genId: 7, category: 'generation', era: 'Gen VII' },
     { id: 'gen-8', name: 'Generation VIII', isGeneration: true, genId: 8, category: 'generation', era: 'Gen VIII' },
     { id: 'gen-9', name: 'Generation IX', isGeneration: true, genId: 9, category: 'generation', era: 'Gen IX' },
-    // Game Dexes
+    // Game Dexes (Main Series, Remakes, and Sequels)
     { id: 'kanto', name: 'Kanto (R/B/Y)', isGeneration: false, category: 'game', era: 'Gen I', versionGroup: 'red-blue' },
     { id: 'original-johto', name: 'Johto (G/S/C)', isGeneration: false, category: 'game', era: 'Gen II', versionGroup: 'gold-silver'},
     { id: 'hoenn', name: 'Hoenn (R/S/E)', isGeneration: false, category: 'game', era: 'Gen III', versionGroup: 'ruby-sapphire' },
     { id: 'original-sinnoh', name: 'Sinnoh (D/P)', isGeneration: false, category: 'game', era: 'Gen IV', versionGroup: 'diamond-pearl' },
+    { id: 'extended-sinnoh', name: 'Sinnoh (Plat.)', isGeneration: false, category: 'game', era: 'Gen IV' },
+    { id: 'updated-johto', name: 'Johto (HG/SS)', isGeneration: false, category: 'game', era: 'Gen IV', versionGroup: 'heartgold-soulsilver' },
     { id: 'original-unova', name: 'Unova (B/W)', isGeneration: false, category: 'game', era: 'Gen V', versionGroup: 'black-white' },
     { id: 'updated-unova', name: 'Unova (B2/W2)', isGeneration: false, category: 'game', era: 'Gen V', versionGroup: 'black-2-white-2' },
     { id: 'kalos-central', name: 'Kalos (Central)', isGeneration: false, category: 'game', era: 'Gen VI', versionGroup: 'x-y' },
+    { id: 'kalos-coastal', name: 'Kalos (Coastal)', isGeneration: false, category: 'game', era: 'Gen VI', versionGroup: 'x-y' },
+    { id: 'kalos-mountain', name: 'Kalos (Mountain)', isGeneration: false, category: 'game', era: 'Gen VI', versionGroup: 'x-y' },
+    { id: 'updated-hoenn', name: 'Hoenn (OR/AS)', isGeneration: false, category: 'game', era: 'Gen VI', versionGroup: 'omega-ruby-alpha-sapphire' },
+    { id: 'original-alola', name: 'Alola (S/M)', isGeneration: false, category: 'game', era: 'Gen VII', versionGroup: 'sun-moon' },
+    { id: 'updated-alola', name: 'Alola (US/UM)', isGeneration: false, category: 'game', era: 'Gen VII', versionGroup: 'ultra-sun-ultra-moon' },
     { id: 'galar', name: 'Galar (Sw/Sh)', isGeneration: false, category: 'game', era: 'Gen VIII', versionGroup: 'sword-shield' },
+    { id: 'hisui', name: 'Hisui', isGeneration: false, category: 'game', era: 'Gen VIII' },
     { id: 'paldea', name: 'Paldea (S/V)', isGeneration: false, category: 'game', era: 'Gen IX', versionGroup: 'scarlet-violet' },
-    // Other Dexes
+    // Other Dexes (National & DLCs)
     { id: 'national', name: 'National', isGeneration: false, category: 'other' },
-    { id: 'updated-johto', name: 'Johto (HG/SS)', isGeneration: false, category: 'other', era: 'Gen IV' },
-    { id: 'updated-hoenn', name: 'Hoenn (OR/AS)', isGeneration: false, category: 'other', era: 'Gen VI' },
-    { id: 'extended-sinnoh', name: 'Sinnoh (Plat.)', isGeneration: false, category: 'other', era: 'Gen IV' },
-    { id: 'updated-alola', name: 'Alola (US/UM)', isGeneration: false, category: 'other', era: 'Gen VII' },
-    { id: 'hisui', name: 'Hisui', isGeneration: false, category: 'other', era: 'Gen VIII' },
     { id: 'isle-of-armor', name: 'Isle of Armor', isGeneration: false, category: 'other', era: 'Gen VIII' },
     { id: 'crown-tundra', name: 'Crown Tundra', isGeneration: false, category: 'other', era: 'Gen VIII' },
     { id: 'kitakami', name: 'Kitakami', isGeneration: false, category: 'other', era: 'Gen IX' },
@@ -100,9 +106,33 @@ export const VERSION_EXCLUSIVES: { [key: string]: { [key: string]: string[] } } 
         'diamond': ['seel', 'dewgong', 'scyther', 'scizor', 'murkrow', 'gligar', 'larvitar', 'pupitar', 'tyranitar', 'poochyena', 'mightyena', 'aron', 'lairon', 'aggron', 'kecleon', 'cranidos', 'rampardos', 'honchkrow', 'stunky', 'skuntank', 'dialga'],
         'pearl': ['slowpoke', 'slowbro', 'slowking', 'pinsir', 'misdreavus', 'houndour', 'houndoom', 'stantler', 'spheal', 'sealeo', 'walrein', 'bagon', 'shelgon', 'salamence', 'shieldon', 'bastiodon', 'mismagius', 'glameow', 'purugly', 'palkia']
     },
+    'heartgold-soulsilver': {
+        'heartgold': ['mankey', 'primeape', 'growlithe', 'arcanine', 'spinarak', 'ariados', 'gligar', 'mantine', 'phanpy', 'donphan', 'sableye', 'baltoy', 'claydol', 'kyogre', 'mantyke', 'gliscor'],
+        'soulsilver': ['ekans', 'arbok', 'vulpix', 'ninetales', 'meowth', 'persian', 'ledyba', 'ledian', 'teddiursa', 'ursaring', 'delibird', 'skarmory', 'mawile', 'gulpin', 'swalot', 'groudon']
+    },
     'black-white': {
         'black': ['murkrow', 'houndour', 'houndoom', 'plusle', 'honchkrow', 'cottonee', 'whimsicott', 'gothita', 'gothorita', 'gothitelle', 'vullaby', 'mandibuzz', 'tornadus', 'reshiram'],
         'white': ['misdreavus', 'minun', 'mismagius', 'petilil', 'lilligant', 'solosis', 'duosion', 'reuniclus', 'rufflet', 'braviary', 'thundurus', 'zekrom']
+    },
+     'black-2-white-2': {
+        'black-2': ['magby', 'magmar', 'magmortar', 'bonsly', 'sudowoodo', 'plusle', 'spinda', 'registeel', 'latias', 'gothita', 'gothorita', 'gothitelle', 'vullaby', 'mandibuzz', 'reshiram', 'weedle', 'kakuna', 'beedrill', 'ekans', 'arbok', 'drowzee', 'hypno', 'murkrow', 'gligar', 'honchkrow', 'gliscor', 'skitty', 'delcatty', 'ho-oh'],
+        'white-2': ['elekid', 'electabuzz', 'electivire', 'mime-jr', 'mr-mime', 'minun', 'illumise', 'regice', 'latios', 'solosis', 'duosion', 'reuniclus', 'rufflet', 'braviary', 'zekrom', 'caterpie', 'metapod', 'butterfree', 'sandshrew', 'sandslash', 'natu', 'xatu', 'misdreavus', 'mismagius', 'stantler', 'teddiursa', 'ursaring', 'lugia']
+    },
+    'x-y': {
+        'x': ['staryu', 'starmie', 'pinsir', 'houndour', 'houndoom', 'poochyena', 'mightyena', 'aron', 'lairon', 'aggron', 'sawk', 'swirlix', 'slurpuff', 'clauncher', 'clawitzer', 'xerneas'],
+        'y': ['shellder', 'cloyster', 'heracross', 'larvitar', 'pupitar', 'tyranitar', 'electrike', 'manectric', 'throh', 'spritzee', 'aromatisse', 'skrelp', 'dragalge', 'yveltal']
+    },
+    'omega-ruby-alpha-sapphire': {
+        'omega-ruby': ['ho-oh', 'palkia', 'reshiram', 'tornadus', 'groudon', 'seedot', 'nuzleaf', 'shiftry', 'mawile', 'zangoose', 'solrock', 'kabuto', 'kabutops', 'anorith', 'armaldo', 'shieldon', 'bastiodon', 'archen', 'archeops'],
+        'alpha-sapphire': ['lugia', 'dialga', 'zekrom', 'thundurus', 'kyogre', 'lotad', 'lombre', 'ludicolo', 'sableye', 'seviper', 'lunatone', 'omanyte', 'omastar', 'lileep', 'cradily', 'cranidos', 'rampardos', 'tirtouga', 'carracosta']
+    },
+    'sun-moon': {
+        'sun': ['vulpix-alola', 'ninetales-alola', 'cranidos', 'rampardos', 'tirtouga', 'carracosta', 'rufflet', 'braviary', 'passimian', 'turtonator', 'solgaleo', 'buzzwole', 'kartana', 'cottonee', 'whimsicott'],
+        'moon': ['sandshrew-alola', 'sandslash-alola', 'shieldon', 'bastiodon', 'archen', 'archeops', 'vullaby', 'mandibuzz', 'oranguru', 'drampa', 'lunala', 'pheromosa', 'celesteela', 'petilil', 'lilligant']
+    },
+    'ultra-sun-ultra-moon': {
+        'ultra-sun': ['houndour', 'houndoom', 'anorith', 'armaldo', 'clauncher', 'clawitzer', 'tyrunt', 'tyrantrum', 'amaura', 'aurorus', 'buzzwole', 'kartana', 'blacephalon'],
+        'ultra-moon': ['electrike', 'manectric', 'lileep', 'cradily', 'skrelp', 'dragalge', 'pheromosa', 'celesteela', 'stakataka']
     },
     'sword-shield': {
         'sword': ['deino', 'zweilous', 'hydreigon', 'jangmo-o', 'hakamo-o', 'kommo-o', 'farfetchd', 'sirfetchd', 'turtonator', 'mawile', 'gothita', 'gothorita', 'gothitelle', 'rufflet', 'braviary', 'sawk', 'seedot', 'nuzleaf', 'shiftry', 'swirlix', 'slurpuff', 'scraggy', 'scrafty', 'solrock', 'passimian', 'flapple', 'stonjourner', 'indeedee-male', 'zacian'],
@@ -112,6 +142,35 @@ export const VERSION_EXCLUSIVES: { [key: string]: { [key: string]: string[] } } 
         'scarlet': ['larvitar', 'pupitar', 'tyranitar', 'drifloon', 'drifblim', 'stunky', 'skuntank', 'deino', 'zweilous', 'hydreigon', 'skrelp', 'dragalge', 'oranguru', 'stonjourner', 'armarouge', 'koraidon', 'tauros-paldea-blaze-breed', 'great-tusk', 'scream-tail', 'brute-bonnet', 'flutter-mane', 'slither-wing', 'sandy-shocks', 'roaring-moon'],
         'violet': ['bagon', 'shelgon', 'salamence', 'misdreavus', 'mismagius', 'gulpin', 'swalot', 'clauncher', 'clawitzer', 'passimian', 'eiscue-ice', 'dreepy', 'drakloak', 'dragapult', 'ceruledge', 'miraidon', 'tauros-paldea-aqua-breed', 'iron-treads', 'iron-bundle', 'iron-hands', 'iron-jugulis', 'iron-moth', 'iron-thorns', 'iron-valiant']
     }
+};
+
+export const GAME_HEX_COLORS: { [key: string]: string } = {
+    'red': '#ef4444',
+    'blue': '#3b82f6',
+    'gold': '#f7971e',
+    'silver': '#9ca3af',
+    'ruby': '#dc2626',
+    'sapphire': '#2563eb',
+    'diamond': '#60a5fa',
+    'pearl': '#f472b6',
+    'heartgold': '#f7971e',
+    'soulsilver': '#9ca3af',
+    'black': '#525252',
+    'white': '#e5e5e5',
+    'black-2': '#525252',
+    'white-2': '#e5e5e5',
+    'x': '#0072b2',
+    'y': '#d50000',
+    'omega-ruby': '#dc2626',
+    'alpha-sapphire': '#2563eb',
+    'sun': '#f953c6',
+    'moon': '#203a43',
+    'ultra-sun': '#ffb627',
+    'ultra-moon': '#4e54c8',
+    'sword': '#22d3ee',
+    'shield': '#d946ef',
+    'scarlet': '#f97316',
+    'violet': '#8b5cf6'
 };
 
 export const TYPE_ICONS: { [key in PokemonType]?: string } = {
@@ -299,7 +358,7 @@ export const VERSION_TO_GROUP_MAP: { [versionName: string]: string } = {
     'lets-go-pikachu': 'lets-go-pikachu-lets-go-eevee',
     'lets-go-eevee': 'lets-go-pikachu-lets-go-eevee',
     'sword': 'sword-shield',
-    'shield': 'sword-shield',
+    'shield': 'shield',
     'brilliant-diamond': 'brilliant-diamond-and-shining-pearl',
     'shining-pearl': 'brilliant-diamond-and-shining-pearl',
     'legends-arceus': 'legends-arceus',

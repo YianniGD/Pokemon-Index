@@ -1,4 +1,4 @@
-import { PokemonType, TYPE_ICONS, TYPE_COLORS, VERSION_EXCLUSIVES, POKEDEX_LIST, VERSION_TO_GROUP_MAP, GENERATIONS, GAME_ERA_GROUPS, GAME_VERSION_ORDER } from '../constants.ts';
+import { PokemonType, TYPE_ICONS, TYPE_COLORS, VERSION_EXCLUSIVES, POKEDEX_LIST, VERSION_TO_GROUP_MAP, GENERATIONS, GAME_ERA_GROUPS, GAME_VERSION_ORDER, GAME_HEX_COLORS } from '../constants.ts';
 import { Generation, PokemonGridItem, ItemData, AbilityData, AttackData } from '../types.ts';
 import { state } from '../state.ts';
 import { HEADER_LOGO_SVG, GIGANTAMAX_ICON_SVG, GAME_ICONS, LOADER_SVG, PHYSICAL_ATTACK_ICON_SVG, SPECIAL_ATTACK_ICON_SVG, STATUS_ATTACK_ICON_SVG } from '../assets.ts';
@@ -164,8 +164,10 @@ export function generatePokemonGridHTML(pokemonToDisplay: PokemonGridItem[]): st
         return `<p class="text-center text-zinc-500 p-8">No Pokémon found matching your search.</p>`;
     }
 
+    const isGamePokedex = state.selectedPokedex?.category === 'game';
+    const isNotHisui = state.selectedPokedex?.id !== 'hisui';
     const versionGroup = state.selectedPokedex?.versionGroup;
-    const exclusives = versionGroup ? VERSION_EXCLUSIVES[versionGroup] : null;
+    const exclusives = (isGamePokedex && isNotHisui && versionGroup) ? VERSION_EXCLUSIVES[versionGroup] : null;
 
     const gridItems = pokemonToDisplay.map(p => {
         const id = p.id;
@@ -183,13 +185,21 @@ export function generatePokemonGridHTML(pokemonToDisplay: PokemonGridItem[]): st
                 ${GIGANTAMAX_ICON_SVG.replace('<svg ', '<svg class="w-full h-full" ')}
             </div>`;
 
-        let exclusiveBadgeHTML = '';
+        let bgClass = 'bg-zinc-800 group-hover:bg-zinc-700';
+        let exclusiveStyles = '';
+        let exclusiveTitle = '';
+
         if (exclusives) {
             const speciesName = state.pokemonFormInfo.get(p.name)?.speciesName || p.name;
             for (const game in exclusives) {
                 if (exclusives[game].includes(speciesName)) {
-                    const gameName = game.charAt(0).toUpperCase() + game.slice(1);
-                    exclusiveBadgeHTML = `<div class="absolute top-1 right-1 h-5 w-5" title="Exclusive to Pokémon ${gameName}">${GAME_ICONS[game] || ''}</div>`;
+                    const hexColor = GAME_HEX_COLORS[game];
+                    if (hexColor) {
+                        const gameName = game.charAt(0).toUpperCase() + game.slice(1);
+                        // Add a prominent border and glow effect
+                        exclusiveStyles = `style="border: 2px solid ${hexColor}; box-shadow: 0 0 10px ${hexColor}77;"`;
+                        exclusiveTitle = `title="Exclusive to Pokémon ${gameName}"`;
+                    }
                     break;
                 }
             }
@@ -197,10 +207,9 @@ export function generatePokemonGridHTML(pokemonToDisplay: PokemonGridItem[]): st
 
         return `
             <button class="pokemon-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" data-pokemon-url="${p.url}">
-                <div class="bg-zinc-800 rounded-lg p-2 aspect-square flex items-center justify-center transition group-hover:bg-zinc-700 relative">
+                <div class="${bgClass} rounded-lg p-2 aspect-square flex items-center justify-center transition relative" ${exclusiveStyles} ${exclusiveTitle}>
                     <img src="${imageUrl}" alt="${p.name}" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
                     ${shouldShowGmaxIcon ? gmaxIconHTML : ''}
-                    ${exclusiveBadgeHTML}
                 </div>
                 <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
                     <span class="text-zinc-500 group-hover:text-zinc-400">#${pokedexNumber.toString().padStart(3, '0')}</span> 
@@ -224,80 +233,64 @@ export function generateItemListHTML(itemsToDisplay: ItemData[]): string {
     }
 
     if (itemsToDisplay.length === 0) {
-        return `<p class="text-center text-zinc-500 p-8">No items found.</p>`;
+        return `<p class="text-center text-zinc-500 p-8">No items in this category.</p>`;
     }
 
-    const categorizedItems = new Map<string, ItemData[]>();
-    for (const item of itemsToDisplay) {
-        if (!categorizedItems.has(item.category)) {
-            categorizedItems.set(item.category, []);
-        }
-        categorizedItems.get(item.category)!.push(item);
-    }
+    // Sort items alphabetically
+    itemsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
 
-    const categoryOrder = [
-        'Poké Balls',
-        'Medicine',
-        'TMs & HMs',
-        'Evolution Items',
-        'Mega Stones & Z-Crystals',
-        'Plates, Drives & Memories',
-        'Gems',
-        'Held Items',
-        'Battle Items',
-        'Berries',
-        'Ingredients',
-        'Valuable Items',
-        'Key Items',
-        'Other',
-    ];
+    const itemButtons = itemsToDisplay.map(item => `
+        <button class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" data-item-name="${escapeHtml(item.name)}">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.name.replace(/ /g, '-')}.png" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+            <span>${escapeHtml(item.name)}</span>
+        </button>
+    `).join('');
 
-    const sortedCategories = Array.from(categorizedItems.keys()).sort((a, b) => {
-        const indexA = categoryOrder.indexOf(a);
-        const indexB = categoryOrder.indexOf(b);
+    return `
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            ${itemButtons}
+        </div>
+    `;
+}
 
-        if (indexA !== -1 && indexB !== -1) {
-            return indexA - indexB;
-        }
-        if (indexA !== -1) return -1;
-        if (indexB !== -1) return 1;
-        return a.localeCompare(b);
-    });
+export function getItemDetailHTML(item: ItemData): string {
+    return `
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50 flex flex-col sm:flex-row items-center gap-6">
+                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.name.replace(/ /g, '-')}.png" alt="${escapeHtml(item.name)}" class="w-24 h-24 object-contain bg-zinc-900/50 p-2 rounded-full" loading="lazy" onerror="this.style.display='none'"/>
+                 <div>
+                    <p class="text-zinc-300 italic text-base mb-4 text-center sm:text-left">"${escapeHtml(item.flavorText)}"</p>
+                 </div>
+            </div>
 
-    return sortedCategories.map(category => {
-        const items = categorizedItems.get(category)!;
-        const itemCards = items.map(item => `
-            <div class="bg-zinc-800/60 p-4 rounded-lg border border-zinc-700/50 flex flex-col" data-item-name="${escapeHtml(item.name)}">
-                <h3 class="font-bold text-lg text-zinc-100 capitalize mb-2">${escapeHtml(item.name)}</h3>
-                <p class="text-zinc-300 italic text-sm mb-4">${escapeHtml(item.flavorText)}</p>
-                <div class="mt-auto space-y-3 pt-3 border-t border-zinc-700/50">
-                    <div>
-                        <h4 class="font-semibold text-zinc-200 text-sm">Effect</h4>
-                        <p class="text-zinc-400 text-sm">${escapeHtml(item.effect)}</p>
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+                <h3 class="font-semibold text-zinc-100 text-lg mb-2">Effect</h3>
+                <p class="text-zinc-300 text-base leading-relaxed">${escapeHtml(item.effect)}</p>
+            </div>
+
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+                <h3 class="font-semibold text-zinc-100 text-lg mb-2">Availability</h3>
+                <div class="text-base space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">Category</span>
+                        <span class="font-bold text-zinc-100">${escapeHtml(item.category)}</span>
                     </div>
-                    <div>
-                        <h4 class="font-semibold text-zinc-200 text-sm">Availability</h4>
-                        <p class="text-zinc-400 text-sm">
-                            Cost: ${item.cost > 0 ? `${item.cost.toLocaleString()} Pokédollars` : 'Cannot be bought.'}
-                        </p>
-                        ${item.games.length > 0 ? `<p class="text-zinc-400 text-sm mt-1">Games: ${escapeHtml(item.games.join(', '))}</p>` : ''}
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">Cost</span>
+                        <span class="font-bold text-zinc-100">${item.cost > 0 ? `${item.cost.toLocaleString()} Pokédollars` : 'Cannot be bought.'}</span>
                     </div>
+                    ${item.games.length > 0 ? `
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">Games</span>
+                        <span class="font-bold text-zinc-100 text-right">${escapeHtml(item.games.join(', '))}</span>
+                    </div>
+                    ` : ''}
                 </div>
             </div>
-        `).join('');
-
-        return `
-            <section>
-                <h2 class="text-2xl font-bold text-zinc-100 mb-4 mt-8 sticky top-[140px] bg-zinc-900 py-2 z-10 border-b border-zinc-700/50">
-                    ${escapeHtml(category)} <span class="text-base text-zinc-400 font-medium">(${items.length})</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" style="grid-auto-rows: 1fr;">
-                    ${itemCards}
-                </div>
-            </section>
-        `;
-    }).join('');
+        </div>
+    `;
 }
+
 
 export function generateAbilityListHTML(abilities: AbilityData[]): string {
     if (state.isLoadingAbilities) {
@@ -445,24 +438,43 @@ export function getAttackDetailHTML(attack: AttackData): string {
         `;
     }
 
-    let pokemonGridHTML = '';
-    if (attack.pokemon && attack.pokemon.length > 0) {
-        const gridItems = attack.pokemon.map(p => {
-            const speciesInfo = state.displayablePokemon.find(dp => dp.id === p.id);
-            return {
-                name: p.name,
-                url: p.url,
-                id: p.id,
-                pokedexNumber: speciesInfo ? speciesInfo.baseId : p.id,
-                hasGmax: speciesInfo ? speciesInfo.hasGmax : false,
-            };
-        });
-        
-        pokemonGridHTML = `
-        <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
-            <h3 class="font-semibold text-zinc-100 text-lg mb-4">Pokémon that learn this move (${gridItems.length})</h3>
-            ${generatePokemonGridHTML(gridItems)}
+    let pokemonLearnMethodsHTML = '';
+    if (state.isLoadingAttackLearnMethods) {
+        pokemonLearnMethodsHTML = `<div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+            <h3 class="font-semibold text-zinc-100 text-lg mb-4">Pokémon that learn this move</h3>
+            <div class="flex justify-center items-center p-8">${LOADER_SVG}</div>
         </div>`;
+    } else if (state.categorizedPokemonByLearnMethod) {
+        const categories = [
+            { key: 'level-up' as const, title: 'Learn by Level up' },
+            { key: 'machine' as const, title: 'Learn by TM/HMs' },
+            { key: 'egg' as const, title: 'Learn by Breeding' },
+            { key: 'tutor' as const, title: 'Learn by Move Tutor' }
+        ];
+
+        const categorySections = categories.map(cat => {
+            const pokemonList = state.categorizedPokemonByLearnMethod![cat.key];
+            if (!pokemonList || pokemonList.length === 0) return '';
+            
+            pokemonList.sort((a, b) => a.pokedexNumber - b.pokedexNumber);
+
+            return `
+                <div class="mt-4 first:mt-0">
+                    <h4 class="font-semibold text-zinc-200 text-md mb-3">${cat.title} (${pokemonList.length})</h4>
+                    ${generatePokemonGridHTML(pokemonList)}
+                </div>
+            `;
+        }).filter(Boolean).join('');
+
+        const totalPokemon = Object.values(state.categorizedPokemonByLearnMethod).reduce((sum, list) => sum + list.length, 0);
+
+        if (totalPokemon > 0) {
+            pokemonLearnMethodsHTML = `
+            <div class="bg-zinc-800/60 p-6 rounded-lg border border-zinc-700/50">
+                <h3 class="font-semibold text-zinc-100 text-lg mb-2">Pokémon that learn this move</h3>
+                ${categorySections}
+            </div>`;
+        }
     }
 
     return `
@@ -488,7 +500,7 @@ export function getAttackDetailHTML(attack: AttackData): string {
                 </div>
             </div>
             ${tmInfoHTML}
-            ${pokemonGridHTML}
+            ${pokemonLearnMethodsHTML}
         </div>
     `;
 }
@@ -626,7 +638,7 @@ export function getItemCategoriesHTML(): string {
     }
 
     const categoriesFromDB = [...new Set(state.itemsDB.map(item => item.category))];
-    const allCategories = [...categoriesFromDB, 'TMs & HMs'];
+    const allCategories = [...new Set([...categoriesFromDB, 'TMs & HMs'])];
 
     const categoryOrder = [
         'Poké Balls', 'Medicine', 'TMs & HMs', 'Evolution Items', 'Mega Stones & Z-Crystals', 
@@ -654,7 +666,7 @@ export function getItemCategoriesHTML(): string {
     `;
 }
 
-export function getSearchOverlayHTML(): string {
+export function getSearchResultsHTML(): string {
     const term = state.globalSearchTerm.toLowerCase();
     if (!term) return '';
 
@@ -729,11 +741,8 @@ export function getSearchOverlayHTML(): string {
     `).join('') : '<p class="text-zinc-500 p-2">No attacks found.</p>';
 
     return `
-        <div id="search-backdrop" class="absolute inset-0"></div>
-        <div class="relative bg-zinc-800 rounded-lg max-w-4xl w-full mx-auto mt-24 shadow-2xl overflow-hidden flex flex-col">
-            <div class="p-4 border-b border-zinc-700 flex-shrink-0">
-                <h2 class="text-lg font-bold text-zinc-200">Search Results for "${escapeHtml(term)}"</h2>
-            </div>
+        <div id="search-backdrop" class="fixed inset-0 z-40"></div>
+        <div id="search-results-panel" class="bg-zinc-800 rounded-b-lg shadow-2xl border border-zinc-700 border-t-0 overflow-hidden flex flex-col z-50">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 max-h-[60vh] overflow-y-auto">
                 <div>
                     <h3 class="font-bold text-zinc-100 p-3 sticky top-0 bg-zinc-800 z-10 border-b border-zinc-700">Pokémon</h3>
@@ -767,7 +776,7 @@ export function getSearchOverlayHTML(): string {
 export function getStatChartHTML(stats: { name: string, value: number }[]): string {
     const statOrder = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
     const maxStat = 255;
-    const totalDots = 15;
+    const totalDots = 10;
 
     const statMap = new Map(stats.map(s => [s.name.toLowerCase().replace(' ', '-'), s.value]));
     const total = statOrder.reduce((acc, name) => acc + (statMap.get(name) || 0), 0);
@@ -791,7 +800,7 @@ export function getStatChartHTML(stats: { name: string, value: number }[]): stri
             <div class="grid grid-cols-[100px_60px_1fr] items-center gap-4 text-sm">
                 <span class="font-bold text-zinc-300 text-right">${formattedName}</span>
                 <span class="font-mono text-zinc-100 text-left text-lg">${value}</span>
-                <div class="flex gap-1.5">
+                <div class="flex flex-nowrap overflow-hidden gap-1.5">
                     ${dotsHTML}
                 </div>
             </div>
@@ -820,7 +829,7 @@ export function getPokedexEntriesHTML(species: any): string {
         if (!pokedexInfo) return null;
         
         return `
-            <button class="pokedex-entry-btn w-full flex justify-between items-center text-left hover:bg-zinc-700/50 p-1.5 rounded-md transition-colors" data-pokedex-id="${pokedexInfo.id}">
+            <button class="pokedex-entry-btn w-full flex justify-between items-center text-left hover:bg-zinc-700/50 p-1.5 rounded-md transition-colors" data-pokedex-id="${pokedexInfo.id}" data-entry-number="${entry.entry_number}">
                 <span class="font-semibold text-zinc-200">${pokedexInfo.name}</span>
                 <span class="font-mono text-zinc-400">#${entry.entry_number}</span>
             </button>
@@ -858,7 +867,7 @@ export function getHeldItemsHTML(heldItems: any[], selectedEra: any): string {
         if (versions.length > 0) {
              const rarities = [...new Set(versions.map(v => v.rarity))];
             return {
-                name: item.item.name.replace(/-/g, ' '),
+                name: toTitleCase(item.item.name),
                 rarity: rarities.join('/')
             };
         }
@@ -874,7 +883,7 @@ export function getHeldItemsHTML(heldItems: any[], selectedEra: any): string {
 
     const itemsHTML = itemsInEra.map(item => `
         <div class="flex justify-between">
-            <span class="capitalize font-semibold text-zinc-200">${item.name}</span>
+            <button class="item-select-btn font-semibold text-zinc-200 hover:underline focus:outline-none focus:ring-1 focus:ring-white rounded-sm" data-item-name="${escapeHtml(item.name)}">${escapeHtml(item.name)}</button>
             <span class="text-zinc-400">${item.rarity}%</span>
         </div>
     `).join('');
@@ -925,7 +934,7 @@ export function getLocationsHTML(locationDetails: any[], selectedEra: any): stri
 
 export function getGenderRatioHTML(rate: number): string {
     if (rate === -1) {
-        return '<span class="text-zinc-300">Genderless</span>';
+        return '<span class="text-zinc-300 w-full text-right block">Genderless</span>';
     }
     const femaleChance = (rate / 8) * 100;
     const maleChance = 100 - femaleChance;
@@ -1038,8 +1047,14 @@ export function getAlternateFormThumbnailsHTML(pokemon: any, activeFormName: str
             ? 'Base' 
             : (badges.length > 0 ? `<div class="flex flex-wrap gap-1 justify-center">${badgesHTML}</div>` : baseName);
 
+        const isMega = form.name.includes('-mega');
+        const buttonClass = isMega ? 'scroll-to-section-btn' : 'form-select-btn';
+        const attributes = isMega
+            ? `data-target-id="mega-form-${form.name}"`
+            : `data-form-url="${form.url}" data-form-name="${form.name}"`;
+
         return `
-            <button class="form-select-btn text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-white rounded-lg w-24" data-form-url="${form.url}" data-form-name="${form.name}">
+            <button class="${buttonClass} text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-white rounded-lg w-24" ${attributes}>
                 <div class="bg-zinc-800 rounded-full p-1 aspect-square flex items-center justify-center transition group-hover:bg-zinc-700 ${ringClass}">
                     <img src="${form.imageUrl}" alt="${form.name}" class="w-full h-full object-contain drop-shadow-md" loading="lazy">
                 </div>

@@ -1,7 +1,5 @@
-
-
 import { PokemonType } from './constants.ts';
-import { View, PokemonFamily, DisplayPokemon, PokedexInfo, PokemonGridItem, EvolutionNode, Generation, ItemData, AbilityData, AbilityViewMode, AttackData, AttackViewMode } from './types.ts';
+import { View, PokemonFamily, DisplayPokemon, PokedexInfo, PokemonGridItem, EvolutionNode, Generation, ItemData, AbilityData, AbilityViewMode, AttackData, AttackViewMode, HistoryEntry } from './types.ts';
 
 interface AppState {
     // Chart view state
@@ -11,7 +9,7 @@ interface AppState {
 
     // View routing and global state
     currentView: View;
-    previousView: View;
+    viewHistory: HistoryEntry[];
     pokemonDB: PokemonFamily[];
     displayablePokemon: DisplayPokemon[];
     pokemonUrlMap: Map<string, string>;
@@ -26,6 +24,7 @@ interface AppState {
     currentPokemonList: PokemonGridItem[];
     isLoadingPokedexList: boolean;
     homeScrollPosition: number;
+    navigatedFromPokedex: boolean;
 
     // Pokedex view state
     selectedPokemonUrl: string | null;
@@ -55,6 +54,13 @@ interface AppState {
     isLoadingAttacks: boolean;
     attackViewMode: AttackViewMode;
     selectedAttackData: AttackData | null;
+    categorizedPokemonByLearnMethod: {
+        'level-up': PokemonGridItem[];
+        'machine': PokemonGridItem[];
+        'egg': PokemonGridItem[];
+        'tutor': PokemonGridItem[];
+    } | null;
+    isLoadingAttackLearnMethods: boolean;
 }
 
 
@@ -66,7 +72,7 @@ export const state: AppState = {
 
     // View routing and global state
     currentView: 'home',
-    previousView: 'home',
+    viewHistory: [],
     pokemonDB: [],
     displayablePokemon: [],
     pokemonUrlMap: new Map<string, string>(),
@@ -81,6 +87,7 @@ export const state: AppState = {
     currentPokemonList: [],
     isLoadingPokedexList: false,
     homeScrollPosition: 0,
+    navigatedFromPokedex: false,
 
     // Pokedex view state
     selectedPokemonUrl: null,
@@ -110,4 +117,6 @@ export const state: AppState = {
     isLoadingAttacks: true,
     attackViewMode: 'list',
     selectedAttackData: null,
+    categorizedPokemonByLearnMethod: null,
+    isLoadingAttackLearnMethods: false,
 };

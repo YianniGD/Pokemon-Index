@@ -1,17 +1,15 @@
-
-
-import { render, updateView, updateTypeChart, updateGenerationButtons, updatePokedexView, renderSearchOverlay, updateAbilityListView } from './index.tsx';
+import { render, updateView, updateTypeChart, updateGenerationButtons, updatePokedexView, renderSearchResults, updateAbilityListView } from './index.tsx';
 import { state } from './state.ts';
-import { fetchPokedexList, fetchPokedexEntry, fetchEvolutionChain } from './api.ts';
+import { fetchPokedexList, fetchPokedexEntry, fetchEvolutionChain, fetchPokemonLearnMethodsForMove } from './api.ts';
 import { Generation, View } from './types.ts';
 import { POKEDEX_LIST, GAME_ERA_GROUPS, GAME_VERSION_ORDER, PokemonType } from './constants.ts';
 import { toTitleCase } from './utils.ts';
 
 // --- HELPER NAVIGATOR ---
 
-export async function navigateToPokedex(url: string, eraContext?: string) {
+export async function navigateToPokedex(url: string, eraContext?: string, isBack: boolean = false) {
     handleCloseSearch();
-    updateView('pokedex', { url });
+    updateView('pokedex', { url, isBack });
 
     state.isLoadingPokedexEntry = true;
     state.isLoadingEvolution = true;
@@ -21,11 +19,10 @@ export async function navigateToPokedex(url: string, eraContext?: string) {
     
     await render(); // Render loader for pokedex view
 
-    const { pokemon, evolutionChain } = await fetchPokedexEntry(url);
+    const { pokemon } = await fetchPokedexEntry(url);
     
     state.selectedPokemonDetails = pokemon;
     state.activeFormName = pokemon?.name || null;
-    state.selectedPokemonEvolutionChain = evolutionChain;
     
     // --- ERA LOGIC ---
     // Prioritize the era passed from the list context.
@@ -76,6 +73,11 @@ export async function navigateToPokedex(url: string, eraContext?: string) {
 
     state.selectedGameEraName = bestEra;
 
+    const evolutionChainUrl = pokemon?.speciesData.evolution_chain?.url;
+    if (evolutionChainUrl && state.activeFormName) {
+        state.selectedPokemonEvolutionChain = await fetchEvolutionChain(evolutionChainUrl, state.activeFormName, state.selectedGameEraName);
+    }
+
     // Set the corresponding type chart generation for the newly detected era
     if (bestEra) {
         if (bestEra === 'Gen I') state.selectedGeneration = 'gen1';
@@ -107,7 +109,13 @@ export function handleHomeLogoClick() {
 }
 
 export function handleStandardBackClick() {
-    // Handle view-specific back actions first (detail -> list)
+    // Handle view-specific back actions first (detail -> list, etc.)
+    if (state.currentView === 'items' && state.itemViewMode === 'detail') {
+        state.itemViewMode = 'list';
+        state.selectedItemData = null;
+        render();
+        return;
+    }
     if (state.currentView === 'items' && state.itemViewMode === 'list') {
         state.itemViewMode = 'categories';
         state.selectedItemCategory = null;
@@ -126,26 +134,32 @@ export function handleStandardBackClick() {
         render();
         return;
     }
-
-    // Handle Pokédex list back to selection
     if (state.currentView === 'home' && state.homeViewMode === 'list') {
         updateView('home', { resetHomeView: true });
         render();
         return;
     }
 
-    // Handle Pokédex entry back to list
-    if (state.currentView === 'pokedex') {
-        updateView(state.previousView);
-        render();
-        return;
-    }
+    // For all other cases, use the history stack.
+    if (state.viewHistory.length > 0) {
+        const previousEntry = state.viewHistory.pop()!;
 
-    // Default back action for top-level views (chart, items, abilities, attacks) is to go home
-    if (['chart', 'items', 'abilities', 'attacks'].includes(state.currentView)) {
+        // Set flag for scroll restoration if applicable
+        state.navigatedFromPokedex = state.currentView === 'pokedex' && previousEntry.view === 'home' && previousEntry.homeViewMode === 'list';
+
+        // Restore necessary state from the history entry before navigating
+        state.homeViewMode = previousEntry.homeViewMode;
+        
+        if (previousEntry.view === 'pokedex' && previousEntry.url) {
+            navigateToPokedex(previousEntry.url, undefined, true);
+        } else {
+            updateView(previousEntry.view, { isBack: true });
+            render();
+        }
+    } else {
+        // Fallback to home if history is empty
         updateView('home', { resetHomeView: true });
         render();
-        return;
     }
 }
 
@@ -199,7 +213,7 @@ export async function handlePokemonSelect(e: MouseEvent) {
     if (url) {
         // Pass the era from the current Pokedex list, if available.
         // Do not pass context if the click comes from the global search overlay.
-        const isFromSearch = !!target.closest('#search-overlay');
+        const isFromSearch = !!target.closest('#search-results-container');
         const eraContext = isFromSearch ? undefined : state.selectedPokedex?.era;
         await navigateToPokedex(url, eraContext);
     }
@@ -267,7 +281,7 @@ export async function handleGameEraChange(e: MouseEvent) {
 
     const evolutionChainUrl = speciesData.evolution_chain?.url;
     if (evolutionChainUrl && state.activeFormName) {
-        const newEvolutionChain = await fetchEvolutionChain(evolutionChainUrl, state.activeFormName);
+        const newEvolutionChain = await fetchEvolutionChain(evolutionChainUrl, state.activeFormName, state.selectedGameEraName);
         state.selectedPokemonEvolutionChain = newEvolutionChain;
     }
     
@@ -299,7 +313,7 @@ export function handleGlobalSearch(e: Event) {
     const input = e.target as HTMLInputElement;
     state.globalSearchTerm = input.value.trim();
     state.isSearchOverlayVisible = !!state.globalSearchTerm;
-    renderSearchOverlay();
+    renderSearchResults();
 }
 
 export function handleCloseSearch() {
@@ -307,7 +321,7 @@ export function handleCloseSearch() {
     state.isSearchOverlayVisible = false;
     const searchInput = document.getElementById('global-search') as HTMLInputElement;
     if (searchInput) searchInput.value = '';
-    renderSearchOverlay();
+    renderSearchResults();
 }
 
 export function handleItemCategorySelect(e: MouseEvent) {
@@ -320,27 +334,32 @@ export function handleItemCategorySelect(e: MouseEvent) {
     }
 }
 
-export function handleItemSelect() {
-    // This is not implemented as there's no item detail view currently.
+export function handleItemSelect(e: MouseEvent) {
+    const target = e.currentTarget as HTMLElement;
+    const itemName = target.dataset.itemName;
+    if (!itemName) return;
+
+    const item = state.itemsDB.find(i => i.name.toLowerCase() === itemName.toLowerCase());
+    if (item) {
+        state.itemViewMode = 'detail';
+        state.selectedItemData = item;
+        render();
+    }
 }
 
 export function handleItemSelectFromSearch(e: MouseEvent) {
     const target = e.currentTarget as HTMLElement;
     const itemName = target.dataset.itemName;
-    const categoryName = target.dataset.itemCategory;
-    if (itemName && categoryName) {
-        handleCloseSearch();
-        state.selectedItemCategory = categoryName;
-        state.itemViewMode = 'list';
-        updateView('items');
-        render().then(() => {
-            const itemCard = document.querySelector(`[data-item-name="${itemName}"]`);
-            if (itemCard) {
-                itemCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                itemCard.classList.add('ring-2', 'ring-yellow-400', 'transition-all', 'duration-1000');
-                setTimeout(() => itemCard.classList.remove('ring-2', 'ring-yellow-400'), 2000);
-            }
-        });
+    if (itemName) {
+        const item = state.itemsDB.find(i => i.name.toLowerCase() === itemName.toLowerCase());
+        if (item) {
+            handleCloseSearch();
+            updateView('items');
+            state.itemViewMode = 'detail';
+            state.selectedItemData = item;
+            state.selectedItemCategory = item.category; // Set category so back button works correctly
+            render();
+        }
     }
 }
 
@@ -367,7 +386,7 @@ export function handleAbilitySelect(e: MouseEvent) {
     }
 }
 
-export function handleAttackSelect(e: MouseEvent) {
+export async function handleAttackSelect(e: MouseEvent) {
     const target = e.currentTarget as HTMLElement;
     const attackName = target.dataset.attackName?.toLowerCase();
     if (!attackName) return;
@@ -375,49 +394,70 @@ export function handleAttackSelect(e: MouseEvent) {
     const attack = state.attacksDB.find(a => a.name.toLowerCase() === attackName);
     if (attack) {
         handleCloseSearch();
-        // When an attack is selected from any page, switch to the attacks view in detail mode.
-        // This will correctly set previousView.
         if (state.currentView !== 'attacks') {
             updateView('attacks');
         }
         state.attackViewMode = 'detail';
         state.selectedAttackData = attack;
-        render();
+
+        state.isLoadingAttackLearnMethods = true;
+        state.categorizedPokemonByLearnMethod = null;
+        await render();
+
+        const categorizedPokemon = await fetchPokemonLearnMethodsForMove(attack.pokemon, attack.name);
+        state.categorizedPokemonByLearnMethod = categorizedPokemon;
+        state.isLoadingAttackLearnMethods = false;
+        
+        await render();
     }
 }
 
 export async function handlePokedexEntryLink(e: MouseEvent) {
     const target = e.currentTarget as HTMLElement;
     const pokedexId = target.dataset.pokedexId;
-    const speciesName = state.selectedPokemonDetails?.speciesData?.name;
-    if (!pokedexId || !speciesName) return;
+    const entryNumberStr = target.dataset.entryNumber;
+    if (!pokedexId || !entryNumberStr) return;
 
-    const pokedexInfo = POKEDEX_LIST.find(p => p.id === pokedexId);
-    if (!pokedexInfo) return;
+    const entryNumber = parseInt(entryNumberStr, 10);
 
-    updateView('home');
-    state.homeViewMode = 'list';
-    state.selectedPokedex = pokedexInfo;
-    state.isLoadingPokedexList = true;
-    await render(); 
-
-    await fetchPokedexList();
-    state.isLoadingPokedexList = false;
-    await render(); 
-
-    // Find the Pokémon in the new list. It may be a different form, but it will have the same species name.
-    const targetPokemon = state.currentPokemonList.find(p => {
-        const formInfo = state.pokemonFormInfo.get(p.name);
-        return formInfo?.speciesName === speciesName;
-    });
-
-    if (targetPokemon) {
-        const card = document.querySelector(`[data-pokemon-url="${targetPokemon.url}"]`);
-        if (card) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            card.classList.add('ring-2', 'ring-yellow-400', 'scale-105', 'z-10', 'relative');
-            setTimeout(() => card.classList.remove('ring-2', 'ring-yellow-400', 'scale-105', 'z-10', 'relative'), 2000);
+    try {
+        // Fetch the pokedex data to find the species name for the given entry number.
+        const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${pokedexId}`);
+        if (!response.ok) {
+            console.error(`Could not fetch pokedex: ${pokedexId}`);
+            return;
         }
+        const dexData = await response.json();
+        const entry = dexData.pokemon_entries.find((e: any) => e.entry_number === entryNumber);
+
+        if (!entry) {
+            console.error(`Could not find entry number ${entryNumber} in pokedex ${pokedexId}`);
+            return;
+        }
+        
+        const speciesName = entry.pokemon_species.name;
+
+        // Find the default form of that species from our pre-loaded DB.
+        const targetPokemon = state.displayablePokemon.find(p => {
+            const formInfo = state.pokemonFormInfo.get(p.name);
+            return formInfo?.speciesName === speciesName && formInfo.isDefault;
+        });
+        
+        // If a default form is not found, take the first form we have for that species.
+        const fallbackPokemon = !targetPokemon 
+            ? state.displayablePokemon.find(p => state.pokemonFormInfo.get(p.name)?.speciesName === speciesName)
+            : null;
+
+        const pokemonToNavigate = targetPokemon || fallbackPokemon;
+
+        if (pokemonToNavigate && pokemonToNavigate.url) {
+            // Navigate to the detail page for that Pokémon.
+            await navigateToPokedex(pokemonToNavigate.url);
+        } else {
+            console.error(`Could not find any form for species: ${speciesName}`);
+        }
+    } catch (error) {
+        console.error("Failed to handle Pokedex entry link:", error);
     }
 }
 
@@ -445,4 +485,15 @@ export async function handleEggGroupSelect(e: MouseEvent) {
     await fetchPokedexList();
     state.isLoadingPokedexList = false;
     await render(); 
+}
+
+export function handleScrollToSection(e: MouseEvent) {
+    const target = e.currentTarget as HTMLElement;
+    const targetId = target.dataset.targetId;
+    if (!targetId) return;
+
+    const element = document.getElementById(targetId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
