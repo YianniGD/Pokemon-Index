@@ -416,48 +416,35 @@ export async function handlePokedexEntryLink(e: MouseEvent) {
     const target = e.currentTarget as HTMLElement;
     const pokedexId = target.dataset.pokedexId;
     const entryNumberStr = target.dataset.entryNumber;
+
     if (!pokedexId || !entryNumberStr) return;
 
     const entryNumber = parseInt(entryNumberStr, 10);
 
-    try {
-        // Fetch the pokedex data to find the species name for the given entry number.
-        const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${pokedexId}`);
-        if (!response.ok) {
-            console.error(`Could not fetch pokedex: ${pokedexId}`);
-            return;
-        }
-        const dexData = await response.json();
-        const entry = dexData.pokemon_entries.find((e: any) => e.entry_number === entryNumber);
+    // Find and set the new Pokedex context.
+    const newPokedexInfo = POKEDEX_LIST.find(p => p.id === pokedexId);
+    if (!newPokedexInfo) {
+        console.error(`Pokedex info not found for id: ${pokedexId}`);
+        return;
+    }
 
-        if (!entry) {
-            console.error(`Could not find entry number ${entryNumber} in pokedex ${pokedexId}`);
-            return;
-        }
-        
-        const speciesName = entry.pokemon_species.name;
+    // Update the global state to reflect the new Pokédex context.
+    state.selectedPokedex = newPokedexInfo;
+    
+    // Fetch the new list of Pokémon for this context. 
+    // This is crucial as it updates state.currentPokemonList, which the nav links depend on.
+    await fetchPokedexList();
 
-        // Find the default form of that species from our pre-loaded DB.
-        const targetPokemon = state.displayablePokemon.find(p => {
-            const formInfo = state.pokemonFormInfo.get(p.name);
-            return formInfo?.speciesName === speciesName && formInfo.isDefault;
-        });
-        
-        // If a default form is not found, take the first form we have for that species.
-        const fallbackPokemon = !targetPokemon 
-            ? state.displayablePokemon.find(p => state.pokemonFormInfo.get(p.name)?.speciesName === speciesName)
-            : null;
+    // Now, find the specific Pokémon in the newly fetched list by its Pokédex number.
+    const targetPokemon = state.currentPokemonList.find(p => p.pokedexNumber === entryNumber);
 
-        const pokemonToNavigate = targetPokemon || fallbackPokemon;
-
-        if (pokemonToNavigate && pokemonToNavigate.url) {
-            // Navigate to the detail page for that Pokémon.
-            await navigateToPokedex(pokemonToNavigate.url);
-        } else {
-            console.error(`Could not find any form for species: ${speciesName}`);
-        }
-    } catch (error) {
-        console.error("Failed to handle Pokedex entry link:", error);
+    if (targetPokemon && targetPokemon.url) {
+        // The context (state.currentPokemonList) is now updated.
+        // Navigate to the detail page for that Pokémon.
+        // Pass the era from the new pokedex info to ensure the correct game tab is selected on the detail page.
+        await navigateToPokedex(targetPokemon.url, newPokedexInfo.era);
+    } else {
+        console.error(`Could not find Pokémon with entry number ${entryNumber} in the '${pokedexId}' Pokédex list after fetching. This may indicate a data mismatch.`);
     }
 }
 

@@ -25,7 +25,8 @@ import {
     getAttackDetailHTML,
     getPokemonMovesTableHTML,
     generateTMListHTML,
-    getItemDetailHTML
+    getItemDetailHTML,
+    getPokedexNavLinksHTML
 } from './components.ts';
 
 
@@ -484,7 +485,7 @@ export function getPokedexBodyHTML(): string {
         ? `<div class="pt-3 mt-3 border-t border-zinc-700/50">${getHeldItemsHTML(basePokemon.held_items, selectedEra).replace('<h3 class="font-bold text-zinc-100 mb-2">Held Items</h3>', '<h4 class="font-bold text-zinc-400 text-sm mb-2">Held Items</h4>')}</div>`
         : '';
     
-    return `
+    const mainContentHTML = `
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Left Column: Artwork & Basic Info -->
             <div class="lg:col-span-1 space-y-6">
@@ -646,6 +647,13 @@ export function getPokedexBodyHTML(): string {
                 </div>
                 ${getMegaAndGmaxSectionsHTML(basePokemon)}
             </div>
+        </div>
+    `;
+
+    return `
+        <div>
+            ${mainContentHTML}
+            ${getPokedexNavLinksHTML()}
         </div>
     `;
 }

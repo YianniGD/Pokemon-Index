@@ -1159,3 +1159,58 @@ export function getPokemonMovesTableHTML(moves: any[], method: 'level-up' | 'tm-
         </div>
     `;
 }
+
+export function getPokedexNavLinksHTML(): string {
+    if (!state.selectedPokemonDetails || state.currentPokemonList.length <= 1) {
+        return '';
+    }
+
+    const currentPokemonId = state.selectedPokemonDetails.id;
+    const currentIndex = state.currentPokemonList.findIndex(p => p.id === currentPokemonId);
+
+    if (currentIndex === -1) {
+        return '';
+    }
+
+    const prevPokemon = currentIndex > 0 ? state.currentPokemonList[currentIndex - 1] : null;
+    const nextPokemon = currentIndex < state.currentPokemonList.length - 1 ? state.currentPokemonList[currentIndex + 1] : null;
+
+    const createNavLinkHTML = (pokemon: PokemonGridItem | null, direction: 'previous' | 'next'): string => {
+        if (!pokemon) {
+            return `<div class="flex-1 min-w-0"></div>`; // Placeholder for flexbox spacing
+        }
+
+        const { baseName } = getPokemonNameAndBadges(pokemon.name);
+        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+        const arrow = direction === 'previous'
+            ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>`
+            : `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>`;
+        
+        const textAndImage = `
+            <div class="flex items-center gap-3 min-w-0">
+                <img src="${imageUrl}" alt="${baseName}" class="w-12 h-12 bg-zinc-900/50 rounded-full flex-shrink-0">
+                <div class="min-w-0 ${direction === 'previous' ? 'text-left' : 'text-right'}">
+                    <span class="text-zinc-400 text-sm">#${pokemon.pokedexNumber.toString().padStart(3, '0')}</span>
+                    <h4 class="font-bold text-zinc-100 truncate">${baseName}</h4>
+                </div>
+            </div>
+        `;
+
+        return `
+            <button class="pokemon-select-btn flex-1 p-3 bg-black/30 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-zinc-800 transition-colors flex items-center gap-4 min-w-0" data-pokemon-url="${pokemon.url}">
+                ${direction === 'previous' ? arrow : ''}
+                ${textAndImage}
+                ${direction === 'next' ? arrow : ''}
+            </button>
+        `;
+    };
+
+    return `
+        <div class="mt-12 pt-8 border-t-2 border-zinc-700/50">
+            <nav class="flex justify-between items-stretch gap-4">
+                ${createNavLinkHTML(prevPokemon, 'previous')}
+                ${createNavLinkHTML(nextPokemon, 'next')}
+            </nav>
+        </div>
+    `;
+}
