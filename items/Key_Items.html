@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Key Items Items | Pokédex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .shape-main-fill { fill: #f4f4f5; } .shape-accent-fill { fill: #3f3f46; }
+      .stat-radar-grid-line { stroke: #3f3f46; } .stat-radar-axis-label { fill: #a1a1aa; }
+      .stat-radar-value-label { fill: #f4f4f5; } .image-rendering-pixelated { image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-200"  data-path-prefix="../" data-era-name="">
+    <div id="root">
+        <div class="min-h-screen flex flex-col">
+            
+    <div class="sticky top-0 z-50 flex-shrink-0 w-full bg-zinc-900/80 border-b border-zinc-800/50">
+        <div class="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+            <header class="py-3 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    
+                    <div class="w-32 sm:w-40 flex-shrink-0">
+                        <a href="../index.html" class="w-full transition-transform hover:scale-105">
+                            
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.96 67.68">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fcdd02;
+      }
+
+      .cls-2 {
+        fill: #f4a198;
+      }
+
+      .cls-3 {
+        fill: #c82e19;
+      }
+
+      .cls-4 {
+        fill: #81cee2;
+      }
+
+      .cls-5 {
+        fill: #72994d;
+      }
+
+      .cls-6 {
+        fill: #f7f3da;
+      }
+
+      .cls-7 {
+        fill: #00aeeb;
+      }
+
+      .cls-8 {
+        fill: #435e2c;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <path class="cls-7" d="M9.9,57.78c13.2,13.2,34.68,13.2,47.88,0,13.2-13.2,13.2-34.68,0-47.88-13.2-13.2-34.68-13.2-47.88,0s-13.2,34.68,0,47.88Z"/>
+      <path class="cls-8" d="M164.04,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5c-4.55-4.55-11.95-4.55-16.51,0s-4.55,11.95,0,16.5Z"/>
+      <path class="cls-1" d="M126.2,23.73c4.55,4.55,11.95,4.55,16.5,0,4.55-4.55,4.55-11.95,0-16.51s-11.95-4.55-16.5,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-3" d="M87.48,23.73c4.55,4.55,11.95,4.55,16.5,0s4.55-11.95,0-16.5-11.95-4.55-16.51,0-4.55,11.95,0,16.5Z"/>
+      <path class="cls-4" d="M12.73,13.67c-6.74,6.74-9.03,15.41-5.1,19.33s12.6,1.63,19.33-5.1c6.74-6.74,9.03-15.41,5.1-19.33s-12.6-1.63-19.33,5.1Z"/>
+      <path class="cls-5" d="M172.44,6.34c-1.35-1.35-4.34-.56-6.67,1.76s-3.11,5.31-1.76,6.66,4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.66Z"/>
+      <path class="cls-6" d="M127.61,7.78c-2.32,2.32-3.11,5.31-1.76,6.66s4.34.56,6.66-1.76c2.32-2.32,3.11-5.31,1.76-6.67-1.35-1.35-4.34-.56-6.66,1.76Z"/>
+      <path class="cls-2" d="M89.27,8.15c-2.32,2.32-3.11,5.31-1.76,6.66,1.35,1.35,4.34.56,6.66-1.76s3.11-5.31,1.76-6.66c-1.35-1.35-4.34-.56-6.67,1.76Z"/>
+    </g>
+  </g>
+</svg>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <!-- Desktop Search -->
+                    <div class="relative w-full max-w-lg hidden md:block">
+                        <input type="search" id="global-search-input" placeholder="Search Pokémon, items, moves..." class="w-full bg-zinc-800 border-2 border-zinc-700 rounded-full px-5 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition" autocomplete="off">
+                        <div id="global-search-results-container" class="absolute top-full left-0 right-0 mt-2"></div>
+                    </div>
+
+                    <!-- Mobile Search Trigger -->
+                    <button id="mobile-search-trigger" class="p-2 rounded-full hover:bg-zinc-700 transition-colors md:hidden" aria-label="Open search">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+        </div>
+        
+
+        <!-- Mobile Search Overlay -->
+        <div id="mobile-search-overlay" class="fixed inset-0 bg-zinc-900 p-4 hidden flex-col gap-4 md:hidden z-50">
+            <div class="flex items-center gap-4 max-w-screen-2xl mx-auto w-full">
+                <input type="search" id="mobile-global-search-input" placeholder="Search Pokémon, items, moves..." class="flex-grow bg-zinc-800 border-2 border-zinc-700 rounded-full px-5 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition" autocomplete="off">
+                <button id="mobile-search-close" class="p-2 rounded-full hover:bg-zinc-700 transition-colors flex-shrink-0" aria-label="Close search">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-global-search-results-container" class="mt-2 overflow-y-auto flex-grow max-w-screen-2xl mx-auto w-full"></div>
+        </div>
+    </div>
+    
+            <main class="flex-grow w-full max-w-screen-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl sm:text-4xl font-bold text-center text-zinc-100 mb-8">Key Items</h1>
+                <div id="item-list-container">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/962.html">
+                <img src="../images/items/aloraichium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Aloraichium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/783.html">
+                <img src="../images/items/aqua-suit.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Aqua Suit</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1635.html">
+                <img src="../images/items/armor-pass.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Armor Pass</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1006.html">
+                <img src="../images/items/autograph.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Autograph</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1327.html">
+                <img src="../images/items/band-autograph.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Band Autograph</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/476.html">
+                <img src="../images/items/basement-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Basement Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/921.html">
+                <img src="../images/items/basement-key--goldenrod.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Basement Key  Goldenrod</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/931.html">
+                <img src="../images/items/basement-key--new-mauville.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Basement Key  New Mauville</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1013.html">
+                <img src="../images/items/battle-pocket.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Battle Pocket</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/919.html">
+                <img src="../images/items/bike--green.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Bike  Green</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/929.html">
+                <img src="../images/items/bike--yellow.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Bike  Yellow</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/545.html">
+                <img src="../images/items/bike-voucher.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Bike Voucher</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1652.html">
+                <img src="../images/items/black-mane-hair.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Black Mane Hair</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/468.html">
+                <img src="../images/items/blue-orb.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Blue Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/982.html">
+                <img src="../images/items/blue-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Blue Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/949.html">
+                <img src="../images/items/buginium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Buginium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1009.html">
+                <img src="../images/items/candy-jar.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Candy Jar</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/475.html">
+                <img src="../images/items/card-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Card Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1023.html">
+                <img src="../images/items/card-key--letsgo.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Card Key  Letsgo</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1656.html">
+                <img src="../images/items/carrot-seeds.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Carrot Seeds</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1012.html">
+                <img src="../images/items/catching-pocket.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Catching Pocket</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/474.html">
+                <img src="../images/items/clear-bell.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Clear Bell</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1011.html">
+                <img src="../images/items/clothing-trunk.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Clothing Trunk</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/678.html">
+                <img src="../images/items/colress-machine.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Colress Machine</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/762.html">
+                <img src="../images/items/common-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Common Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/934.html">
+                <img src="../images/items/contest-costume--dress.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Contest Costume  Dress</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/437.html">
+                <img src="../images/items/coupon-1.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Coupon 1</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/438.html">
+                <img src="../images/items/coupon-2.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Coupon 2</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/439.html">
+                <img src="../images/items/coupon-3.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Coupon 3</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1648.html">
+                <img src="../images/items/crown-pass.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Crown Pass</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/658.html">
+                <img src="../images/items/dark-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dark Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/953.html">
+                <img src="../images/items/darkinium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Darkinium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/486.html">
+                <img src="../images/items/data-card-01.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 01</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/487.html">
+                <img src="../images/items/data-card-02.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 02</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/488.html">
+                <img src="../images/items/data-card-03.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 03</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/489.html">
+                <img src="../images/items/data-card-04.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 04</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/490.html">
+                <img src="../images/items/data-card-05.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 05</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/491.html">
+                <img src="../images/items/data-card-06.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 06</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/492.html">
+                <img src="../images/items/data-card-07.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 07</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/493.html">
+                <img src="../images/items/data-card-08.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 08</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/494.html">
+                <img src="../images/items/data-card-09.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 09</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/495.html">
+                <img src="../images/items/data-card-10.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 10</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/496.html">
+                <img src="../images/items/data-card-11.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 11</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/497.html">
+                <img src="../images/items/data-card-12.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 12</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/498.html">
+                <img src="../images/items/data-card-13.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 13</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/499.html">
+                <img src="../images/items/data-card-14.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 14</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/500.html">
+                <img src="../images/items/data-card-15.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 15</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/501.html">
+                <img src="../images/items/data-card-16.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 16</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/502.html">
+                <img src="../images/items/data-card-17.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 17</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/503.html">
+                <img src="../images/items/data-card-18.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 18</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/504.html">
+                <img src="../images/items/data-card-19.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 19</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/505.html">
+                <img src="../images/items/data-card-20.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 20</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/506.html">
+                <img src="../images/items/data-card-21.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 21</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/507.html">
+                <img src="../images/items/data-card-22.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 22</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/508.html">
+                <img src="../images/items/data-card-23.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 23</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/509.html">
+                <img src="../images/items/data-card-24.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 24</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/510.html">
+                <img src="../images/items/data-card-25.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 25</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/511.html">
+                <img src="../images/items/data-card-26.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 26</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/512.html">
+                <img src="../images/items/data-card-27.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Data Card 27</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/957.html">
+                <img src="../images/items/decidium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Decidium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/530.html">
+                <img src="../images/items/devon-goods.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Devon Goods</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/770.html">
+                <img src="../images/items/devon-parts.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Devon Parts</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/779.html">
+                <img src="../images/items/devon-scuba-gear.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Devon Scuba Gear</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/924.html">
+                <img src="../images/items/dna-splicers--merge.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dna Splicers  Merge</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/925.html">
+                <img src="../images/items/dna-splicers--split.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dna Splicers  Split</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/620.html">
+                <img src="../images/items/dragon-skull.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dragon Skull</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/952.html">
+                <img src="../images/items/dragonium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dragonium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/679.html">
+                <img src="../images/items/dropped-item.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dropped Item</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/926.html">
+                <img src="../images/items/dropped-item--red.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dropped Item  Red</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/927.html">
+                <img src="../images/items/dropped-item--yellow.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dropped Item  Yellow</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1141.html">
+                <img src="../images/items/dynamax-band.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Dynamax Band</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/964.html">
+                <img src="../images/items/eevium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Eevium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/941.html">
+                <img src="../images/items/electrium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Electrium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/733.html">
+                <img src="../images/items/elevator-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Elevator Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1138.html">
+                <img src="../images/items/endorsement.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Endorsement</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/895.html">
+                <img src="../images/items/enigmatic-card.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Enigmatic Card</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/955.html">
+                <img src="../images/items/fairium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Fairium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/944.html">
+                <img src="../images/items/fightinium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Fightinium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/939.html">
+                <img src="../images/items/firium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Firium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/947.html">
+                <img src="../images/items/flyinium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Flyinium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/417.html">
+                <img src="../images/items/galactic-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Galactic Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/951.html">
+                <img src="../images/items/ghostium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ghostium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/663.html">
+                <img src="../images/items/god-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>God Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/546.html">
+                <img src="../images/items/gold-teeth.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Gold Teeth</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/664.html">
+                <img src="../images/items/gram-1.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Gram 1</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/665.html">
+                <img src="../images/items/gram-2.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Gram 2</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/666.html">
+                <img src="../images/items/gram-3.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Gram 3</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/942.html">
+                <img src="../images/items/grassium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Grassium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/984.html">
+                <img src="../images/items/green-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Green Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/946.html">
+                <img src="../images/items/groundium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Groundium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/677.html">
+                <img src="../images/items/grubby-hanky.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Grubby Hanky</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/928.html">
+                <img src="../images/items/holo-caster--green.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Holo Caster  Green</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/930.html">
+                <img src="../images/items/holo-caster--red.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Holo Caster  Red</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/735.html">
+                <img src="../images/items/honor-of-kalos.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Honor Of Kalos</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1653.html">
+                <img src="../images/items/iceroot-carrot.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Iceroot Carrot</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/943.html">
+                <img src="../images/items/icium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Icium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/958.html">
+                <img src="../images/items/incinium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Incinium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/736.html">
+                <img src="../images/items/intriguing-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Intriguing Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/469.html">
+                <img src="../images/items/jade-orb.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Jade Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/773.html">
+                <img src="../images/items/key-to-room-1.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Key To Room 1</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/774.html">
+                <img src="../images/items/key-to-room-2.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Key To Room 2</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/775.html">
+                <img src="../images/items/key-to-room-4.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Key To Room 4</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/776.html">
+                <img src="../images/items/key-to-room-6.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Key To Room 6</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/978.html">
+                <img src="../images/items/kommonium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Kommonium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/994.html">
+                <img src="../images/items/left-poke-ball.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Left Poke Ball</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1644.html">
+                <img src="../images/items/legendary-clue-1.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Legendary Clue 1</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1645.html">
+                <img src="../images/items/legendary-clue-2.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Legendary Clue 2</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1646.html">
+                <img src="../images/items/legendary-clue-3.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Legendary Clue 3</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1647.html">
+                <img src="../images/items/legendary-clue-question.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Legendary Clue Question</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/533.html">
+                <img src="../images/items/letter.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Letter</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/547.html">
+                <img src="../images/items/lift-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lift Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/657.html">
+                <img src="../images/items/light-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Light Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/513.html">
+                <img src="../images/items/lock-capsule.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lock Capsule</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/738.html">
+                <img src="../images/items/looker-ticket.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Looker Ticket</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/406.html">
+                <img src="../images/items/loot-sack.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Loot Sack</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/478.html">
+                <img src="../images/items/lost-item.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lost Item</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/974.html">
+                <img src="../images/items/lunalium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lunalium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/977.html">
+                <img src="../images/items/lycanium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Lycanium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/480.html">
+                <img src="../images/items/machine-part.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Machine Part</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/561.html">
+                <img src="../images/items/magma-emblem.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Magma Emblem</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/435.html">
+                <img src="../images/items/magma-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Magma Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/782.html">
+                <img src="../images/items/magma-suit.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Magma Suit</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/961.html">
+                <img src="../images/items/marshadium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Marshadium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1008.html">
+                <img src="../images/items/medicine-pocket.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Medicine Pocket</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/788.html">
+                <img src="../images/items/mega-anchor.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Anchor</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/791.html">
+                <img src="../images/items/mega-anklet.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Anklet</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/768.html">
+                <img src="../images/items/mega-charm.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Charm</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/807.html">
+                <img src="../images/items/mega-cuff.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Cuff</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/787.html">
+                <img src="../images/items/mega-glasses.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Glasses</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/769.html">
+                <img src="../images/items/mega-glove.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Glove</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/786.html">
+                <img src="../images/items/mega-pendant.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Pendant</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/789.html">
+                <img src="../images/items/mega-stickpin.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Stickpin</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/790.html">
+                <img src="../images/items/mega-tiara.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mega Tiara</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/537.html">
+                <img src="../images/items/meteorite.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Meteorite</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/935.html">
+                <img src="../images/items/meteorite--2.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Meteorite  2</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/936.html">
+                <img src="../images/items/meteorite--3.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Meteorite  3</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/937.html">
+                <img src="../images/items/meteorite--4.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Meteorite  4</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/815.html">
+                <img src="../images/items/meteorite-shard.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Meteorite Shard</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/965.html">
+                <img src="../images/items/mewnium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mewnium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/976.html">
+                <img src="../images/items/mimikium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mimikium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/894.html">
+                <img src="../images/items/moon-flute.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Moon Flute</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/483.html">
+                <img src="../images/items/mystery-egg.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Mystery Egg</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/990.html">
+                <img src="../images/items/n-lunarizer--merge.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>N Lunarizer  Merge</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/992.html">
+                <img src="../images/items/n-lunarizer--split.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>N Lunarizer  Split</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/989.html">
+                <img src="../images/items/n-solarizer--merge.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>N Solarizer  Merge</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/991.html">
+                <img src="../images/items/n-solarizer--split.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>N Solarizer  Split</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/938.html">
+                <img src="../images/items/normalium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Normalium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/543.html">
+                <img src="../images/items/oaks-parcel.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Oaks Parcel</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/416.html">
+                <img src="../images/items/old-charm.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Old Charm</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1326.html">
+                <img src="../images/items/old-letter.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Old Letter</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/981.html">
+                <img src="../images/items/orange-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Orange Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/784.html">
+                <img src="../images/items/pair-of-tickets.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pair Of Tickets</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/436.html">
+                <img src="../images/items/parcel.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Parcel</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1022.html">
+                <img src="../images/items/parcel--letsgo.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Parcel  Letsgo</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/479.html">
+                <img src="../images/items/pass.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pass</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/514.html">
+                <img src="../images/items/photo-album.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Photo Album</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/956.html">
+                <img src="../images/items/pikanium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pikanium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/966.html">
+                <img src="../images/items/pikashunium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pikashunium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/980.html">
+                <img src="../images/items/pink-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pink Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/676.html">
+                <img src="../images/items/plasma-card.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Plasma Card</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/945.html">
+                <img src="../images/items/poisonium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Poisonium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/544.html">
+                <img src="../images/items/poke-flute.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Poke Flute</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1007.html">
+                <img src="../images/items/pokemon-box.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Pokemon Box</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/740.html">
+                <img src="../images/items/power-plant-pass.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Plant Pass</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1010.html">
+                <img src="../images/items/power-up-pocket.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Power Up Pocket</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/959.html">
+                <img src="../images/items/primarium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Primarium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/880.html">
+                <img src="../images/items/professors-mask.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Professors Mask</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/741.html">
+                <img src="../images/items/profs-letter.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Profs Letter</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/948.html">
+                <img src="../images/items/psychium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Psychium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/986.html">
+                <img src="../images/items/purple-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Purple Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1650.html">
+                <img src="../images/items/radiant-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Radiant Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/987.html">
+                <img src="../images/items/rainbow-flower.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rainbow Flower</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/554.html">
+                <img src="../images/items/rainbow-pass.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rainbow Pass</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/482.html">
+                <img src="../images/items/rainbow-wing.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rainbow Wing</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/418.html">
+                <img src="../images/items/red-chain.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Red Chain</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/467.html">
+                <img src="../images/items/red-orb.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Red Orb</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/983.html">
+                <img src="../images/items/red-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Red Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/477.html">
+                <img src="../images/items/red-scale.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Red Scale</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1658.html">
+                <img src="../images/items/reins-of-unity.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Reins Of Unity</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1641.html">
+                <img src="../images/items/reins-of-unity--merge.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Reins Of Unity  Merge</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1642.html">
+                <img src="../images/items/reins-of-unity--split.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Reins Of Unity  Split</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/886.html">
+                <img src="../images/items/ride-pager.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ride Pager</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/538.html">
+                <img src="../images/items/rm-1-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rm 1 Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/539.html">
+                <img src="../images/items/rm-2-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rm 2 Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/540.html">
+                <img src="../images/items/rm-4-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rm 4 Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/541.html">
+                <img src="../images/items/rm-6-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rm 6 Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/950.html">
+                <img src="../images/items/rockium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rockium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/996.html">
+                <img src="../images/items/roto-bargain.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Bargain</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1004.html">
+                <img src="../images/items/roto-boost.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Boost</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1005.html">
+                <img src="../images/items/roto-catch.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Catch</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1000.html">
+                <img src="../images/items/roto-encounter.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Encounter</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/998.html">
+                <img src="../images/items/roto-exp-points.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Exp Points</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/999.html">
+                <img src="../images/items/roto-friendship.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Friendship</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/995.html">
+                <img src="../images/items/roto-hatch.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Hatch</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1002.html">
+                <img src="../images/items/roto-hp-restore.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Hp Restore</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1003.html">
+                <img src="../images/items/roto-pp-restore.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Pp Restore</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/997.html">
+                <img src="../images/items/roto-prize-money.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Prize Money</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1001.html">
+                <img src="../images/items/roto-stealth.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Roto Stealth</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1637.html">
+                <img src="../images/items/rotom-bike--glistening-black.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rotom Bike  Glistening Black</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1636.html">
+                <img src="../images/items/rotom-bike--sparkling-white.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rotom Bike  Sparkling White</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1324.html">
+                <img src="../images/items/rotom-bike--water-mode.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rotom Bike  Water Mode</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/559.html">
+                <img src="../images/items/ruby.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ruby</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/407.html">
+                <img src="../images/items/rule-book.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Rule Book</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/560.html">
+                <img src="../images/items/sapphire.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Sapphire</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/535.html">
+                <img src="../images/items/scanner.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Scanner</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/413.html">
+                <img src="../images/items/seal-bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Seal Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1020.html">
+                <img src="../images/items/secret-key--letsgo.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Secret Key  Letsgo</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/441.html">
+                <img src="../images/items/secret-potion.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Secret Potion</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1654.html">
+                <img src="../images/items/shaderoot-carrot.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Shaderoot Carrot</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/548.html">
+                <img src="../images/items/silph-scope.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Silph Scope</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/481.html">
+                <img src="../images/items/silver-wing.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Silver Wing</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/473.html">
+                <img src="../images/items/slowpoke-tail.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Slowpoke Tail</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/963.html">
+                <img src="../images/items/snorlium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Snorlium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/973.html">
+                <img src="../images/items/solganium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Solganium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1328.html">
+                <img src="../images/items/sonias-book.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Sonias Book</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/882.html">
+                <img src="../images/items/sparkling-stone.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Sparkling Stone</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/448.html">
+                <img src="../images/items/squirt-bottle.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Squirt Bottle</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/433.html">
+                <img src="../images/items/ss-ticket.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ss Ticket</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/933.html">
+                <img src="../images/items/ss-ticket--hoenn.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ss Ticket  Hoenn</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1021.html">
+                <img src="../images/items/ss-ticket--letsgo.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ss Ticket  Letsgo</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/954.html">
+                <img src="../images/items/steelium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Steelium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/440.html">
+                <img src="../images/items/storage-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Storage Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/920.html">
+                <img src="../images/items/storage-key--galactic-warehouse.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Storage Key  Galactic Warehouse</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/932.html">
+                <img src="../images/items/storage-key--sea-mauville.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Storage Key  Sea Mauville</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/893.html">
+                <img src="../images/items/sun-flute.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Sun Flute</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/988.html">
+                <img src="../images/items/surge-badge.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Surge Badge</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/960.html">
+                <img src="../images/items/tapunium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Tapunium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/555.html">
+                <img src="../images/items/tea.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Tea</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/485.html">
+                <img src="../images/items/tidal-bell.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Tidal Bell</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/764.html">
+                <img src="../images/items/travel-trunk.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Travel Trunk</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/553.html">
+                <img src="../images/items/tri-pass.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Tri Pass</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/975.html">
+                <img src="../images/items/ultranecrozium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Ultranecrozium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/940.html">
+                <img src="../images/items/waterium-z--bag.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Waterium Z  Bag</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1651.html">
+                <img src="../images/items/white-mane-hair.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>White Mane Hair</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1323.html">
+                <img src="../images/items/wishing-chip.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Wishing Chip</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1140.html">
+                <img src="../images/items/wishing-star.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Wishing Star</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/1649.html">
+                <img src="../images/items/wooden-crown.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Wooden Crown</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/415.html">
+                <img src="../images/items/works-key.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Works Key</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/922.html">
+                <img src="../images/items/xtransceiver--red.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Xtransceiver  Red</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/923.html">
+                <img src="../images/items/xtransceiver--yellow.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Xtransceiver  Yellow</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/985.html">
+                <img src="../images/items/yellow-petal.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Yellow Petal</span>
+            </a>
+            <a class="item-select-btn w-full text-left px-4 py-3 bg-zinc-800 text-zinc-200 font-bold rounded-lg transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-white capitalize flex items-center gap-4" href="../items/detail/979.html">
+                <img src="../images/items/z-power-ring.webp" alt="" class="w-8 h-8 object-contain" loading="lazy" onerror="this.style.opacity='0.2'"/>
+                <span>Z Power Ring</span>
+            </a>
+        </div>
+    </div>
+            </main>
+            
+    <div class="flex-shrink-0 w-full mt-auto">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <footer class="text-center py-8 text-zinc-500 text-sm border-t border-zinc-800/50">
+                <p>Pokémon and all related content are trademarks of Nintendo and the Pokemon Company.</p>
+            </footer>
+        </div>
+    </div>
+    
+        </div>
+    </div>
+    <script id="items-data" type="application/json">[{"id":962,"name":"Aloraichium Z  Bag","spriteName":"aloraichium-z--bag"},{"id":783,"name":"Aqua Suit","spriteName":"aqua-suit"},{"id":1635,"name":"Armor Pass","spriteName":"armor-pass"},{"id":1006,"name":"Autograph","spriteName":"autograph"},{"id":1327,"name":"Band Autograph","spriteName":"band-autograph"},{"id":476,"name":"Basement Key","spriteName":"basement-key"},{"id":921,"name":"Basement Key  Goldenrod","spriteName":"basement-key--goldenrod"},{"id":931,"name":"Basement Key  New Mauville","spriteName":"basement-key--new-mauville"},{"id":1013,"name":"Battle Pocket","spriteName":"battle-pocket"},{"id":919,"name":"Bike  Green","spriteName":"bike--green"},{"id":929,"name":"Bike  Yellow","spriteName":"bike--yellow"},{"id":545,"name":"Bike Voucher","spriteName":"bike-voucher"},{"id":1652,"name":"Black Mane Hair","spriteName":"black-mane-hair"},{"id":468,"name":"Blue Orb","spriteName":"blue-orb"},{"id":982,"name":"Blue Petal","spriteName":"blue-petal"},{"id":949,"name":"Buginium Z  Bag","spriteName":"buginium-z--bag"},{"id":1009,"name":"Candy Jar","spriteName":"candy-jar"},{"id":475,"name":"Card Key","spriteName":"card-key"},{"id":1023,"name":"Card Key  Letsgo","spriteName":"card-key--letsgo"},{"id":1656,"name":"Carrot Seeds","spriteName":"carrot-seeds"},{"id":1012,"name":"Catching Pocket","spriteName":"catching-pocket"},{"id":474,"name":"Clear Bell","spriteName":"clear-bell"},{"id":1011,"name":"Clothing Trunk","spriteName":"clothing-trunk"},{"id":678,"name":"Colress Machine","spriteName":"colress-machine"},{"id":762,"name":"Common Stone","spriteName":"common-stone"},{"id":934,"name":"Contest Costume  Dress","spriteName":"contest-costume--dress"},{"id":437,"name":"Coupon 1","spriteName":"coupon-1"},{"id":438,"name":"Coupon 2","spriteName":"coupon-2"},{"id":439,"name":"Coupon 3","spriteName":"coupon-3"},{"id":1648,"name":"Crown Pass","spriteName":"crown-pass"},{"id":658,"name":"Dark Stone","spriteName":"dark-stone"},{"id":953,"name":"Darkinium Z  Bag","spriteName":"darkinium-z--bag"},{"id":486,"name":"Data Card 01","spriteName":"data-card-01"},{"id":487,"name":"Data Card 02","spriteName":"data-card-02"},{"id":488,"name":"Data Card 03","spriteName":"data-card-03"},{"id":489,"name":"Data Card 04","spriteName":"data-card-04"},{"id":490,"name":"Data Card 05","spriteName":"data-card-05"},{"id":491,"name":"Data Card 06","spriteName":"data-card-06"},{"id":492,"name":"Data Card 07","spriteName":"data-card-07"},{"id":493,"name":"Data Card 08","spriteName":"data-card-08"},{"id":494,"name":"Data Card 09","spriteName":"data-card-09"},{"id":495,"name":"Data Card 10","spriteName":"data-card-10"},{"id":496,"name":"Data Card 11","spriteName":"data-card-11"},{"id":497,"name":"Data Card 12","spriteName":"data-card-12"},{"id":498,"name":"Data Card 13","spriteName":"data-card-13"},{"id":499,"name":"Data Card 14","spriteName":"data-card-14"},{"id":500,"name":"Data Card 15","spriteName":"data-card-15"},{"id":501,"name":"Data Card 16","spriteName":"data-card-16"},{"id":502,"name":"Data Card 17","spriteName":"data-card-17"},{"id":503,"name":"Data Card 18","spriteName":"data-card-18"},{"id":504,"name":"Data Card 19","spriteName":"data-card-19"},{"id":505,"name":"Data Card 20","spriteName":"data-card-20"},{"id":506,"name":"Data Card 21","spriteName":"data-card-21"},{"id":507,"name":"Data Card 22","spriteName":"data-card-22"},{"id":508,"name":"Data Card 23","spriteName":"data-card-23"},{"id":509,"name":"Data Card 24","spriteName":"data-card-24"},{"id":510,"name":"Data Card 25","spriteName":"data-card-25"},{"id":511,"name":"Data Card 26","spriteName":"data-card-26"},{"id":512,"name":"Data Card 27","spriteName":"data-card-27"},{"id":957,"name":"Decidium Z  Bag","spriteName":"decidium-z--bag"},{"id":530,"name":"Devon Goods","spriteName":"devon-goods"},{"id":770,"name":"Devon Parts","spriteName":"devon-parts"},{"id":779,"name":"Devon Scuba Gear","spriteName":"devon-scuba-gear"},{"id":924,"name":"Dna Splicers  Merge","spriteName":"dna-splicers--merge"},{"id":925,"name":"Dna Splicers  Split","spriteName":"dna-splicers--split"},{"id":620,"name":"Dragon Skull","spriteName":"dragon-skull"},{"id":952,"name":"Dragonium Z  Bag","spriteName":"dragonium-z--bag"},{"id":679,"name":"Dropped Item","spriteName":"dropped-item"},{"id":926,"name":"Dropped Item  Red","spriteName":"dropped-item--red"},{"id":927,"name":"Dropped Item  Yellow","spriteName":"dropped-item--yellow"},{"id":1141,"name":"Dynamax Band","spriteName":"dynamax-band"},{"id":964,"name":"Eevium Z  Bag","spriteName":"eevium-z--bag"},{"id":941,"name":"Electrium Z  Bag","spriteName":"electrium-z--bag"},{"id":733,"name":"Elevator Key","spriteName":"elevator-key"},{"id":1138,"name":"Endorsement","spriteName":"endorsement"},{"id":895,"name":"Enigmatic Card","spriteName":"enigmatic-card"},{"id":955,"name":"Fairium Z  Bag","spriteName":"fairium-z--bag"},{"id":944,"name":"Fightinium Z  Bag","spriteName":"fightinium-z--bag"},{"id":939,"name":"Firium Z  Bag","spriteName":"firium-z--bag"},{"id":947,"name":"Flyinium Z  Bag","spriteName":"flyinium-z--bag"},{"id":417,"name":"Galactic Key","spriteName":"galactic-key"},{"id":951,"name":"Ghostium Z  Bag","spriteName":"ghostium-z--bag"},{"id":663,"name":"God Stone","spriteName":"god-stone"},{"id":546,"name":"Gold Teeth","spriteName":"gold-teeth"},{"id":664,"name":"Gram 1","spriteName":"gram-1"},{"id":665,"name":"Gram 2","spriteName":"gram-2"},{"id":666,"name":"Gram 3","spriteName":"gram-3"},{"id":942,"name":"Grassium Z  Bag","spriteName":"grassium-z--bag"},{"id":984,"name":"Green Petal","spriteName":"green-petal"},{"id":946,"name":"Groundium Z  Bag","spriteName":"groundium-z--bag"},{"id":677,"name":"Grubby Hanky","spriteName":"grubby-hanky"},{"id":928,"name":"Holo Caster  Green","spriteName":"holo-caster--green"},{"id":930,"name":"Holo Caster  Red","spriteName":"holo-caster--red"},{"id":735,"name":"Honor Of Kalos","spriteName":"honor-of-kalos"},{"id":1653,"name":"Iceroot Carrot","spriteName":"iceroot-carrot"},{"id":943,"name":"Icium Z  Bag","spriteName":"icium-z--bag"},{"id":958,"name":"Incinium Z  Bag","spriteName":"incinium-z--bag"},{"id":736,"name":"Intriguing Stone","spriteName":"intriguing-stone"},{"id":469,"name":"Jade Orb","spriteName":"jade-orb"},{"id":773,"name":"Key To Room 1","spriteName":"key-to-room-1"},{"id":774,"name":"Key To Room 2","spriteName":"key-to-room-2"},{"id":775,"name":"Key To Room 4","spriteName":"key-to-room-4"},{"id":776,"name":"Key To Room 6","spriteName":"key-to-room-6"},{"id":978,"name":"Kommonium Z  Bag","spriteName":"kommonium-z--bag"},{"id":994,"name":"Left Poke Ball","spriteName":"left-poke-ball"},{"id":1644,"name":"Legendary Clue 1","spriteName":"legendary-clue-1"},{"id":1645,"name":"Legendary Clue 2","spriteName":"legendary-clue-2"},{"id":1646,"name":"Legendary Clue 3","spriteName":"legendary-clue-3"},{"id":1647,"name":"Legendary Clue Question","spriteName":"legendary-clue-question"},{"id":533,"name":"Letter","spriteName":"letter"},{"id":547,"name":"Lift Key","spriteName":"lift-key"},{"id":657,"name":"Light Stone","spriteName":"light-stone"},{"id":513,"name":"Lock Capsule","spriteName":"lock-capsule"},{"id":738,"name":"Looker Ticket","spriteName":"looker-ticket"},{"id":406,"name":"Loot Sack","spriteName":"loot-sack"},{"id":478,"name":"Lost Item","spriteName":"lost-item"},{"id":974,"name":"Lunalium Z  Bag","spriteName":"lunalium-z--bag"},{"id":977,"name":"Lycanium Z  Bag","spriteName":"lycanium-z--bag"},{"id":480,"name":"Machine Part","spriteName":"machine-part"},{"id":561,"name":"Magma Emblem","spriteName":"magma-emblem"},{"id":435,"name":"Magma Stone","spriteName":"magma-stone"},{"id":782,"name":"Magma Suit","spriteName":"magma-suit"},{"id":961,"name":"Marshadium Z  Bag","spriteName":"marshadium-z--bag"},{"id":1008,"name":"Medicine Pocket","spriteName":"medicine-pocket"},{"id":788,"name":"Mega Anchor","spriteName":"mega-anchor"},{"id":791,"name":"Mega Anklet","spriteName":"mega-anklet"},{"id":768,"name":"Mega Charm","spriteName":"mega-charm"},{"id":807,"name":"Mega Cuff","spriteName":"mega-cuff"},{"id":787,"name":"Mega Glasses","spriteName":"mega-glasses"},{"id":769,"name":"Mega Glove","spriteName":"mega-glove"},{"id":786,"name":"Mega Pendant","spriteName":"mega-pendant"},{"id":789,"name":"Mega Stickpin","spriteName":"mega-stickpin"},{"id":790,"name":"Mega Tiara","spriteName":"mega-tiara"},{"id":537,"name":"Meteorite","spriteName":"meteorite"},{"id":935,"name":"Meteorite  2","spriteName":"meteorite--2"},{"id":936,"name":"Meteorite  3","spriteName":"meteorite--3"},{"id":937,"name":"Meteorite  4","spriteName":"meteorite--4"},{"id":815,"name":"Meteorite Shard","spriteName":"meteorite-shard"},{"id":965,"name":"Mewnium Z  Bag","spriteName":"mewnium-z--bag"},{"id":976,"name":"Mimikium Z  Bag","spriteName":"mimikium-z--bag"},{"id":894,"name":"Moon Flute","spriteName":"moon-flute"},{"id":483,"name":"Mystery Egg","spriteName":"mystery-egg"},{"id":990,"name":"N Lunarizer  Merge","spriteName":"n-lunarizer--merge"},{"id":992,"name":"N Lunarizer  Split","spriteName":"n-lunarizer--split"},{"id":989,"name":"N Solarizer  Merge","spriteName":"n-solarizer--merge"},{"id":991,"name":"N Solarizer  Split","spriteName":"n-solarizer--split"},{"id":938,"name":"Normalium Z  Bag","spriteName":"normalium-z--bag"},{"id":543,"name":"Oaks Parcel","spriteName":"oaks-parcel"},{"id":416,"name":"Old Charm","spriteName":"old-charm"},{"id":1326,"name":"Old Letter","spriteName":"old-letter"},{"id":981,"name":"Orange Petal","spriteName":"orange-petal"},{"id":784,"name":"Pair Of Tickets","spriteName":"pair-of-tickets"},{"id":436,"name":"Parcel","spriteName":"parcel"},{"id":1022,"name":"Parcel  Letsgo","spriteName":"parcel--letsgo"},{"id":479,"name":"Pass","spriteName":"pass"},{"id":514,"name":"Photo Album","spriteName":"photo-album"},{"id":956,"name":"Pikanium Z  Bag","spriteName":"pikanium-z--bag"},{"id":966,"name":"Pikashunium Z  Bag","spriteName":"pikashunium-z--bag"},{"id":980,"name":"Pink Petal","spriteName":"pink-petal"},{"id":676,"name":"Plasma Card","spriteName":"plasma-card"},{"id":945,"name":"Poisonium Z  Bag","spriteName":"poisonium-z--bag"},{"id":544,"name":"Poke Flute","spriteName":"poke-flute"},{"id":1007,"name":"Pokemon Box","spriteName":"pokemon-box"},{"id":740,"name":"Power Plant Pass","spriteName":"power-plant-pass"},{"id":1010,"name":"Power Up Pocket","spriteName":"power-up-pocket"},{"id":959,"name":"Primarium Z  Bag","spriteName":"primarium-z--bag"},{"id":880,"name":"Professors Mask","spriteName":"professors-mask"},{"id":741,"name":"Profs Letter","spriteName":"profs-letter"},{"id":948,"name":"Psychium Z  Bag","spriteName":"psychium-z--bag"},{"id":986,"name":"Purple Petal","spriteName":"purple-petal"},{"id":1650,"name":"Radiant Petal","spriteName":"radiant-petal"},{"id":987,"name":"Rainbow Flower","spriteName":"rainbow-flower"},{"id":554,"name":"Rainbow Pass","spriteName":"rainbow-pass"},{"id":482,"name":"Rainbow Wing","spriteName":"rainbow-wing"},{"id":418,"name":"Red Chain","spriteName":"red-chain"},{"id":467,"name":"Red Orb","spriteName":"red-orb"},{"id":983,"name":"Red Petal","spriteName":"red-petal"},{"id":477,"name":"Red Scale","spriteName":"red-scale"},{"id":1658,"name":"Reins Of Unity","spriteName":"reins-of-unity"},{"id":1641,"name":"Reins Of Unity  Merge","spriteName":"reins-of-unity--merge"},{"id":1642,"name":"Reins Of Unity  Split","spriteName":"reins-of-unity--split"},{"id":886,"name":"Ride Pager","spriteName":"ride-pager"},{"id":538,"name":"Rm 1 Key","spriteName":"rm-1-key"},{"id":539,"name":"Rm 2 Key","spriteName":"rm-2-key"},{"id":540,"name":"Rm 4 Key","spriteName":"rm-4-key"},{"id":541,"name":"Rm 6 Key","spriteName":"rm-6-key"},{"id":950,"name":"Rockium Z  Bag","spriteName":"rockium-z--bag"},{"id":996,"name":"Roto Bargain","spriteName":"roto-bargain"},{"id":1004,"name":"Roto Boost","spriteName":"roto-boost"},{"id":1005,"name":"Roto Catch","spriteName":"roto-catch"},{"id":1000,"name":"Roto Encounter","spriteName":"roto-encounter"},{"id":998,"name":"Roto Exp Points","spriteName":"roto-exp-points"},{"id":999,"name":"Roto Friendship","spriteName":"roto-friendship"},{"id":995,"name":"Roto Hatch","spriteName":"roto-hatch"},{"id":1002,"name":"Roto Hp Restore","spriteName":"roto-hp-restore"},{"id":1003,"name":"Roto Pp Restore","spriteName":"roto-pp-restore"},{"id":997,"name":"Roto Prize Money","spriteName":"roto-prize-money"},{"id":1001,"name":"Roto Stealth","spriteName":"roto-stealth"},{"id":1637,"name":"Rotom Bike  Glistening Black","spriteName":"rotom-bike--glistening-black"},{"id":1636,"name":"Rotom Bike  Sparkling White","spriteName":"rotom-bike--sparkling-white"},{"id":1324,"name":"Rotom Bike  Water Mode","spriteName":"rotom-bike--water-mode"},{"id":559,"name":"Ruby","spriteName":"ruby"},{"id":407,"name":"Rule Book","spriteName":"rule-book"},{"id":560,"name":"Sapphire","spriteName":"sapphire"},{"id":535,"name":"Scanner","spriteName":"scanner"},{"id":413,"name":"Seal Bag","spriteName":"seal-bag"},{"id":1020,"name":"Secret Key  Letsgo","spriteName":"secret-key--letsgo"},{"id":441,"name":"Secret Potion","spriteName":"secret-potion"},{"id":1654,"name":"Shaderoot Carrot","spriteName":"shaderoot-carrot"},{"id":548,"name":"Silph Scope","spriteName":"silph-scope"},{"id":481,"name":"Silver Wing","spriteName":"silver-wing"},{"id":473,"name":"Slowpoke Tail","spriteName":"slowpoke-tail"},{"id":963,"name":"Snorlium Z  Bag","spriteName":"snorlium-z--bag"},{"id":973,"name":"Solganium Z  Bag","spriteName":"solganium-z--bag"},{"id":1328,"name":"Sonias Book","spriteName":"sonias-book"},{"id":882,"name":"Sparkling Stone","spriteName":"sparkling-stone"},{"id":448,"name":"Squirt Bottle","spriteName":"squirt-bottle"},{"id":433,"name":"Ss Ticket","spriteName":"ss-ticket"},{"id":933,"name":"Ss Ticket  Hoenn","spriteName":"ss-ticket--hoenn"},{"id":1021,"name":"Ss Ticket  Letsgo","spriteName":"ss-ticket--letsgo"},{"id":954,"name":"Steelium Z  Bag","spriteName":"steelium-z--bag"},{"id":440,"name":"Storage Key","spriteName":"storage-key"},{"id":920,"name":"Storage Key  Galactic Warehouse","spriteName":"storage-key--galactic-warehouse"},{"id":932,"name":"Storage Key  Sea Mauville","spriteName":"storage-key--sea-mauville"},{"id":893,"name":"Sun Flute","spriteName":"sun-flute"},{"id":988,"name":"Surge Badge","spriteName":"surge-badge"},{"id":960,"name":"Tapunium Z  Bag","spriteName":"tapunium-z--bag"},{"id":555,"name":"Tea","spriteName":"tea"},{"id":485,"name":"Tidal Bell","spriteName":"tidal-bell"},{"id":764,"name":"Travel Trunk","spriteName":"travel-trunk"},{"id":553,"name":"Tri Pass","spriteName":"tri-pass"},{"id":975,"name":"Ultranecrozium Z  Bag","spriteName":"ultranecrozium-z--bag"},{"id":940,"name":"Waterium Z  Bag","spriteName":"waterium-z--bag"},{"id":1651,"name":"White Mane Hair","spriteName":"white-mane-hair"},{"id":1323,"name":"Wishing Chip","spriteName":"wishing-chip"},{"id":1140,"name":"Wishing Star","spriteName":"wishing-star"},{"id":1649,"name":"Wooden Crown","spriteName":"wooden-crown"},{"id":415,"name":"Works Key","spriteName":"works-key"},{"id":922,"name":"Xtransceiver  Red","spriteName":"xtransceiver--red"},{"id":923,"name":"Xtransceiver  Yellow","spriteName":"xtransceiver--yellow"},{"id":985,"name":"Yellow Petal","spriteName":"yellow-petal"},{"id":979,"name":"Z Power Ring","spriteName":"z-power-ring"}]</script>
+    <script>
+                // Common utilities for static pages
+                const escapeHtml = (unsafe) => 
+                    unsafe.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+
+                const toTitleCase = (str) =>
+                    str.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+                
+                // SVG Assets
+                const GIGANTAMAX_ICON_SVG_STRING = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 150.86 108.66\" fill=\"#e5003f\"><g><path d=\"M139.72,1.26c-17.86,3.96-36.13,12.57-53.88,24.15l-7.31-23.13-8.04,23.4C53.6,12.53,21.64,0,15.32,0c25.52,15.69,54.92,48.5,62.42,60.04,7.56-12.58,34.31-41.11,61.98-58.78Z\"/><path d=\"M102.75,52.3c-2.23-2.07-4.51-4.13-6.82-6.16-5.18,5.69-10.21,11.72-15.02,17.98,1.6,2.25,3.17,4.52,4.7,6.8,5.57-6.39,11.29-12.62,17.14-18.62Z\"/><path d=\"M117.43,66.72c-7.1,7.08-14.06,14.38-20.85,21.83,2.33,4.06,4.53,8.13,6.59,12.18,15.52-3.56,29.45-.29,47.69,7.43-7-11.28-18.81-26.23-33.43-41.44Z\"/><path d=\"M106.31,55.64c-6.11,6.29-12.08,12.83-17.88,19.54,1.95,3,3.83,6.03,5.64,9.06,6.18-7.48,12.53-14.82,19.02-21.97-2.21-2.22-4.47-4.43-6.78-6.64Z\"/><path d=\"M0,108.66c18.21-7.77,35.35-10.97,50.88-7.45,6.39-12.69,14.31-25.44,23.19-37.53-3.53-4.51-8.95-10.74-15.39-17.45C33.83,67.18,12.47,91.16,0,108.66Z\"/></g></svg>";
+                const TYPE_ICONS_ASSET = {"Bug":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M38.35,28.23c8.1,0,15.19-3.44,19.07-8.57-3.88-6.28-10.97-10.49-19.07-10.49s-15.19,4.21-19.07,10.49c3.88,5.13,10.97,8.57,19.07,8.57ZM61.19,23.97c-4.56,5.02-11.7,8.47-19.88,9.14l10.93,34.42c8.67-5.52,14.42-15.13,14.42-26.08,0-6.49-2.02-12.5-5.47-17.48ZM15.52,23.97c4.56,5.02,11.7,8.47,19.88,9.14l-10.93,34.42c-8.67-5.52-14.42-15.13-14.42-26.08,0-6.49,2.02-12.5,5.47-17.48ZM38.35,54.72c1.66,0,3.31-.37,4.83-1.09l-1.3-4.74c-2.15,1.38-4.92,1.38-7.07,0l-1.3,4.74c1.53.72,3.18,1.09,4.83,1.09h0ZM38.35,63.86c2.53,0,4.98-.48,7.27-1.36l-1.33-4.85c-1.85.79-3.86,1.21-5.94,1.21s-4.08-.42-5.94-1.21l-1.33,4.85c2.29.88,4.74,1.36,7.27,1.36Z\"/></svg>","Dark":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M60.1,20.73s-3.25,4.41-10.78,6.74c.84,2.28,1.32,4.93,1.32,7.9,0,10.15-5.5,18.39-12.28,18.39s-12.28-7.27-12.28-18.39c0-2.95.58-5.58,1.52-7.84-7.67-2.32-10.98-6.8-10.98-6.8,0,0-7.54,8.04-6.83,17.19.42,5.33,3.3,11.6,10.35,17.38,0,0,7.54,6.66,18.22,6.66s18.22-6.66,18.22-6.66c7.05-5.78,9.93-12.04,10.35-17.38.72-9.15-6.83-17.19-6.83-17.19Z\"/><path d=\"M35.54,28.85c-.96,2-1.58,4.89-1.58,7.72,0,5.08,1.97,9.19,4.39,9.19s4.39-4.12,4.39-9.19c0-2.84-.61-5.73-1.58-7.72-.9.04-1.84.05-2.81.02-.97.03-1.91.02-2.81-.02Z\"/></svg>","Dragon":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M12.39,23.98c-8.41,11.05-7.23,26.81,3.02,36.47,1.09-3.6,3.14-6.95,6.1-9.6-2.28-3.06-3.67-6.68-4.04-10.48-5.13-3.92-7-10.56-5.08-16.4h0ZM64.31,23.98c1.92,5.84.05,12.48-5.08,16.4-.38,3.88-1.82,7.47-4.04,10.48,2.96,2.65,5.01,5.99,6.1,9.6,10.25-9.65,11.43-25.42,3.02-36.47h0ZM51.36,25.31c-1.12-7.41-3.63-15.73-4.89-19.64-.22-.68-1.26-.66-1.44.03-1.17,4.28-2.6,11.09-3.24,14.2-1.07-.2-2.29-.32-3.42-.32s-2.35.11-3.42.32c-.64-3.11-2.07-9.91-3.24-14.2-.19-.69-1.22-.72-1.44-.03-1.26,3.91-3.78,12.22-4.89,19.64-2.67,2.99-4.3,6.93-4.3,11.33,0,6.35,3.37,13.85,8.39,18.21l1.38,12.27c0,1.8,3.37,4.41,7.53,4.41s7.53-2.62,7.53-4.41l1.38-12.27c5.02-4.36,8.39-11.86,8.39-18.21,0-4.4-1.63-8.34-4.3-11.33h-.02ZM29.81,48.82c-2.98-.92-5.06-3.61-5.15-6.73-.12-3.67.07-7.59.07-7.59l9.2,15.41c-1.61-.37-2.97-.74-4.12-1.09ZM46.91,48.82c-1.14.35-2.51.73-4.12,1.09l9.2-15.41s.19,3.92.07,7.59c-.1,3.11-2.17,5.82-5.15,6.73Z\"/></svg>","Electric":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M37.97,6.94c2.5,1.14,12.84,6.04,19.84,12.22.31.27.34.75.07,1.06-1.55,1.8-6.66,7.75-12.82,14.99-.27.32-.24.8.07,1.08,1.8,1.59,7.48,6.69,10.91,10.43.28.3.26.77-.04,1.06-2.98,2.87-17.73,17.06-23.45,21.97-.3.26-.76-.02-.67-.41.74-3.02,2.8-11.05,4.99-16.89.12-.31.02-.66-.25-.86-2.15-1.64-11.56-8.86-17.74-14.4-.26-.23-.32-.61-.16-.91,1.36-2.62,7.8-14.72,18.32-29.07.21-.29.6-.4.92-.25v-.02Z\"/></svg>","Fairy":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M66.36,12.08c-2.18-2.18-15.61-3.16-24.65,5.88-1.55,1.55-2.63,3.4-3.25,5.35-.62-1.96-1.7-3.8-3.25-5.35-9.04-9.04-22.47-8.06-24.65-5.88-2.18,2.18-3.16,15.61,5.88,24.65,1.91,1.91,4.26,3.11,6.73,3.61-5,4.33-5.57,11.18-4.61,12.52,1.02,1.42,8.4,3.21,14.31-.94-.27.79-.53,1.6-.79,2.44-2.47,8.08-3.39,14.96-2.07,15.36,1.33.41,4.41-5.81,6.88-13.89.62-2.03,1.15-3.99,1.56-5.79.41,1.8.94,3.76,1.56,5.79,2.47,8.08,5.55,14.3,6.88,13.89s.4-7.29-2.07-15.36c-.26-.84-.52-1.65-.79-2.44,5.91,4.15,13.3,2.36,14.31.94.96-1.34.39-8.18-4.61-12.52,2.47-.5,4.82-1.7,6.73-3.61,9.04-9.04,8.06-22.47,5.88-24.65h.02ZM38.46,40.13c-4.31,0-8.04-2.45-9.9-6.03,5.01-.02,9.15-3.74,9.81-8.57.02-.12.17-.12.18,0,.66,4.83,4.8,8.56,9.81,8.57-1.86,3.58-5.59,6.03-9.9,6.03Z\"/></svg>","Fighting":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M40.72,34.03h21.8v9.88h-21.8v-9.88ZM54.05,12.03v17.66h8.47V12.03h-8.47ZM49.19,12.03h-8.47v17.66h8.47V12.03ZM35.99,12.03h-8.47v23.22h8.47V12.03ZM22.66,12.03h-8.47v23.22h8.47V12.03ZM36.69,43.46H14.19v12.97l14.41,9.42,33.92-10.46v-7.38h-25.83v-4.54h0Z\"/></svg>","Fire":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M55.78,38.1c-5.32-5.15-3.66-9.14-1.21-11.26,0,0-6.53-.79-8.85,4.53-2.33,5.32,2.16,8.06,2.16,8.06,0,0-6.48-2.58-4.66-8.9,1.61-5.56,4.57-8.48,3.24-14.38-1.5-6.67-10.97-9.49-15.55-7.74,3.2,1.08,5.51,4.09,5.51,7.66,0,4.16-3.29,6.92-7.71,11.39-5.11,5.15-10.32,10.97-10.32,20.31,0,10.78,6.65,17.45,14.62,19.87-4.04-1.93-12.45-7.99-11.4-19.65,1.1-12.3,12.89-20.7,12.89-20.7,0,0-2.54,4.26-1.43,11.16.62,3.88,3.4,8.65,6.05,10.72,3.72,2.91,8.64,5.93,7.93,11.45-.67,5.18-7.55,7.5-11.02,7.71,1.58.26,3.19.37,4.78.32,11.81,0,20.58-8.78,20.58-18.12,0-7.39-3.54-10.43-5.62-12.43h0Z\"/></svg>","Flying":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M23.78,27.7c-1.94,4.43-7.5,23.12-8.81,33.15-.67,5.09-1.31,6.86,0,7.25,1.66.5,8.65-10.31,11.14-14.47,0,0,15.92,2.39,24.09-7.79.19-.24-.02-.59-.32-.53-3.22.55-14.81,2.34-19.94.35,0,0,20.89.81,30.38-14.67.13-.2-.08-.46-.3-.38-3.29,1.19-17.5,5.86-26.01,3.66,0,0,13.83-.81,24.28-10.31,10.45-9.5,11.31-14.3,10.56-15.05-1.42-1.42-8.65,2.16-14.47,3.99s-13.14,3.99-17.96,4.99-8.81,1.08-12.64,9.81Z\"/></svg>","Ghost":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M64.73,37.52c-2.45-.58-4.47.48-5.75,1.48.49-2.06.77-4.09.77-6.02,0-11.82-9.58-21.4-21.4-21.4s-21.4,9.58-21.4,21.4c0,1.93.28,3.96.77,6.02-1.28-.99-3.31-2.06-5.75-1.48-3.51.83-6.4,5.88-6.57,10.24-.03.9,1.07,1.36,1.67.69.97-1.09,2.24-2.21,3.12-1.84,2.88,1.22,3.1,6.32,5.87,6.32,2.43,0,4.52-2.43,5.54-3.86,4.66,8.79,11.84,16.06,16.74,16.06s12.07-7.26,16.74-16.06c1.02,1.43,3.11,3.86,5.54,3.86,2.77,0,2.99-5.1,5.87-6.32.88-.37,2.15.74,3.12,1.84.6.67,1.71.21,1.67-.69-.17-4.36-3.06-9.41-6.57-10.24h.02ZM33.14,34.78c-1.78.83-4.48-1.18-6.03-4.5-1.55-3.32-1.35-6.68.43-7.51s4.48,1.18,6.03,4.5,1.36,6.68-.43,7.51ZM49.59,30.28c-1.55,3.32-4.25,5.33-6.03,4.5s-1.98-4.2-.43-7.51c1.55-3.32,4.25-5.33,6.03-4.5s1.98,4.2.43,7.51Z\"/></svg>","Grass":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M11.47,66.62h17.63s4.82-44.39,2.33-44.39-19.96,44.39-19.96,44.39ZM41.07,66.62h17.62s8.31-44.39,5.82-44.39-23.44,44.39-23.44,44.39ZM35.08,66.62l12.8-25.44s4.66-30.26,2.49-30.26-13.14,26.94-13.14,26.94l-2.16,28.76h0Z\"/></svg>","Ground":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M52.29,16.07h8.31v8.31h-8.31v-8.31ZM27.85,22.56h6.48v6.48h-6.48v-6.48ZM13.55,8.92h10.81v10.81h-10.81v-10.81ZM67.44,48.21v-2.11l-29.09-11.61-29.09,11.61v2.11l29.09,11.6,29.09-11.6Z\"/><path d=\"M67.52,53.52l-29.17,11.78-29.16-11.78-1.47,3.64,30.63,12.38,30.64-12.38-1.47-3.64Z\"/></svg>","Ice":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M31.4,11.74l6.95-6.95,6.95,6.95-6.95,6.95-6.95-6.95Z\"/><path d=\"M11.49,48.24h9.83v9.83h-9.83s0-9.83,0-9.83Z\"/><path d=\"M31.4,64.97l6.95-6.95,6.95,6.95-6.95,6.95-6.95-6.95Z\"/><path d=\"M55.38,18.75v9.77l-17.03-9.83-17.03,9.83v-9.77h-9.83v9.83h9.83v19.6l17.03,9.83,17.03-9.83v-19.6h9.83v-9.83s-9.83,0-9.83,0ZM31.14,34.32v9.62h-5.11v-12.6h.05l10.86-6.27,2.55,4.42-8.36,4.83h.01ZM55.38,48.24h9.83v9.83h-9.83s0-9.83,0-9.83Z\"/></svg>","Normal":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M63.81,26.43c3.12-4.29,2.43-10.33-1.69-13.79-4-3.36-9.82-3.11-13.54.39-3.18-1.21-6.63-1.88-10.23-1.88s-7.05.67-10.23,1.88c-3.71-3.5-9.53-3.74-13.54-.39-4.13,3.46-4.81,9.49-1.69,13.79-2.17,4.05-3.4,8.67-3.4,13.58,0,15.91,12.95,28.86,28.86,28.86s28.86-12.95,28.86-28.86c0-4.91-1.23-9.53-3.4-13.58ZM38.35,60.87c-11.5,0-20.86-9.36-20.86-20.86s9.36-20.86,20.86-20.86,20.86,9.36,20.86,20.86-9.36,20.86-20.86,20.86Z\"/></svg>","Poison":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M47.7,56.75c-.55-4.68-4.52-8.31-9.35-8.31s-8.8,3.63-9.35,8.31c-11.51.84-19.8,3.18-19.8,5.93,0,3.46,13.05,6.26,29.15,6.26s29.15-2.8,29.15-6.26c0-2.76-8.29-5.09-19.8-5.93Z\"/><circle cx=\"28.31\" cy=\"23.22\" r=\"11.2\"/><circle cx=\"51.28\" cy=\"37.57\" r=\"6.64\"/></svg>","Psychic":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M66.48,44.65c-2.36-4.27-2.37-8.4.04-12.65,1.04-1.84,2.03-3.78,1.67-5.73,0-5.2-3.13-8.61-8.3-8.82-6.03-.25-10.55-2.33-13.86-7.79-3.86-6.36-11.46-6.32-15.35.06-3.25,5.33-7.66,7.44-13.6,7.72-7.09.33-10.81,6.68-7.44,13,2.92,5.48,2.87,10.44-.04,15.89-3.34,6.27.44,12.6,7.55,12.94,5.82.28,10.2,2.29,13.4,7.53,4.06,6.65,11.63,6.62,15.68-.06,3.2-5.28,7.63-7.32,13.44-7.44,1.96-.04,3.8-.49,5.36-1.87,3.8-3.33,4.37-7.51,1.44-12.79ZM55.86,50.44c-6.39.68-11.53,3.47-15.38,8.69-1.49,2.03-2.81,1.95-4.38-.17-3.72-5.03-8.71-7.78-14.87-8.46-2.35-.26-2.97-1.2-1.86-3.49,1.31-2.7,1.83-5.67,2.02-8.72-.25-2.97-.74-5.93-2.07-8.64-1.03-2.1-.52-3.14,1.71-3.38,6.28-.69,11.35-3.43,15.13-8.57,1.53-2.07,2.88-2.09,4.39-.04,3.77,5.14,8.84,7.9,15.12,8.6,2.18.24,2.78,1.19,1.79,3.35-2.69,5.84-2.67,11.77.04,17.61.9,1.94.45,3.01-1.63,3.23Z\"/></svg>","Rock":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M58.71,18l2.67,11.72-14.39-14.39,11.72,2.67-8.43-8.43h-23.85L9.57,26.43v23.85l8.23,8.23-4.49-19.72,24.21,24.21-19.72-4.49,8.63,8.63h23.85l8.43-8.43-19.72,4.49,24.21-24.21-4.49,19.72,8.43-8.43v-23.85l-8.43-8.43Z\"/></svg>","Steel":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M41,27.35l9.18,32.02,17.37-12.62-8.03-24.71-18.52,5.31ZM52.3,37.6c-2.52,0-4.56-2.04-4.56-4.56s2.04-4.56,4.56-4.56,4.56,2.04,4.56,4.56-2.04,4.56-4.56,4.56Z\"/><path d=\"M37.9,38.21l-4.29-14.95,24.07-6.9-1.28-3.93H20.3l-11.15,34.32,28.75-8.54ZM26.03,15.23c1.87,0,3.38,1.51,3.38,3.38s-1.51,3.38-3.38,3.38-3.38-1.51-3.38-3.38,1.51,3.38,3.38,3.38ZM39.04,42.18l-25.69,7.63,25,18.17,6.69-4.87-6-20.93Z\"/></svg>","Water":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76.71 76.71\" class=\"h-8 w-8\" fill=\"currentColor\"><path d=\"M54,41.57s-3.96-6.86-5.85-9.78c-1.97-3.07-3.82-6.73-5.26-12.61-1.44-5.87-2.22-11.53-4.54-11.53s-3.1,5.65-4.54,11.53c-1.44,5.87-3.29,9.53-5.26,12.61-1.88,2.93-5.85,9.78-5.85,9.78-1.69,2.81-2.59,6.04-2.58,9.32,0,10.03,8.2,18.17,18.23,18.17s18.23-8.13,18.23-18.17c0-3.41-.95-6.59-2.58-9.32ZM38.35,64.96c-8.18,0-14.61-6.1-14.61-10.5,0-2.91,6.43,2.52,14.61,2.52s14.61-5.43,14.61-2.52c0,4.41-6.43,10.5-14.61,10.5Z\"/></svg>"};
+                const TYPE_COLORS_ASSET = {"Normal":"bg-[#949495] text-white","Fire":"bg-[#d6734a] text-white","Water":"bg-[#5d84c0] text-white","Grass":"bg-[#76a752] text-white","Electric":"bg-[#f1d969] text-white","Ice":"bg-[#83c6e7] text-white","Fighting":"bg-[#d69f52] text-white","Poison":"bg-[#6e5294] text-white","Ground":"bg-[#96784b] text-white","Flying":"bg-[#a8c2e4] text-white","Psychic":"bg-[#cf717d] text-white","Bug":"bg-[#a0a252] text-white","Rock":"bg-[#beb88e] text-white","Ghost":"bg-[#63496e] text-white","Dragon":"bg-[#555ca3] text-white","Dark":"bg-[#4c4948] text-white","Steel":"bg-[#729fba] text-white","Fairy":"bg-[#d4b5d2] text-white"};
+                
+                const getPokemonNameAndBadges = (formName, searchDB) => {
+                    const info = searchDB?.pokemonFormInfo?.[formName];
+                    if (!info) {
+                        const capitalized = formName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                        return { baseName: capitalized, badges: [] };
+                    }
+                    const { speciesName, isDefault } = info;
+                    const baseName = speciesName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    if (isDefault) return { baseName, badges: [] };
+                    const suffix = formName.substring(speciesName.length).replace(/^-/, '');
+                    if (!suffix || suffix === 'gmax') return { baseName, badges: [] };
+                    const badgeText = suffix.split('-').map(tag => tag === 'mega' ? 'Mega' : tag.charAt(0).toUpperCase() + tag.slice(1)).join(' ');
+                    return { baseName, badges: [badgeText] };
+                };
+                
+                const getMultiplierDisplayHTML = (multiplier) => {
+                    if (multiplier === undefined || multiplier === 1) return '';
+                    let text;
+                    let color = 'bg-gray-700';
+                    if (multiplier >= 2) color = 'bg-green-600';
+                    if (multiplier < 1 && multiplier > 0) color = 'bg-red-600';
+                    if (multiplier === 0) color = 'bg-black';
+                    if (multiplier === 4) text = '4x';
+                    else if (multiplier === 2) text = '2x';
+                    else if (multiplier === 0.5) text = '½x';
+                    else if (multiplier === 0.25) text = '¼x';
+                    else text = `${multiplier}x`;
+                    return `<div class="absolute -top-2 -right-2 text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center text-white ${color} border-2 border-zinc-800">${text}</div>`;
+                };
+
+                const getTypeDisplayHTML = (type, options = {}) => {
+                    const { multiplier, isSelected = false, isHeader = false, isSide = false, className = '' } = options;
+                    const iconSVG = TYPE_ICONS_ASSET[type] || '';
+                    const baseColorClass = TYPE_COLORS_ASSET[type] || 'bg-zinc-700 text-white';
+
+                    let interactiveAndSelectedClasses = '';
+                    if (isHeader) {
+                        interactiveAndSelectedClasses = 'cursor-pointer transition-all duration-200 ring-2';
+                        if (isSelected) {
+                            interactiveAndSelectedClasses += ' ring-white';
+                        } else {
+                            interactiveAndSelectedClasses += ' ring-transparent hover:ring-white/50';
+                        }
+                    }
+                    
+                    const sizeClasses = 'h-12 w-20 text-sm';
+                    const contentHTML = iconSVG ? iconSVG : `<span>${escapeHtml(type)}</span>`;
+                    const flexClasses = 'flex items-center justify-center';
+
+                    return `<div 
+                                class="type-display relative rounded-lg shadow-md font-bold ${flexClasses} ${baseColorClass} ${sizeClasses} ${className} ${interactiveAndSelectedClasses}"
+                                data-type="${type}"
+                                aria-label="${type} type"
+                                role="${isHeader ? 'button' : 'img'}"
+                                title="${type}"
+                            >
+                                ${contentHTML}
+                                ${multiplier !== undefined ? getMultiplierDisplayHTML(multiplier) : ''}
+                            </div>`;
+                };
+
+                document.addEventListener('DOMContentLoaded', async () => {
+                    const body = document.body;
+                    const pathPrefix = body.dataset.pathPrefix || './';
+                    const eraName = body.dataset.eraName || 'Gen IX';
+
+                    // --- GLOBAL SEARCH DATA & APP ---
+                    let searchData;
+                    try {
+                        const response = await fetch(`${pathPrefix}search-data.json`);
+                        if (!response.ok) throw new Error('Search data fetch failed');
+                        searchData = await response.json();
+                    } catch(e) { 
+                        console.error('Failed to load search data:', e);
+                        searchData = {}; 
+                    }
+
+                    const renderGlobalResults = (term, containerId) => {
+                        const resultsContainer = document.getElementById(containerId);
+                        if (!resultsContainer) return;
+                        if (!term) {
+                            resultsContainer.innerHTML = '';
+                            return;
+                        }
+                        const filteredPokemon = (searchData.pokemon || []).filter(p => p.baseName.toLowerCase().includes(term) || String(p.baseId).startsWith(term)).slice(0, 5);
+                        const filteredItems = (searchData.items || []).filter(i => i.name.toLowerCase().includes(term)).slice(0, 5);
+                        const filteredAbilities = (searchData.abilities || []).filter(a => a.name.toLowerCase().includes(term)).slice(0, 5);
+                        const filteredAttacks = (searchData.attacks || []).filter(a => a.name.toLowerCase().includes(term)).slice(0, 5);
+                        
+                        const isMobile = containerId.includes('mobile');
+                        const commonContainerClasses = 'p-2 max-h-[70vh] overflow-y-auto';
+                        const desktopContainerClasses = 'bg-zinc-800 border border-zinc-700 rounded-lg shadow-lg';
+                        const containerClasses = isMobile ? commonContainerClasses : `${desktopContainerClasses} ${commonContainerClasses}`;
+
+                        if ([filteredPokemon, filteredItems, filteredAbilities, filteredAttacks].every(arr => arr.length === 0)) {
+                             resultsContainer.innerHTML = `<div class="${containerClasses}"><p class="p-4 text-center text-zinc-400">No results found.</p></div>`;
+                             return;
+                        }
+
+                        const pokemonHTML = filteredPokemon.length > 0 ? `<div><h3 class="px-4 pt-2 pb-1 text-xs font-bold text-zinc-400 uppercase">Pokémon (${filteredPokemon.length})</h3><div class="flex flex-col">` +
+                            filteredPokemon.map(p => {
+                                const linkId = searchData.speciesToDefaultIdMap[p.speciesName] || p.id;
+                                const linkEra = p.latestEra || eraName;
+                                const badgesHTML = p.badges.map(b => `<span class="ml-1 px-1.5 py-0.5 text-[10px] font-bold text-white bg-zinc-600 rounded-md">${escapeHtml(b)}</span>`).join('');
+                                return `<a href="${pathPrefix}pokemon/${linkEra.replace(' ', '_')}/${linkId}.html" class="flex items-center gap-3 w-full text-left px-4 py-2 hover:bg-zinc-700 rounded-md transition-colors">
+                                    <img src="${pathPrefix}images/pokemon/sprites/${p.id}.webp" alt="${p.baseName}" class="w-10 h-10 bg-zinc-900/50 rounded-full flex-shrink-0">
+                                    <div><span class="text-zinc-500 text-xs">#${p.baseId.toString().padStart(3, '0')}</span><div class="font-bold text-zinc-100 truncate">${p.baseName} ${badgesHTML}</div></div>
+                                </a>`
+                            }).join('') + '</div></div>' : '';
+                        
+                        const itemsHTML = filteredItems.length > 0 ? `<div><h3 class="px-4 pt-2 pb-1 text-xs font-bold text-zinc-400 uppercase">Items (${filteredItems.length})</h3><div class="flex flex-col">` +
+                            filteredItems.map(i => `<a href="${pathPrefix}items/detail/${i.id}.html" class="flex items-center gap-3 w-full text-left px-4 py-2 hover:bg-zinc-700 rounded-md transition-colors">
+                                <img src="${pathPrefix}images/items/${i.spriteName}.webp" alt="" class="w-8 h-8 object-contain flex-shrink-0" onerror="this.style.opacity='0.2'"/>
+                                <span class="font-bold text-zinc-100 capitalize">${escapeHtml(i.name)}</span>
+                            </a>`).join('') + '</div></div>' : '';
+
+                        const abilitiesHTML = filteredAbilities.length > 0 ? `<div><h3 class="px-4 pt-2 pb-1 text-xs font-bold text-zinc-400 uppercase">Abilities (${filteredAbilities.length})</h3><div class="flex flex-col">` +
+                            filteredAbilities.map(a => `<a href="${pathPrefix}abilities/detail/${a.id}.html" class="w-full text-left px-4 py-2 hover:bg-zinc-700 rounded-md transition-colors font-bold text-zinc-100 capitalize">${escapeHtml(a.name)}</a>`).join('') + '</div></div>' : '';
+
+                        const attacksHTML = filteredAttacks.length > 0 ? `<div><h3 class="px-4 pt-2 pb-1 text-xs font-bold text-zinc-400 uppercase">Attacks (${filteredAttacks.length})</h3><div class="flex flex-col">` +
+                            filteredAttacks.map(a => `<a href="${pathPrefix}attacks/detail/${a.id}.html" class="w-full text-left px-4 py-2 hover:bg-zinc-700 rounded-md transition-colors font-bold text-zinc-100">
+                               <div class="flex justify-between items-center"><span>${escapeHtml(toTitleCase(a.name))}</span><div class="flex-shrink-0">${getTypeDisplayHTML(a.type, { className: '!h-7 !w-16 !text-xs' })}</div></div>
+                            </a>`).join('') + '</div></div>' : '';
+                        
+                        resultsContainer.innerHTML = `<div class="${containerClasses}">${pokemonHTML}${itemsHTML}${abilitiesHTML}${attacksHTML}</div>`;
+                    };
+
+                    // Desktop Search
+                    const desktopSearchInput = document.getElementById('global-search-input');
+                    if(desktopSearchInput) {
+                        desktopSearchInput.addEventListener('input', function() { renderGlobalResults(this.value.toLowerCase().trim(), 'global-search-results-container') });
+                        desktopSearchInput.addEventListener('focus', function() { renderGlobalResults(this.value.toLowerCase().trim(), 'global-search-results-container') });
+                        desktopSearchInput.addEventListener('blur', () => setTimeout(() => {
+                            const resultsContainer = document.getElementById('global-search-results-container');
+                            if (resultsContainer && document.activeElement?.closest('#global-search-results-container') === null && document.activeElement?.id !== 'global-search-input') {
+                                resultsContainer.innerHTML = '';
+                            }
+                        }, 150));
+                    }
+                    
+                    // Mobile Search
+                    const mobileSearchInput = document.getElementById('mobile-global-search-input');
+                    if(mobileSearchInput) {
+                        mobileSearchInput.addEventListener('input', function() { renderGlobalResults(this.value.toLowerCase().trim(), 'mobile-global-search-results-container') });
+                        document.getElementById('mobile-search-trigger')?.addEventListener('click', () => {
+                            const overlay = document.getElementById('mobile-search-overlay');
+                            if(overlay) {
+                                overlay.classList.remove('hidden');
+                                overlay.classList.add('flex');
+                                mobileSearchInput.focus();
+                            }
+                        });
+                        document.getElementById('mobile-search-close')?.addEventListener('click', () => {
+                             const overlay = document.getElementById('mobile-search-overlay');
+                            if(overlay) {
+                                overlay.classList.add('hidden');
+                                overlay.classList.remove('flex');
+                                mobileSearchInput.value = '';
+                                document.getElementById('mobile-global-search-results-container').innerHTML = '';
+                            }
+                        });
+                    }
+
+                    // --- TYPE CHART MINI APP ---
+                    if (document.getElementById('type-chart-container')) {
+                        try {
+                            const chartRules = JSON.parse(document.getElementById('type-chart-data').textContent);
+                            const pokemonList = JSON.parse(document.getElementById('pokemon-data').textContent);
+                            const displayedTypes = Object.keys(chartRules);
+                            let selectedDefendingTypes = [];
+
+                            const getDamageMultiplierHTML = (multiplier) => {
+                                let text, colorClass, title;
+                                if (multiplier === 4) { text = '4x'; colorClass = 'text-sky-400'; title = '4x damage'; }
+                                else if (multiplier === 2) { text = '2x'; colorClass = 'text-lime-400'; title = '2x damage'; }
+                                else if (multiplier === 0.5) { text = '½x'; colorClass = 'text-orange-400'; title = '½ damage'; }
+                                else if (multiplier === 0.25) { text = '¼x'; colorClass = 'text-amber-500'; title = '¼ damage'; }
+                                else if (multiplier === 0) { text = '0x'; colorClass = 'text-zinc-500'; title = 'No damage'; }
+                                else return '<div class="h-8 w-8" title="1x damage"></div>';
+                                return `<div class="flex items-center justify-center h-full w-full font-bold text-lg ${colorClass}" title="${title}">${text}</div>`;
+                            };
+                            
+                            const render = () => {
+                                const isCalculatorVisible = selectedDefendingTypes.length > 0;
+
+                                // -- Desktop --
+                                const fixedContainer = document.getElementById('type-chart-fixed-container');
+                                const scrollContainer = document.getElementById('type-chart-scroll-container');
+                                let fixedGridHTML = '', scrollGridHTML = '';
+                                
+                                let calculatorHeaderTypesHTML = '';
+                                if (isCalculatorVisible) {
+                                    if (selectedDefendingTypes.length === 2) {
+                                        calculatorHeaderTypesHTML = `<div class="w-full h-full relative"><div class="absolute right-0 top-1/2 -translate-y-1/2 z-0">${getTypeDisplayHTML(selectedDefendingTypes[0], { className: 'h-10 w-12 !text-[10px] ring-2 ring-[#111112]' })}</div><div class="absolute left-0 top-1/2 -translate-y-1/2 z-10">${getTypeDisplayHTML(selectedDefendingTypes[1], { className: 'h-10 w-12 !text-[10px] ring-2 ring-[#111112]' })}</div></div>`;
+                                    } else {
+                                        calculatorHeaderTypesHTML = getTypeDisplayHTML(selectedDefendingTypes[0], { className: 'h-10 w-16 !text-xs' });
+                                    }
+                                }
+                                fixedGridHTML += '<div class="sticky top-0 p-1 flex justify-center items-center bg-[#111112] z-20" style="grid-column: 1; grid-row: 1;"><div class="w-full h-12 flex items-center justify-center">' + calculatorHeaderTypesHTML + '</div></div>';
+                                fixedGridHTML += '<div class="sticky top-0 px-4 py-1 flex justify-center items-center bg-[#111112] z-20 -mt-2" style="grid-column: 2; grid-row: 1;"><div class="w-20 h-12 flex items-center justify-center text-center text-xs font-bold text-zinc-500 leading-tight">Attacking ↓<br>Defending →</div></div>';
+                                
+                                displayedTypes.forEach(type => { scrollGridHTML += '<div class="sticky top-0 p-1 flex justify-center items-center bg-[#111112] z-10 -mt-2">' + getTypeDisplayHTML(type, { isSelected: selectedDefendingTypes.includes(type), isHeader: true }) + '</div>'; });
+                                
+                                displayedTypes.forEach((attackingType, rowIndex) => {
+                                    let calculatorCellHTML = '';
+                                    if (isCalculatorVisible) {
+                                        let finalMultiplier = selectedDefendingTypes.reduce((acc, defType) => acc * (chartRules[attackingType]?.[defType] ?? 1), 1);
+                                        calculatorCellHTML = getDamageMultiplierHTML(finalMultiplier);
+                                    }
+                                    fixedGridHTML += '<div class="h-14 flex items-center justify-center bg-[#111112] rounded-l-md" style="grid-row: ' + (rowIndex + 2) + '; grid-column: 1;">' + calculatorCellHTML + '</div>';
+                                    fixedGridHTML += '<div class="px-4 py-1 flex justify-end items-center bg-[#111112] rounded-r-md" style="grid-row: ' + (rowIndex + 2) + '; grid-column: 2;">' + getTypeDisplayHTML(attackingType) + '</div>';
+                                    displayedTypes.forEach((defendingType, colIndex) => {
+                                        const multiplier = chartRules[attackingType]?.[defendingType] ?? 1;
+                                        scrollGridHTML += '<div class="h-14 flex items-center justify-center bg-zinc-800/50 rounded-md" style="grid-row: ' + (rowIndex + 2) + '; grid-column: ' + (colIndex + 1) + ';">' + getDamageMultiplierHTML(multiplier) + '</div>';
+                                    });
+                                });
+
+                                fixedContainer.innerHTML = '<div class="grid gap-y-1 gap-x-1" style="grid-template-columns: 90px minmax(90px, max-content);">' + fixedGridHTML + '</div>';
+                                scrollContainer.innerHTML = '<div class="grid gap-1" style="min-width: max-content; grid-template-columns: repeat(' + displayedTypes.length + ', minmax(80px, 1fr));">' + scrollGridHTML + '</div>';
+
+                                // -- Mobile --
+                                const mobileSelector = document.getElementById('mobile-type-selector-container');
+                                const mobileSelectedTypes = document.getElementById('mobile-selected-types-container');
+                                const mobileResults = document.getElementById('mobile-type-results-container');
+                                mobileSelector.innerHTML = displayedTypes.map(type => getTypeDisplayHTML(type, { isSelected: selectedDefendingTypes.includes(type), isHeader: true, className: '!h-10 !w-full' })).join('');
+                                
+                                if (isCalculatorVisible) {
+                                    mobileSelectedTypes.innerHTML = '<div class="flex items-center gap-2">' + selectedDefendingTypes.map(type => getTypeDisplayHTML(type, { className: 'h-10 w-24 !text-xs' })).join('') + '</div>';
+                                    const resultsHTML = displayedTypes.map(attackingType => {
+                                        let finalMultiplier = selectedDefendingTypes.reduce((acc, defType) => acc * (chartRules[attackingType]?.[defType] ?? 1), 1);
+                                        return '<div class="flex items-center justify-center gap-4 p-2 border-b border-zinc-800/50 last:border-b-0">' + getTypeDisplayHTML(attackingType, { className: 'h-10 w-24 !text-xs' }) + '<div class="w-16 text-center">' + getDamageMultiplierHTML(finalMultiplier) + '</div></div>';
+                                    }).join('');
+                                    mobileResults.innerHTML = '<div class="mt-4 border border-zinc-800/50 rounded-lg">' + resultsHTML + '</div>';
+                                } else {
+                                    mobileSelectedTypes.innerHTML = '';
+                                    mobileResults.innerHTML = '<p class="text-center text-zinc-500 p-8">Select a type above to see its matchups.</p>';
+                                }
+
+                                // -- Matching Pokemon --
+                                const matchingPokemonContainer = document.getElementById('matching-pokemon-container');
+                                if (selectedDefendingTypes.length === 0) {
+                                    matchingPokemonContainer.innerHTML = '';
+                                    return;
+                                }
+
+                                const typeFilteredPokemon = pokemonList.filter(p => {
+                                    const pokemonTypes = new Set(p.types);
+                                    return selectedDefendingTypes.every(st => pokemonTypes.has(st)) && pokemonTypes.size === selectedDefendingTypes.length;
+                                });
+                                
+                                if (typeFilteredPokemon.length > 0) {
+                                    const gridItems = typeFilteredPokemon.map(p => {
+                                        const { baseName, badges } = getPokemonNameAndBadges(p.name, searchData);
+                                        const linkId = searchData.speciesToDefaultIdMap[p.speciesName] || p.id;
+                                        const badgesHTML = badges.map(b => `<span class="ml-1.5 px-1.5 py-0.5 text-xs font-bold text-white bg-zinc-600 rounded-md">${b}</span>`).join('');
+                                        const gmaxIconHTML = p.hasGmax ? `<div class="absolute top-1 left-1 h-6 w-6 p-0.5" title="Has Gigantamax form">${GIGANTAMAX_ICON_SVG_STRING.replace('<svg ', '<svg class="w-full h-full" ')}</div>` : '';
+                                        const linkHref = `${pathPrefix}pokemon/${eraName.replace(' ', '_')}/${linkId}.html`;
+                                        return `<a class="text-center group transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white rounded-lg" href="${linkHref}">
+                                            <div class="bg-zinc-800 group-hover:bg-zinc-700 rounded-lg p-2 aspect-square flex items-center justify-center transition relative">
+                                                <img src="${pathPrefix}images/pokemon/artwork/${p.id}.webp" alt="${p.name}" class="w-full h-full object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]" loading="lazy">
+                                                ${gmaxIconHTML}
+                                            </div>
+                                            <div class="text-sm font-bold mt-2 text-zinc-300 group-hover:text-zinc-100 transition flex items-center justify-center flex-wrap px-1">
+                                                <span class="text-zinc-500 group-hover:text-zinc-400">#${String(p.baseId).padStart(3, '0')}</span> 
+                                                <span class="ml-1">${baseName}</span>${badgesHTML}
+                                            </div>
+                                        </a>`;
+                                    }).join('');
+                                    matchingPokemonContainer.innerHTML = '<h2 class="text-2xl font-bold text-center mb-4 text-zinc-300">Matching Pokémon (' + typeFilteredPokemon.length + ')</h2><div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">' + gridItems + '</div>';
+                                } else {
+                                    matchingPokemonContainer.innerHTML = '<h2 class="text-2xl font-bold text-center mb-4 text-zinc-300">Matching Pokémon</h2><p class="text-center text-zinc-500 p-8">No Pokémon match the selected types for this generation.</p>';
+                                }
+                            };
+
+                            document.getElementById('type-chart-container').addEventListener('click', (e) => {
+                                const typeEl = e.target.closest('.type-display[data-type]');
+                                if (typeEl) {
+                                    const type = typeEl.dataset.type;
+                                    const index = selectedDefendingTypes.indexOf(type);
+                                    if (index > -1) selectedDefendingTypes.splice(index, 1);
+                                    else {
+                                        if (selectedDefendingTypes.length < 2) selectedDefendingTypes.push(type);
+                                        else { selectedDefendingTypes.shift(); selectedDefendingTypes.push(type); }
+                                    }
+                                    render();
+                                }
+                            });
+                            render();
+                        } catch (e) { console.error('Failed to init static type chart', e); }
+                    }
+
+                    // --- OTHER HANDLERS ---
+                    document.querySelectorAll('.move-tab-btn').forEach(tab => {
+                        tab.addEventListener('click', (e) => {
+                            const tabId = tab.dataset.tabId;
+                            if (!tabId) return;
+                            const parent = tab.closest('.moves-container');
+                            parent.querySelectorAll('.move-tab-btn').forEach(btn => {
+                                const isSelected = btn.dataset.tabId === tabId;
+                                btn.classList.toggle('bg-zinc-200', isSelected); btn.classList.toggle('text-zinc-900', isSelected);
+                                btn.classList.toggle('bg-zinc-700', !isSelected); btn.classList.toggle('text-zinc-300', !isSelected);
+                            });
+                            parent.querySelectorAll('.move-tab-content').forEach(content => content.classList.toggle('hidden', content.id !== 'move-tab-content-' + tabId));
+                        });
+                    });
+
+                    document.querySelectorAll('.scroll-to-section-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const targetId = btn.dataset.targetId;
+                            if (targetId) document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        });
+                    });
+
+                });
+            </script>
+</body>
+</html>
